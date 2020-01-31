@@ -1,0 +1,95 @@
+{
+  "extends": [
+    "stylelint-config-airbnb",
+    "stylelint-config-rational-order"
+  ],
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "order/order": [
+      "custom-properties",
+      "declarations",
+      {
+        "type": "at-rule",
+        "name": "supports"
+      },
+      {
+        "type": "at-rule",
+        "name": "media",
+        "parameter": \(--ie\)
+      },
+      {
+        "type": "at-rule",
+        "name": "media",
+        "parameter": \(--retina\)
+      },
+      {
+        "type": "at-rule",
+        "name": "media",
+        "parameter": \(--mobile-large\)
+      },
+      {
+        "type": "at-rule",
+        "name": "media",
+        "parameter": \(--tablet\)
+      },
+      {
+        "type": "at-rule",
+        "name": "media",
+        "parameter": \(--tablet-large\)
+      },
+      {
+        "type": "at-rule",
+        "name": "media",
+        "parameter": \(--desktop\)
+      },
+      {
+        "type": "at-rule",
+        "name": "media",
+        "parameter": \(--desktop-large\)
+      },
+      {
+        "type": "at-rule",
+        "name": "media",
+        "parameter": \(--desktop-extra-large\)
+      },
+      {
+        "type": "rule",
+        "selector": "^&::(before|after),"
+      },
+      {
+        "type": "rule",
+        "selector": "^&::before"
+      },
+      {
+        "type": "rule",
+        "selector": "^&::after"
+      },
+      {
+        "type": "rule",
+        "selector": "^&:\\w"
+      },
+      {
+        "type": "rule",
+        "selector": "^& \\+ &"
+      },
+      {
+        "type": "rule",
+        "selector": "^&\\["
+      },
+      {
+        "type": "rule",
+        "selector": "^&_"
+      },
+      {
+        "type": "rule",
+        "selector": "^."
+      },
+      "rules"
+    ]
+  },
+  "ignoreFiles": [
+    "./styles/libs/**/*"
+  ]
+}

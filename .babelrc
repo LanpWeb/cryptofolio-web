@@ -1,0 +1,21 @@
+{
+  "presets": ["next/babel", "@babel/preset-flow"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "store": "./redux/store",
+          "hoc": "./views/hoc",
+          "components": "./views/components",
+          "sections": "./views/sections",
+          "icons": "./views/icons"
+        }
+      }
+    ],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-transform-react-inline-elements",
+    "@babel/plugin-proposal-class-properties"
+  ]
+}

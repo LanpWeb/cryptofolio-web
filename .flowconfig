@@ -1,0 +1,27 @@
+[ignore]
+<PROJECT_ROOT>/test/**/*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.name_mapper='server' -> '<PROJECT_ROOT>/server'
+module.name_mapper='pageTypes' -> '<PROJECT_ROOT>/pageTypes'
+module.name_mapper='store' -> '<PROJECT_ROOT>/redux/store.js'
+module.name_mapper='ducks' -> '<PROJECT_ROOT>/ducks'
+module.name_mapper='styles' -> '<PROJECT_ROOT>/styles'
+module.name_mapper='pages' -> '<PROJECT_ROOT>/pages'
+module.name_mapper='config' -> '<PROJECT_ROOT>/config.js'
+module.name_mapper='utils' -> '<PROJECT_ROOT>/utils'
+module.name_mapper='hoc' -> '<PROJECT_ROOT>/views/hoc'
+module.name_mapper='components' -> '<PROJECT_ROOT>/views/components'
+module.name_mapper='sections' -> '<PROJECT_ROOT>/views/sections'
+module.name_mapper='icons' -> '<PROJECT_ROOT>/views/icons'
+
+[strict]
+
+[declarations]
+<PROJECT_ROOT>/node_modules/.*
