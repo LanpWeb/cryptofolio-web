@@ -3,9 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/users");
 const config = require("../../config/default");
 
-const { createAccessToken, createRefreshToken } = require("../../utils/auth");
-
-exports.init = router => router.post("/api/refresh-token", async ctx => {
+exports.init = router => router.post("/api/devices-logout", async ctx => {
   const refreshToken = ctx.cookies.get("refreshToken");
 
   if (!refreshToken) {
@@ -25,19 +23,14 @@ exports.init = router => router.post("/api/refresh-token", async ctx => {
   }
 
   const user = await User.findById(userId);
-  if (!user || !user.refreshTokens.includes(refreshToken)) {
-    ctx.throw("Malformed refresh token.", 400);
+
+  if (!user) {
+    ctx.throw("There is no user.", 400);
   }
 
-  const newRefreshToken = createRefreshToken(userId);
-  const newRefreshTokens = user.refreshTokens.filter(item => item !== refreshToken);
-  newRefreshTokens.push(newRefreshToken);
+  const newRefreshTokens = user.refreshTokens.filter(item => item === refreshToken);
 
   await User.findByIdAndUpdate(userId, { refreshTokens: newRefreshTokens });
 
-  ctx.cookies.set("refreshToken", newRefreshToken, config.refreshTokenCookie);
   ctx.status = 200;
-  ctx.body = {
-    accessToken: createAccessToken(userId)
-  };
 });

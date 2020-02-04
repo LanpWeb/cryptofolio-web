@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
-  refreshToken: String
+  refreshTokens: [String]
 });
 
 userSchema.pre("save", async function cryptPass() {

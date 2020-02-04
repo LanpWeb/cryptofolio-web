@@ -32,7 +32,7 @@ exports.init = router => router.post("/api/sign-in", async ctx => {
   }
 
   const refreshToken = createRefreshToken(user.id);
-  await User.findByIdAndUpdate(user.id, { refreshToken });
+  await User.findByIdAndUpdate(user.id, { $push: { refreshTokens: refreshToken } });
 
   ctx.cookies.set("refreshToken", refreshToken, config.refreshTokenCookie);
   ctx.status = 200;

@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/users");
 const config = require("../../config/default");
 
-exports.init = router => router.post("/api/logout", async ctx => {
+exports.init = router => router.post("/api/forced-logout", async ctx => {
   const refreshToken = ctx.cookies.get("refreshToken");
 
   if (!refreshToken) {
@@ -28,8 +28,7 @@ exports.init = router => router.post("/api/logout", async ctx => {
     ctx.throw("There is no user.", 400);
   }
 
-  const newRefreshTokens = user.refreshTokens.filter(item => item !== refreshToken);
-  await User.findByIdAndUpdate(userId, { refreshTokens: newRefreshTokens });
+  await User.findByIdAndUpdate(userId, { refreshTokens: [] });
 
   ctx.cookies.set("refreshToken", null);
   ctx.status = 200;
