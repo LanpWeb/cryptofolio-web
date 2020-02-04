@@ -5,8 +5,8 @@ import getConfig from "next/config";
 const nodeEnv = process.env.NODE_ENV;
 
 const developmentURL = "http://localhost:3004";
-const serverDevURL = "https://cryptofolio-web.herokuapp.com/";
-const serverProdURL = "https://cryptofolio-web.herokuapp.com/";
+const serverDevURL = "https://cryptofolio-web.herokuapp.com";
+const serverProdURL = "https://cryptofolio-web.herokuapp.com";
 
 let baseURL;
 
