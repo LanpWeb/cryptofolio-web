@@ -2,7 +2,7 @@
 
 module.exports = {
   host: "localhost",
-  port: process.env.NODE_ENV === "server-prod" ? 3000 : 3004,
+  port: process.env.NODE_ENV === "server-prod" ? process.env.PORT : 3004,
   root: process.cwd(),
   mongodbURL: "mongodb+srv://admin:5EcJKOpUY3ZjTW61@cluster0-hbaof.mongodb.net/cryptofolio?retryWrites=true&w=majority",
   ACCESS_TOKEN_SECRET: "eww78273ueuiw",
