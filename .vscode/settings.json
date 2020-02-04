@@ -1,0 +1,26 @@
+{
+  "javascript.validate.enable": false,
+  // Set the default
+  "editor.formatOnSave": true,
+  // Enable per-language
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "typescript.validate.enable": false,
+  "eslint.alwaysShowStatus": true,
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.lintTask.enable": true,
+  "eslint.options": {
+    "configFile": ".eslintrc"
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  // Optional BUT IMPORTANT: If you have the prettier extension enabled for other languages like CSS and HTML, turn it off for JS since we are doing it through Eslint already
+  "prettier.disableLanguages": [
+    "javascript",
+    "javascriptreact"
+  ],
+  "editor.tabSize": 2
+}
