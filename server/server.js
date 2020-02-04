@@ -11,8 +11,11 @@ const router = new Router();
 const handlers = fs.readdirSync(path.join(__dirname, "handlers")).sort();
 handlers.forEach(handler => require(`./handlers/${handler}`).init(app));
 
-const apiHandlers = fs.readdirSync(path.join(__dirname, "api")).sort();
-apiHandlers.forEach(handler => require(`./api/${handler}`).init(router));
+const authHandlers = fs.readdirSync(path.join(__dirname, "api/auth")).sort();
+authHandlers.forEach(handler => require(`./api/auth/${handler}`).init(router));
+
+const cryptocurrencyHandlers = fs.readdirSync(path.join(__dirname, "api/cryptocurrency")).sort();
+cryptocurrencyHandlers.forEach(handler => require(`./api/cryptocurrency/${handler}`).init(router));
 
 app.use(router.routes());
 

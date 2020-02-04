@@ -1,11 +1,13 @@
-// connect all sagas here
-
 import { all } from "redux-saga/effects";
 
-import { watchLike } from "ducks/like";
+import { watchAuth } from "ducks/auth/sagas";
+import { watchSignIn } from "ducks/signIn/sagas";
+import { watchSignUp } from "ducks/signUp/sagas";
 
 export default function* rootSaga() {
   yield all([
-    watchLike()
+    watchAuth(),
+    watchSignIn(),
+    watchSignUp()
   ]);
 }

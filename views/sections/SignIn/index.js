@@ -1,30 +1,26 @@
 // @flow
 
-import React, { useState } from "react";
-import Router from "next/router";
-import axios from "axios";
+import React, { useState, useCallback } from "react";
+import { connect } from "react-redux";
 
-import { apiURL } from "config";
-import { setAccessToken } from "utils/accessToken";
+import { signIn } from "ducks/signIn/actions";
 
 import Header from "components/Header";
 
-const SignIn = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+import type { Props } from "./types";
 
-  const submit = async e => {
+const SignIn = ({
+  progress,
+  error,
+  signIn
+}: Props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submit = useCallback(e => {
     e.preventDefault();
-
-    const res = await axios.post(`${apiURL}/sign-in`, {
-      email,
-      password
-    });
-
-    setAccessToken(res.data.accessToken);
-
-    Router.push("/app");
-  };
+    signIn(email, password);
+  }, [email, password]);
 
   return (
     <section className="signIn">
@@ -42,12 +38,23 @@ const SignIn = () => {
           placeholder="Password"
           onChange={e => setPassword(e.target.value)}
         />
-        <button type="submit">
+        <button
+          type="submit"
+          disabled={progress}
+        >
           Sign In
         </button>
       </form>
+      <span className="error">{error && error}</span>
     </section>
   );
 };
 
-export default SignIn;
+export default connect(
+  ({ signIn: { progress, error } }) => ({
+    progress, error
+  }),
+  (dispatch) => ({
+    signIn: (email, password) => dispatch(signIn({ email, password }))
+  })
+)(SignIn);

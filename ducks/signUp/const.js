@@ -1,0 +1,8 @@
+// @flow
+
+export const moduleName: string = "signUp";
+
+export const SIGN_UP_REQUEST: "SIGN_UP/SIGN_UP_REQUEST" = "SIGN_UP/SIGN_UP_REQUEST";
+export const SIGN_UP_START: "SIGN_UP/SIGN_UP_START" = "SIGN_UP/SIGN_UP_START";
+export const SIGN_UP_SUCCESS: "SIGN_UP/SIGN_UP_SUCCESS" = "SIGN_UP/SIGN_UP_SUCCESS";
+export const SIGN_UP_FAIL: "SIGN_UP/SIGN_UP_FAIL" = "SIGN_UP/SIGN_UP_FAIL";

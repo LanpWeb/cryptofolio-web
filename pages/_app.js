@@ -2,8 +2,11 @@ import React from "react";
 import App from "next/app";
 import getConfig from "next/config";
 import withRedux from "next-redux-wrapper";
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
+
 import { initStore } from "store";
+import { setSilentRefresh, signOutSuccess } from "ducks/auth/actions";
+import redirect from "server/redirect";
 
 import "../styles/main.scss";
 
@@ -57,6 +60,33 @@ class MyApp extends App {
         });
       });
     }
+
+    // If page was loaded using SSR and token was fetched
+    // this will set a timer for a new refresh
+    if (this.props.silentRefreshToSet) {
+      this.props.setSilentRefresh();
+    }
+
+    // to support logging out from all windows
+    if (typeof window !== "undefined") {
+      window.addEventListener("storage", this.syncLogout);
+    }
+  }
+
+  componentWillUnmount() {
+    // to support logging out from all windows
+    if (typeof window !== "undefined") {
+      window.removeEventListener("storage", this.syncLogout);
+      window.localStorage.removeItem("logout");
+    }
+  }
+
+  syncLogout = (event) => {
+    if (event.key === "logout") {
+      console.log("logged out from storage!");
+      this.props.signOutSuccess();
+      redirect("/sign-in");
+    }
   }
 
   render() {
@@ -70,4 +100,10 @@ class MyApp extends App {
   }
 }
 
-export default withRedux(initStore)(MyApp);
+export default withRedux(initStore)(connect(
+  ({ auth: { silentRefreshToSet } }) => ({ silentRefreshToSet }),
+  dispatch => ({
+    setSilentRefresh: () => dispatch(setSilentRefresh()),
+    signOutSuccess: () => dispatch(signOutSuccess()),
+  })
+)(MyApp));
