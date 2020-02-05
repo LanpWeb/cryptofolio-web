@@ -5,7 +5,7 @@ const fs = require("fs");
 const Koa = require("koa");
 const Router = require("koa-router");
 
-const app = new Koa();
+const app = new Koa({ proxy: true });
 const router = new Router();
 
 const handlers = fs.readdirSync(path.join(__dirname, "handlers")).sort();
