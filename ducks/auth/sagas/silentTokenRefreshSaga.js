@@ -10,7 +10,7 @@ export default function* silentTokenRefreshSaga(): Generator<any, any, any> {
 
   if (state.jwt.exp !== null) {
     try {
-      yield delay(state.jwt.exp * 1000 - Date.now());
+      yield delay(state.jwt.exp * 1000 - Date.now() + 10000); // on 10 seconds earlier for server operations
       yield fork(tokenRefreshSaga, { payload: {} });
     } catch (err) {
       console.log("Error:: ", err);

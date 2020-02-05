@@ -16,12 +16,12 @@ const Header = ({
     if (!auth) {
       return (
         <React.Fragment key="without-token">
-          <Link href="/sign-in">
+          <Link href="/signIn" as="/sign-in">
             <a>
               Sign In
             </a>
           </Link>
-          <Link href="/sign-up">
+          <Link href="/signUp" as="/sign-up">
             <a>
               Sign Up
             </a>
@@ -32,7 +32,7 @@ const Header = ({
 
     return (
       <React.Fragment key="with-token">
-        <Link href="/app">
+        <Link href="/portfolio" as="/app">
           <a>
             Portfolio
           </a>

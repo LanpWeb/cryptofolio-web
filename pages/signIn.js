@@ -2,11 +2,15 @@
 
 import React from "react";
 
+import initAuth from "hoc/initAuth";
+
 import Layout from "hoc/layout";
 import SignIn from "sections/SignIn";
 
-export default () => (
+const SignInPage = () => (
   <Layout>
     <SignIn />
   </Layout>
 );
+
+export default initAuth(SignInPage);

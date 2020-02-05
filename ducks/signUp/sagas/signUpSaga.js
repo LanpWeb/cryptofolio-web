@@ -45,7 +45,12 @@ export default function* signUpSaga({
       yield put({ type: SIGN_UP_SUCCESS });
       yield call(fetchJWTDataSaga, { payload: { accessToken: res.data.accessToken } });
 
-      redirect("/app");
+      // to support sign in in all windows
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("signin", Date.now());
+
+        redirect("/app");
+      }
     }
   } catch (err) {
     console.log("Error:: ", err);

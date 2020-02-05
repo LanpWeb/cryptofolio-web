@@ -1,36 +1,32 @@
 // @flow
 
-import React, { Component } from "react";
-import { withRouter } from "next/router";
+import React from "react";
 import axios from "axios";
 
 import { apiURL } from "config";
 
+import initAuth from "hoc/initAuth";
+
 import Layout from "hoc/layout";
 import Coin from "sections/Coin";
 
+import type { NextPageContext } from "next";
 import type { Props } from "pageTypes/coin";
 
-class CoinPage extends Component<Props, {}> {
-  static async getInitialProps({ query }) {
-    const { slug } = query;
-    const res = await axios(`${apiURL}/cryptocurrency/info/${slug}`);
-    const coin = Object.values(res.data)[0];
+const CoinPage = ({ cryptoInfo }: Props) => (
+  <Layout>
+    <Coin cryptoInfo={cryptoInfo} />
+  </Layout>
+);
 
-    return {
-      cryptoInfo: coin
-    };
-  }
+CoinPage.getInitialProps = async (ctx: NextPageContext) => {
+  const { slug } = ctx.query;
+  const res = await axios(`${apiURL}/cryptocurrency/info/${slug}`);
+  const coin = Object.values(res.data)[0];
 
-  render() {
-    const { cryptoInfo } = this.props;
+  return {
+    cryptoInfo: coin
+  };
+};
 
-    return (
-      <Layout>
-        <Coin cryptoInfo={cryptoInfo} />
-      </Layout>
-    );
-  }
-}
-
-export default withRouter(CoinPage);
+export default initAuth(CoinPage);

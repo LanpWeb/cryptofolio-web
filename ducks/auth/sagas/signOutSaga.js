@@ -27,7 +27,7 @@ export default function* signOutSaga(): Generator<any, any, any> {
     if (typeof window !== "undefined") {
       window.localStorage.setItem("logout", Date.now());
 
-      redirect("/sign-in");
+      redirect("/");
     }
   } catch (err) {
     console.log("Error:: ", err);

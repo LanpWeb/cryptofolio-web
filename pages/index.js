@@ -1,31 +1,29 @@
 // @flow
 
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
 
 import { apiURL } from "config";
+
+import initAuth from "hoc/initAuth";
 
 import Layout from "hoc/layout";
 import Home from "sections/Home";
 
 import type { Props } from "pageTypes/index";
 
-export default class HomePage extends Component<Props, {}> {
-  static async getInitialProps() {
-    const res = await axios(`${apiURL}/cryptocurrency/latest`);
+const HomePage = ({ latestCrypto }: Props) => (
+  <Layout>
+    <Home latestCrypto={latestCrypto} />
+  </Layout>
+);
 
-    return {
-      latestCrypto: res.data
-    };
-  }
+HomePage.getInitialProps = async () => {
+  const res = await axios(`${apiURL}/cryptocurrency/latest`);
 
-  render() {
-    const { latestCrypto } = this.props;
+  return {
+    latestCrypto: res.data
+  };
+};
 
-    return (
-      <Layout>
-        <Home latestCrypto={latestCrypto} />
-      </Layout>
-    );
-  }
-}
+export default initAuth(HomePage);

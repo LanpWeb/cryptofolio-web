@@ -2,10 +2,11 @@ import React from "react";
 import App from "next/app";
 import getConfig from "next/config";
 import withRedux from "next-redux-wrapper";
+import { withRouter } from "next/router";
 import { Provider, connect } from "react-redux";
 
 import { initStore } from "store";
-import { setSilentRefresh, signOutSuccess } from "ducks/auth/actions";
+import { setSilentRefresh, signOutSuccess, tokenRefresh } from "ducks/auth/actions";
 import redirect from "server/redirect";
 
 import "../styles/main.scss";
@@ -69,23 +70,35 @@ class MyApp extends App {
 
     // to support logging out from all windows
     if (typeof window !== "undefined") {
-      window.addEventListener("storage", this.syncLogout);
+      window.addEventListener("storage", this.storageEvents);
     }
   }
 
   componentWillUnmount() {
     // to support logging out from all windows
     if (typeof window !== "undefined") {
-      window.removeEventListener("storage", this.syncLogout);
+      window.removeEventListener("storage", this.storageEvents);
       window.localStorage.removeItem("logout");
+      window.localStorage.removeItem("signin");
     }
   }
 
-  syncLogout = (event) => {
+  storageEvents = (event) => {
+    const { signOutSuccess, router, tokenRefresh } = this.props;
+
     if (event.key === "logout") {
       console.log("logged out from storage!");
-      this.props.signOutSuccess();
-      redirect("/sign-in");
+      signOutSuccess();
+      redirect("/");
+    }
+
+    if (event.key === "signin") {
+      console.log("signed in from storage!");
+      if (router.pathname === "/signIn" || router.pathname === "/signUp") {
+        redirect("/app");
+      } else {
+        tokenRefresh();
+      }
     }
   }
 
@@ -100,10 +113,11 @@ class MyApp extends App {
   }
 }
 
-export default withRedux(initStore)(connect(
+export default withRouter(withRedux(initStore)(connect(
   ({ auth: { silentRefreshToSet } }) => ({ silentRefreshToSet }),
   dispatch => ({
     setSilentRefresh: () => dispatch(setSilentRefresh()),
     signOutSuccess: () => dispatch(signOutSuccess()),
+    tokenRefresh: () => dispatch(tokenRefresh({}))
   })
-)(MyApp));
+)(MyApp)));
