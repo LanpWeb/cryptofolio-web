@@ -11,7 +11,7 @@ module.exports = {
   refreshTokenCookie: {
     sameSite: true,
     overwrite: true,
-    secure: process.env.NODE_ENV === "server-prod",
+    secure: false,
     maxAge: 60 * 60 * 24 * 60 * 1000,
     httpOnly: true
   }
