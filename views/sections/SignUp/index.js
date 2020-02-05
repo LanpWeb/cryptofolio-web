@@ -16,11 +16,12 @@ const SignUp = ({
 }: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const submit = useCallback(e => {
     e.preventDefault();
-    signUp(email, password);
-  }, [email, password]);
+    signUp(email, password, confirmPassword);
+  }, [email, password, confirmPassword]);
 
   return (
     <section className="signUp">
@@ -37,6 +38,12 @@ const SignUp = ({
           type="text"
           placeholder="Password"
           onChange={e => setPassword(e.target.value)}
+        />
+        <input
+          value={confirmPassword}
+          type="text"
+          placeholder="Password confirmation"
+          onChange={e => setConfirmPassword(e.target.value)}
         />
         <button
           type="submit"
@@ -55,6 +62,6 @@ export default connect(
     progress, error
   }),
   (dispatch) => ({
-    signUp: (email, password) => dispatch(signUp({ email, password }))
+    signUp: (email, password, confirmPassword) => dispatch(signUp({ email, password, confirmPassword }))
   })
 )(SignUp);

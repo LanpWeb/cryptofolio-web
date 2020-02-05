@@ -15,7 +15,7 @@ module.exports = async (ctx, next) => {
 
   const accessToken = authSplit[1];
 
-  const payload = jwt.verify(accessToken, config.ACCESS_TOKEN_SECRET, (err, decoded) => {
+  const payload = jwt.verify(accessToken, config.accessTokenSecret, (err, decoded) => {
     if (err) {
       return;
     }

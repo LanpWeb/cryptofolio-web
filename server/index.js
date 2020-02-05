@@ -31,7 +31,7 @@ n.prepare().then(() => {
   });
 
   mongoose.connect(
-    config.mongodbURL,
+    config.mongodbUrl,
     {
       useNewUrlParser: true,
       useFindAndModify: false,

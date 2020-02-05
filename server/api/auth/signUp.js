@@ -7,8 +7,8 @@ const config = require("../../config/default");
 
 const { createAccessToken, createRefreshToken } = require("../../utils/auth");
 
-const spasswordSchema = new PasswordValidator();
-spasswordSchema
+const passwordSchema = new PasswordValidator();
+passwordSchema
   .is().min(8)
   .is().max(100)
   .has()
@@ -18,7 +18,7 @@ spasswordSchema
   .spaces();
 
 exports.init = router => router.post("/api/sign-up", async ctx => {
-  const { email, password } = ctx.request.body;
+  const { email, password, confirmPassword } = ctx.request.body;
 
   if (email.length === 0) {
     ctx.throw("Email field is empty.", 400);
@@ -32,8 +32,16 @@ exports.init = router => router.post("/api/sign-up", async ctx => {
     ctx.throw("Password field is empty.", 400);
   }
 
-  if (!spasswordSchema.validate(password)) {
+  if (confirmPassword.length === 0) {
+    ctx.throw("Password confirmation field is empty.", 400);
+  }
+
+  if (!passwordSchema.validate(password)) {
     ctx.throw("Password is not valid. It should be without spaces, minimum 8 symbols, with at least one uppercase letter.", 400);
+  }
+
+  if (password !== confirmPassword) {
+    ctx.throw("Password is not equal to password confirmation.", 400);
   }
 
   if (await User.where({ email }).countDocuments() !== 0) {

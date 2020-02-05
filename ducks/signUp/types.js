@@ -7,6 +7,7 @@ export type State = {
 export type SignUpPayload = {
   payload: {
     email: string,
-    password: string
+    password: string,
+    confirmPassword: string
   }
 };

@@ -10,7 +10,7 @@ exports.init = router => router.post("/api/forced-logout", async ctx => {
     ctx.throw("Required authorization refresh token.", 400);
   }
 
-  const payload = jwt.verify(refreshToken, config.REFRESH_TOKEN_SECRET, (err, decoded) => {
+  const payload = jwt.verify(refreshToken, config.refreshTokenSecret, (err, decoded) => {
     if (err) {
       ctx.throw(err.message, 400);
     }

@@ -20,7 +20,8 @@ import fetchJWTDataSaga from "ducks/auth/sagas/fetchJWTDataSaga";
 export default function* signUpSaga({
   payload: {
     email,
-    password
+    password,
+    confirmPassword
   }
 }: SignUpPayload): Generator<any, any, any> {
   const state = yield select(stateSelector);
@@ -35,7 +36,8 @@ export default function* signUpSaga({
       url: `${apiURL}/sign-up`,
       data: {
         email,
-        password
+        password,
+        confirmPassword
       }
     };
 

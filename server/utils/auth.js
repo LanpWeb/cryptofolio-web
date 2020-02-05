@@ -7,7 +7,7 @@ const createAccessToken = userId => {
     {
       userId
     },
-    config.ACCESS_TOKEN_SECRET,
+    config.accessTokenSecret,
     {
       expiresIn: "15m"
     }
@@ -20,7 +20,7 @@ const createRefreshToken = userId => {
     {
       userId
     },
-    config.REFRESH_TOKEN_SECRET,
+    config.refreshTokenSecret,
     {
       expiresIn: "1d"
     }
