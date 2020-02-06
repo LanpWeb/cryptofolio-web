@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 
 import { signOut } from "ducks/auth/actions";
 
+import Search from "components/Search";
+
 import type { Props } from "./types";
 
 const Header = ({
@@ -54,6 +56,7 @@ const Header = ({
         </a>
       </Link>
       {getTabs}
+      <Search />
     </div>
   );
 };

@@ -28,6 +28,12 @@ const initAuth = (WrappedComponent: NextPage) => {
           }
         ]);
       }
+    } else {
+      const storeState = store.getState();
+
+      if (storeState.auth.jwt.accessToken === null) {
+        await store.execSagaTasks(isServer, [{ task: tokenRefreshSaga }]);
+      }
     }
 
     const { jwt } = store.getState().auth;
