@@ -50,6 +50,9 @@ const Home = ({
             <th>
               Change (24h)
             </th>
+            <th>
+              Price Graph (7d)
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -84,6 +87,9 @@ const Home = ({
               </td>
               <td>
                 {crypto.quote.USD.percent_change_24h}
+              </td>
+              <td>
+                <img src={`https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/${crypto.id}.png`} alt="sparkline" width="164" height="48" />
               </td>
             </tr>
           ))}
