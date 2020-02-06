@@ -1,29 +1,31 @@
 // @flow
 
 import React from "react";
-import axios from "axios";
-
-import { apiURL } from "config";
 
 import initAuth from "hoc/initAuth";
 
 import Layout from "hoc/layout";
 import Home from "sections/Home";
 
-import type { Props } from "pageTypes/index";
+import latestCryptoSaga from "ducks/latestCrypto/sagas/latestCryptoSaga";
 
-const HomePage = ({ latestCrypto }: Props) => (
+import type { NextPageContext } from "next";
+
+const HomePage = () => (
   <Layout>
-    <Home latestCrypto={latestCrypto} />
+    <Home />
   </Layout>
 );
 
-HomePage.getInitialProps = async () => {
-  const res = await axios(`${apiURL}/cryptocurrency/latest`);
+HomePage.getInitialProps = async (ctx: NextPageContext) => {
+  const { store, isServer } = ctx;
 
-  return {
-    latestCrypto: res.data
-  };
+  const { start, limit, latestCrypto } = store.getState().latestCrypto;
+  if (latestCrypto.length === 0) {
+    await store.execSagaTasks(isServer, [{ task: latestCryptoSaga, options: { start, limit } }]);
+  }
+
+  return {};
 };
 
 export default initAuth(HomePage);

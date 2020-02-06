@@ -17,6 +17,9 @@ authHandlers.forEach(handler => require(`./api/auth/${handler}`).init(router));
 const cryptocurrencyHandlers = fs.readdirSync(path.join(__dirname, "api/cryptocurrency")).sort();
 cryptocurrencyHandlers.forEach(handler => require(`./api/cryptocurrency/${handler}`).init(router));
 
+const coreHandlers = fs.readdirSync(path.join(__dirname, "api/core")).sort();
+coreHandlers.forEach(handler => require(`./api/core/${handler}`).init(router));
+
 app.use(router.routes());
 
 module.exports = { app, router };

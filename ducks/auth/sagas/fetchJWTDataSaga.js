@@ -15,6 +15,7 @@ import {
 
 import { stateSelector } from "ducks/auth/selectors";
 import type { JWTDataPayload } from "ducks/auth/types";
+import fetchUserInfoSaga from "ducks/auth/sagas/fetchUserInfoSaga";
 
 export default function* fetchJWTDataSaga({
   payload: {
@@ -49,6 +50,8 @@ export default function* fetchJWTDataSaga({
         // and he needs to setSilentRefresh after window will be loaded
         yield put({ type: SILENT_REFRESH_TO_SET });
       }
+
+      yield call(fetchUserInfoSaga, { payload: { accessToken } });
     }
   } catch (err) {
     console.log("Error:: ", err);

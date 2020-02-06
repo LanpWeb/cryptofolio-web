@@ -2,15 +2,10 @@ const rp = require("request-promise");
 
 const config = require("../../config/default");
 
-exports.init = router => router.get("/api/cryptocurrency/latest", async ctx => {
+exports.init = router => router.get("/api/cryptocurrency/map", async ctx => {
   const requestOptions = {
     method: "GET",
-    uri: "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
-    qs: {
-      start: "1",
-      limit: "10",
-      convert: "USD"
-    },
+    uri: "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/map",
     headers: {
       "X-CMC_PRO_API_KEY": config.coinMarketCapKey
     },

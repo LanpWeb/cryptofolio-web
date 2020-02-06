@@ -3,6 +3,10 @@ import { handleActions, combineActions } from "redux-actions";
 import type { State } from "./types";
 
 import {
+  FETCH_USER_INFO_START,
+  FETCH_USER_INFO_SUCCESS,
+  FETCH_USER_INFO_FAIL,
+
   TOKEN_REFRESH_START,
   TOKEN_REFRESH_SUCCESS,
   TOKEN_REFRESH_FAIL,
@@ -33,6 +37,7 @@ export const initialState: State = {
 const authReducer = handleActions(
   {
     [combineActions(
+      FETCH_USER_INFO_START,
       TOKEN_REFRESH_START,
       FETCH_JWT_DATA_START
     )]: (state: State) => ({
@@ -48,6 +53,13 @@ const authReducer = handleActions(
     [SET_SILENT_REFRESH]: (state: State) => ({
       ...state,
       silentRefreshToSet: false,
+    }),
+
+    [FETCH_USER_INFO_SUCCESS]: (state: State, action) => ({
+      ...state,
+      ...action.payload,
+      progress: false,
+      error: null
     }),
 
     [TOKEN_REFRESH_SUCCESS]: (state: State, action) => ({
@@ -71,7 +83,10 @@ const authReducer = handleActions(
       error: null
     }),
 
-    [FETCH_JWT_DATA_FAIL]: (state: State, action) => ({
+    [combineActions(
+      FETCH_JWT_DATA_FAIL,
+      FETCH_USER_INFO_FAIL
+    )]: (state: State, action) => ({
       ...state,
       progress: false,
       error: action.payload.error

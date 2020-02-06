@@ -28,3 +28,9 @@ export type JWTDataPayload = {
     isServer: boolean
   }
 }
+
+export type UserInfoPayload = {
+  payload: {
+    accessToken: string
+  }
+}

@@ -2,5 +2,6 @@
 
 export type Props = {
   auth: boolean,
+  email: null | string,
   signOut: () => void
 };

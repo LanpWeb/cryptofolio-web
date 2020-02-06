@@ -10,6 +10,7 @@ import type { Props } from "./types";
 
 const Header = ({
   auth,
+  email,
   signOut
 }: Props) => {
   const getTabs = useMemo(() => {
@@ -37,12 +38,13 @@ const Header = ({
             Portfolio
           </a>
         </Link>
+        {email && <span>{`Hi, ${email}!`}</span>}
         <button onClick={signOut}>
           Sign Out
         </button>
       </React.Fragment>
     );
-  }, [auth, signOut]);
+  }, [auth, email, signOut]);
 
   return (
     <div className="header centered">
@@ -57,8 +59,9 @@ const Header = ({
 };
 
 export default connect(
-  ({ auth: { jwt: { auth } } }) => ({
-    auth
+  ({ auth: { jwt: { auth }, email } }) => ({
+    auth,
+    email
   }),
   (dispatch) => ({
     signOut: () => dispatch(signOut())

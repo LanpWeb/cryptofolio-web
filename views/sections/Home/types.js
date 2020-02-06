@@ -1,6 +1,6 @@
 // @flow
 
-export type Crypto = {
+type Crypto = {
   id: number,
   slug: string,
   cmc_rank: number,
@@ -18,5 +18,11 @@ export type Crypto = {
 }
 
 export type Props = {
-  latestCrypto: Array<Crypto>
+  latestCrypto: Array<Crypto>,
+  start: number,
+  limit: number,
+  loaded: boolean,
+  progress: boolean,
+  error: null | string,
+  getLatestCrypto: (start: number, limit: number) => void
 };
