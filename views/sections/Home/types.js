@@ -18,11 +18,11 @@ type Crypto = {
 }
 
 export type Props = {
-  latestCrypto: Array<Crypto>,
+  data: Array<Crypto>,
   start: number,
   limit: number,
   loaded: boolean,
   progress: boolean,
   error: null | string,
-  getLatestCrypto: (start: number, limit: number) => void
+  getCryptoList: (start: number, limit: number) => void
 };

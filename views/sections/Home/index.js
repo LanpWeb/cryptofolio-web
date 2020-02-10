@@ -4,15 +4,15 @@ import React, { useCallback } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
 
-import { getLatestCrypto } from "ducks/latestCrypto/actions";
+import { getCryptoList } from "ducks/cryptoList/actions";
 
 import Header from "components/Header";
 
 import type { Props } from "./types";
 
 const Home = ({
-  getLatestCrypto,
-  latestCrypto,
+  getCryptoList,
+  data,
   start,
   limit,
   error,
@@ -20,8 +20,8 @@ const Home = ({
   progress
 }: Props) => {
   const loadMore = useCallback(() => {
-    getLatestCrypto(start, limit);
-  }, [start, limit]);
+    getCryptoList(start, limit);
+  }, [getCryptoList, start, limit]);
 
   return (
     <section className="home">
@@ -56,7 +56,7 @@ const Home = ({
           </tr>
         </thead>
         <tbody>
-          {latestCrypto && Array.isArray(latestCrypto) && latestCrypto.map(crypto => (
+          {data && Array.isArray(data) && data.map(crypto => (
             <tr>
               <td>
                 {crypto.cmc_rank}
@@ -86,7 +86,7 @@ const Home = ({
                 {crypto.symbol}
               </td>
               <td>
-                {crypto.quote.USD.percent_change_24h}
+                {crypto.quote.USD.percent_change_24h.toFixed(2)}
               </td>
               <td>
                 <img src={`https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/${crypto.id}.png`} alt="sparkline" width="164" height="48" />
@@ -111,13 +111,13 @@ const Home = ({
 
 export default connect(
   ({
-    latestCrypto: {
-      progress, error, loaded, latestCrypto, limit, start
+    cryptoList: {
+      progress, error, loaded, data, limit, start
     }
   }) => ({
-    progress, error, loaded, latestCrypto, limit, start
+    progress, error, loaded, data, limit, start
   }),
   (dispatch) => ({
-    getLatestCrypto: (start, limit) => dispatch(getLatestCrypto({ start, limit }))
+    getCryptoList: (start, limit) => dispatch(getCryptoList({ start, limit }))
   })
 )(Home);

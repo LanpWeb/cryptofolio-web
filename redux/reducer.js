@@ -9,8 +9,11 @@ import { moduleName as signInModule } from "ducks/signIn/const";
 import signUpReducer from "ducks/signUp/reducer";
 import { moduleName as signUpModule } from "ducks/signUp/const";
 
-import latestCryptoReducer from "ducks/latestCrypto/reducer";
-import { moduleName as latestCryptoModule } from "ducks/latestCrypto/const";
+import cryptoListReducer from "ducks/cryptoList/reducer";
+import { moduleName as cryptoListModule } from "ducks/cryptoList/const";
+
+import cryptoInfoReducer from "ducks/cryptoInfo/reducer";
+import { moduleName as cryptoInfoModule } from "ducks/cryptoInfo/const";
 
 import mapCryptoReducer from "ducks/mapCrypto/reducer";
 import { moduleName as mapCryptoModule } from "ducks/mapCrypto/const";
@@ -19,6 +22,7 @@ export default combineReducers({
   [authModule]: authReducer,
   [signInModule]: signInReducer,
   [signUpModule]: signUpReducer,
-  [latestCryptoModule]: latestCryptoReducer,
+  [cryptoListModule]: cryptoListReducer,
+  [cryptoInfoModule]: cryptoInfoReducer,
   [mapCryptoModule]: mapCryptoReducer
 });

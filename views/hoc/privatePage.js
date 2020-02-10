@@ -9,12 +9,12 @@ import redirect from "server/redirect";
 
 import tokenRefreshSaga from "ducks/auth/sagas/tokenRefreshSaga";
 
-const initAuth = (WrappedComponent: NextPage) => {
-  const Initialized = (props: any) => (
+const privatePage = (WrappedComponent: NextPage) => {
+  const Authenticated = (props: any) => (
     <WrappedComponent {...props} />
   );
 
-  Initialized.getInitialProps = async (ctx: NextPageContext) => {
+  Authenticated.getInitialProps = async (ctx: NextPageContext) => {
     const { store, isServer } = ctx;
 
     if (isServer) {
@@ -38,15 +38,15 @@ const initAuth = (WrappedComponent: NextPage) => {
 
     const { jwt } = store.getState().auth;
 
-    if (jwt.accessToken && (ctx.pathname === "/signIn" || ctx.pathname === "/signUp")) {
-      redirect("/app", ctx);
+    if (jwt.accessToken === null) {
+      redirect("/", ctx);
     }
 
     const componentProps = WrappedComponent.getInitialProps && (await WrappedComponent.getInitialProps(ctx));
     return { ...componentProps };
   };
 
-  return Initialized;
+  return Authenticated;
 };
 
-export default initAuth;
+export default privatePage;

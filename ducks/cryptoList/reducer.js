@@ -2,15 +2,15 @@
 import { handleActions } from "redux-actions";
 
 import {
-  LATEST_CRYPTO_START,
-  LATEST_CRYPTO_SUCCESS,
-  LATEST_CRYPTO_FAIL
+  FETCH_CRYPTO_LIST_START,
+  FETCH_CRYPTO_LIST_SUCCESS,
+  FETCH_CRYPTO_LIST_FAIL
 } from "./const";
 
 import type { State } from "./types";
 
 export const initialState: State = {
-  latestCrypto: [],
+  data: [],
   start: 1,
   limit: 10,
   loaded: false,
@@ -18,24 +18,24 @@ export const initialState: State = {
   error: null
 };
 
-const latestCryptoReducer = handleActions(
+const cryptoListReducer = handleActions(
   {
-    [LATEST_CRYPTO_START]: (state: State) => ({
+    [FETCH_CRYPTO_LIST_START]: (state: State) => ({
       ...state,
       progress: true,
       error: null
     }),
 
-    [LATEST_CRYPTO_SUCCESS]: (state: State, action) => ({
+    [FETCH_CRYPTO_LIST_SUCCESS]: (state: State, action) => ({
       ...state,
       start: state.start + state.limit,
-      latestCrypto: [...state.latestCrypto, ...action.payload],
+      data: [...state.data, ...action.payload],
       loaded: action.payload.length === 0,
       progress: false,
       error: null
     }),
 
-    [LATEST_CRYPTO_FAIL]: (state: State, action) => ({
+    [FETCH_CRYPTO_LIST_FAIL]: (state: State, action) => ({
       ...state,
       progress: false,
       error: action.payload.error
@@ -45,4 +45,4 @@ const latestCryptoReducer = handleActions(
   initialState
 );
 
-export default latestCryptoReducer;
+export default cryptoListReducer;

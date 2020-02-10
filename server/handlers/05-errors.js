@@ -8,7 +8,7 @@ exports.init = app => (
         ctx.body = e.message;
         ctx.status = e.status;
       } else {
-        ctx.body = "Error 500";
+        ctx.body = e || "Error 500";
         ctx.status = 500;
       }
     }

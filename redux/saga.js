@@ -3,7 +3,8 @@ import { all } from "redux-saga/effects";
 import { watchAuth } from "ducks/auth/sagas";
 import { watchSignIn } from "ducks/signIn/sagas";
 import { watchSignUp } from "ducks/signUp/sagas";
-import { watchLatestCrypto } from "ducks/latestCrypto/sagas";
+import { watchCryptoList } from "ducks/cryptoList/sagas";
+import { watchCryptoInfo } from "ducks/cryptoInfo/sagas";
 import { watchMapCrypto } from "ducks/mapCrypto/sagas";
 
 export default function* rootSaga() {
@@ -11,7 +12,8 @@ export default function* rootSaga() {
     watchAuth(),
     watchSignIn(),
     watchSignUp(),
-    watchLatestCrypto(),
+    watchCryptoList(),
+    watchCryptoInfo(),
     watchMapCrypto()
   ]);
 }

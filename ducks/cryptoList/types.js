@@ -18,7 +18,7 @@ export type Crypto = {
 }
 
 export type State = {
-  latestCrypto: Array<Crypto>,
+  data: Array<Crypto>,
   start: number,
   limit: number,
   loaded: boolean,
@@ -26,7 +26,7 @@ export type State = {
   error: null | string
 };
 
-export type LatestCryptoPayload = {
+export type CryptoListPayload = {
   payload: {
     start: number,
     limit: number

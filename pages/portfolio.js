@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import withAuth from "hoc/withAuth";
+import privatePage from "hoc/privatePage";
 
 import Layout from "hoc/layout";
 import Portfolio from "sections/Portfolio";
@@ -13,4 +13,4 @@ const PortfolioPage = () => (
   </Layout>
 );
 
-export default withAuth(PortfolioPage);
+export default privatePage(PortfolioPage);

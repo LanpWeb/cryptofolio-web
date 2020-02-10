@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import initAuth from "hoc/initAuth";
+import publicPage from "hoc/publicPage";
 
 import Layout from "hoc/layout";
 import SignUp from "sections/SignUp";
@@ -13,4 +13,4 @@ const SignUpPage = () => (
   </Layout>
 );
 
-export default initAuth(SignUpPage);
+export default publicPage(SignUpPage);

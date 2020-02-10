@@ -38,13 +38,13 @@ const Search = ({
   const [suggestions, setSuggestions] = useState([]);
 
   const onChange = useCallback((event: any, { newValue }: any) => setValue(newValue), []);
-  const onClick = useCallback(() => !loaded && getMapCrypto(), [loaded]);
+  const onClick = useCallback(() => !loaded && getMapCrypto(), [loaded, getMapCrypto]);
 
   const onSuggestionsFetchRequested = useCallback(({ value }: any) => {
     if (progress) return;
     setSuggestions(getSuggestions(value, data));
-  }, [progress]);
-  const onSuggestionsClearRequested = useCallback(() => setSuggestions([]));
+  }, [progress, data]);
+  const onSuggestionsClearRequested = useCallback(() => setSuggestions([]), []);
 
   const inputProps = {
     placeholder: "Search",

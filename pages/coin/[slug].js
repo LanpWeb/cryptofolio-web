@@ -1,32 +1,29 @@
 // @flow
 
 import React from "react";
-import axios from "axios";
 
-import { apiURL } from "config";
-
-import initAuth from "hoc/initAuth";
+import publicPrivatePage from "hoc/publicPrivatePage";
 
 import Layout from "hoc/layout";
 import Coin from "sections/Coin";
 
-import type { NextPageContext } from "next";
-import type { Props } from "pageTypes/coin";
+import fetchCryptoInfoSaga from "ducks/cryptoInfo/sagas/fetchCryptoInfoSaga";
 
-const CoinPage = ({ cryptoInfo }: Props) => (
+import type { NextPageContext } from "next";
+
+const CoinPage = () => (
   <Layout>
-    <Coin cryptoInfo={cryptoInfo} />
+    <Coin />
   </Layout>
 );
 
 CoinPage.getInitialProps = async (ctx: NextPageContext) => {
-  const { slug } = ctx.query;
-  const res = await axios(`${apiURL}/cryptocurrency/info/${slug}`);
-  const coin = Object.values(res.data)[0];
+  const { store, isServer, query } = ctx;
+  const { slug } = query;
 
-  return {
-    cryptoInfo: coin
-  };
+  await store.execSagaTasks(isServer, [{ task: fetchCryptoInfoSaga, options: { slug } }]);
+
+  return {};
 };
 
-export default initAuth(CoinPage);
+export default publicPrivatePage(CoinPage);
