@@ -30,6 +30,7 @@ export const initialState: State = {
   },
   id: null,
   email: null,
+  watchlist: [],
   progress: false,
   error: null
 };

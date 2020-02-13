@@ -4,7 +4,8 @@ const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
-  refreshTokens: [String]
+  refreshTokens: [String],
+  watchlist: [String]
 });
 
 userSchema.pre("save", async function cryptPass() {
@@ -14,6 +15,8 @@ userSchema.pre("save", async function cryptPass() {
 });
 
 userSchema.methods.matchesPassword = function comparePass(password) {
+  console.log(password);
+  console.log(this.password);
   return bcrypt.compare(password, this.password);
 };
 
