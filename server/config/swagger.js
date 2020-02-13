@@ -1,3 +1,5 @@
+const swaggerHost = process.env.NODE_ENV === "server-prod" ? "cryptofolio-web.herokuapp.com" : "localhost:3004";
+
 const swaggerOptions = {
   spec: {
     swagger: "2.0",
@@ -6,7 +8,7 @@ const swaggerOptions = {
       version: "1.0.0",
       title: "Cryprofolio"
     },
-    host: "localhost:3004",
+    host: swaggerHost,
     basePath: "/api",
     tags: [{
       name: "auth",
