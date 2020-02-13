@@ -5,20 +5,27 @@ const fs = require("fs");
 const Koa = require("koa");
 const Router = require("koa-router");
 
+const koaSwagger = require("koa2-swagger-ui");
+const swaggerOptions = require("./config/swagger.js");
+
 const app = new Koa({ proxy: true });
 const router = new Router();
 
 const handlers = fs.readdirSync(path.join(__dirname, "handlers")).sort();
 handlers.forEach(handler => require(`./handlers/${handler}`).init(app));
 
-const authHandlers = fs.readdirSync(path.join(__dirname, "api/auth")).sort();
-authHandlers.forEach(handler => require(`./api/auth/${handler}`).init(router));
+// API
+const authApi = fs.readdirSync(path.join(__dirname, "api/auth")).sort();
+authApi.forEach(controller => require(`./api/auth/${controller}`).init(router));
 
-const cryptocurrencyHandlers = fs.readdirSync(path.join(__dirname, "api/cryptocurrency")).sort();
-cryptocurrencyHandlers.forEach(handler => require(`./api/cryptocurrency/${handler}`).init(router));
+const cryptocurrencyApi = fs.readdirSync(path.join(__dirname, "api/cryptocurrency")).sort();
+cryptocurrencyApi.forEach(controller => require(`./api/cryptocurrency/${controller}`).init(router));
 
-const coreHandlers = fs.readdirSync(path.join(__dirname, "api/core")).sort();
-coreHandlers.forEach(handler => require(`./api/core/${handler}`).init(router));
+const coreApi = fs.readdirSync(path.join(__dirname, "api/core")).sort();
+coreApi.forEach(controller => require(`./api/core/${controller}`).init(router));
+
+// Swagger
+router.get("/api-docs", koaSwagger({ routePrefix: false, swaggerOptions }));
 
 app.use(router.routes());
 

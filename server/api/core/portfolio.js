@@ -50,7 +50,10 @@ exports.init = router => {
 
     const result = {
       currentValue: 0,
-      change24h: 0,
+      change24h: {
+        value: 0,
+        percent: 0
+      },
       totalCost: 0,
       totalProfit: 0
     };
@@ -70,12 +73,15 @@ exports.init = router => {
       ]);
 
       const myValue = quoteRes.quote.USD.price * totalAmount[0].value;
+      const change24hValue = myValue * quoteRes.quote.USD.percent_change_24h;
 
       result.currentValue += myValue;
       result.totalCost += totalCost[0].value;
       result.totalProfit += myValue - totalCost[0].value;
-      result.change24h += myValue * quoteRes.quote.USD.percent_change_24h;
+      result.change24h.value += change24hValue;
     });
+
+    result.change24h.percent = (result.change24h.value * 100) / result.currentValue;
 
     ctx.status = 200;
     ctx.body = result;

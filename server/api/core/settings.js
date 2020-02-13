@@ -37,12 +37,11 @@ exports.init = router => router.post("/api/change-password", withAuth, async ctx
     ctx.throw("New password is not valid. It should be without spaces, minimum 8 symbols, with at least one uppercase letter.", 400);
   }
 
-  console.log(await ctx.state.user.matchesPassword(password));
   if (!await ctx.state.user.matchesPassword(password)) {
     ctx.throw("Incorrect old password. Please try again.", 400);
   }
 
-  await User.findByIdAndUpdate(ctx.state.user.id, { password: newPassword });
+  await User.update({ _id: ctx.state.user.id }, { $set: { password: newPassword } });
 
   ctx.status = 200;
 });

@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const path = require("path");
 const next = require("next");
 const mongoose = require("mongoose");

@@ -9,14 +9,15 @@ exports.init = router => {
     const { watchlist } = ctx.state.user;
 
     if (watchlist.length === 0) {
-      ctx.throw("There are no coins in watchlist.", 400);
+      ctx.status = 200;
+      ctx.body = [];
+    } else {
+      const slugs = watchlist.join(",");
+      const quotesRes = await getQuotes(slugs);
+
+      ctx.status = 200;
+      ctx.body = quotesRes;
     }
-
-    const slugs = watchlist.join(",");
-    const quotesRes = await getQuotes(slugs);
-
-    ctx.status = 200;
-    ctx.body = quotesRes;
   });
 
   router.post("/api/watchlist", withAuth, async ctx => {

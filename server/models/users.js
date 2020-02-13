@@ -14,9 +14,15 @@ userSchema.pre("save", async function cryptPass() {
   }
 });
 
+userSchema.pre("update", async function cryptPass() {
+  const { password } = this.getUpdate().$set;
+  if (password) {
+    const hash = await bcrypt.hash(password, 10);
+    this.getUpdate().$set.password = hash;
+  }
+});
+
 userSchema.methods.matchesPassword = function comparePass(password) {
-  console.log(password);
-  console.log(this.password);
   return bcrypt.compare(password, this.password);
 };
 
