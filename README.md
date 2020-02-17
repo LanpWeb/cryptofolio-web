@@ -2,7 +2,7 @@
 
 An open-source project for monitoring crypto coins and your portfolio
 
-Create `.env` file in the root of the project and create such values:
+Create `.env` file in the root of the project and fill such values:
 
 ```
 ACCESS_TOKEN_SECRET=

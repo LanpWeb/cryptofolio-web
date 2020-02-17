@@ -41,7 +41,7 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "coin",
+									"key": "coinId",
 									"value": "",
 									"type": "text"
 								}
@@ -113,7 +113,7 @@
 									"type": "text"
 								},
 								{
-									"key": "coin",
+									"key": "coinId",
 									"value": "",
 									"type": "text"
 								},
@@ -167,7 +167,7 @@
 									"type": "text"
 								},
 								{
-									"key": "coin",
+									"key": "coinId",
 									"value": "",
 									"type": "text"
 								},
@@ -189,13 +189,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{API_URL}}/transactions/5e43d47f6b6f1c94c7bbf3b0",
+							"raw": "{{API_URL}}/transactions/5e4a5717395ab3d31d5f8ebe",
 							"host": [
 								"{{API_URL}}"
 							],
 							"path": [
 								"transactions",
-								"5e43d47f6b6f1c94c7bbf3b0"
+								"5e4a5717395ab3d31d5f8ebe"
 							]
 						}
 					},
@@ -255,6 +255,24 @@
 					"response": []
 				},
 				{
+					"name": "Get graph",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/portfolio/graph",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"portfolio",
+								"graph"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get stats",
 					"request": {
 						"method": "GET",
@@ -301,7 +319,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{API_URL}}/cryptocurrency/graph?id=1&period=day",
+							"raw": "{{API_URL}}/cryptocurrency/graph?coinId=&period=",
 							"host": [
 								"{{API_URL}}"
 							],
@@ -311,12 +329,12 @@
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "1"
+									"key": "coinId",
+									"value": ""
 								},
 								{
 									"key": "period",
-									"value": "day"
+									"value": ""
 								}
 							]
 						}
@@ -709,7 +727,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZTNhOGEzYjQ0YTJjMTZiNWUzZWJmMmIiLCJpYXQiOjE1ODE1ODkxMTMsImV4cCI6MTU4MTY3NTUxM30.jZPajQtYpyCjMulKGf2WHz-YXWlZxR7978Ls8EtTy5w",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZTNhOGEzYjQ0YTJjMTZiNWUzZWJmMmIiLCJpYXQiOjE1ODE5Mjk1NDcsImV4cCI6MTU4MjAxNTk0N30.linGImE5R8SPlRhnvklegSk_CNTo6c8aR7zNcU7Pr40",
 				"type": "string"
 			}
 		]
@@ -738,7 +756,7 @@
 	],
 	"variable": [
 		{
-			"id": "c45fa46d-282e-437e-a6e9-416c44da8b4e",
+			"id": "272c5623-6cf4-40c5-b95d-35e08fe2ab14",
 			"key": "API_URL",
 			"value": "http://localhost:3004/api",
 			"type": "string"
