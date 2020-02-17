@@ -12,8 +12,8 @@ exports.init = router => {
       ctx.status = 200;
       ctx.body = [];
     } else {
-      const slugs = watchlist.join(",");
-      const quotesRes = await getQuotes(slugs);
+      const coinIds = watchlist.join(",");
+      const quotesRes = await getQuotes(coinIds);
 
       ctx.status = 200;
       ctx.body = quotesRes;
@@ -22,17 +22,17 @@ exports.init = router => {
 
   router.post("/api/watchlist", withAuth, async ctx => {
     const { id, watchlist } = ctx.state.user;
-    const { coin } = ctx.request.body;
+    const { coinId } = ctx.request.body;
 
-    if (coin.length === 0) {
+    if (coinId.length === 0) {
       ctx.throw("Coin is empty.", 400);
     }
 
-    if (watchlist.length !== 0 && watchlist.includes(coin)) {
-      const newWatchlist = watchlist.filter(item => item !== coin);
+    if (watchlist.length !== 0 && watchlist.includes(coinId)) {
+      const newWatchlist = watchlist.filter(item => item !== coinId);
       await User.findByIdAndUpdate(id, { watchlist: newWatchlist });
     } else {
-      await User.findByIdAndUpdate(id, { $push: { watchlist: coin } });
+      await User.findByIdAndUpdate(id, { $push: { watchlist: coinId } });
     }
 
     ctx.status = 200;

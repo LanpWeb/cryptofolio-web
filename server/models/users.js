@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   refreshTokens: [String],
-  watchlist: [String]
+  watchlist: [Number]
 });
 
 userSchema.pre("save", async function cryptPass() {

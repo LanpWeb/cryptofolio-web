@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const withAuth = require("../../middleware/withAuth");
 
 const Transaction = require("../../models/transactions");
@@ -5,24 +6,52 @@ const Transaction = require("../../models/transactions");
 const asyncForEach = require("../../utils/asyncForEach");
 
 const getQuote = require("../coinmarketcap/quote");
+const getHistoricQuote = require("../coinmarketcap/historicQuote");
 
 exports.init = router => {
+  router.get("/api/portfolio/graph", withAuth, async ctx => {
+    const { id } = ctx.state.user;
+
+    const result = [];
+    let currentValue = 0;
+
+    const dates = await Transaction.find({ userId: id }).distinct("date");
+    await asyncForEach(dates, async date => {
+      const transactions = await Transaction.find({ userId: id, date });
+
+      await asyncForEach(transactions, async transaction => {
+        const quoteRes = await getHistoricQuote(transaction.coinId, date);
+        const myValue = quoteRes.quotes[0].quote.USD.price * transaction.amount;
+
+        currentValue += myValue;
+      });
+
+      result.push({
+        price: currentValue,
+        date
+      });
+    });
+
+    ctx.status = 200;
+    ctx.body = result;
+  });
+
   router.get("/api/portfolio/holdings", withAuth, async ctx => {
     const { id } = ctx.state.user;
 
     const result = [];
 
-    const coins = await Transaction.find({ userId: id }).distinct("coin");
-    await asyncForEach(coins, async coin => {
-      const quoteRes = await getQuote(coin);
+    const coinIds = await Transaction.find({ userId: id }).distinct("coinId");
+    await asyncForEach(coinIds, async coinId => {
+      const quoteRes = await getQuote(coinId);
 
       const totalAmount = await Transaction.aggregate([
-        { $match: { coin } },
+        { $match: { userId: mongoose.Types.ObjectId(id), coinId } },
         { $group: { _id: null, value: { $sum: "$amount" } } }
       ]);
 
       const totalCost = await Transaction.aggregate([
-        { $match: { coin } },
+        { $match: { userId: mongoose.Types.ObjectId(id), coinId } },
         { $group: { _id: null, value: { $sum: "$price" } } }
       ]);
 
@@ -58,17 +87,17 @@ exports.init = router => {
       totalProfit: 0
     };
 
-    const coins = await Transaction.find({ userId: id }).distinct("coin");
-    await asyncForEach(coins, async coin => {
-      const quoteRes = await getQuote(coin);
+    const coinIds = await Transaction.find({ userId: id }).distinct("coinId");
+    await asyncForEach(coinIds, async coinId => {
+      const quoteRes = await getQuote(coinId);
 
       const totalAmount = await Transaction.aggregate([
-        { $match: { coin } },
+        { $match: { userId: mongoose.Types.ObjectId(id), coinId } },
         { $group: { _id: null, value: { $sum: "$amount" } } }
       ]);
 
       const totalCost = await Transaction.aggregate([
-        { $match: { coin } },
+        { $match: { userId: mongoose.Types.ObjectId(id), coinId } },
         { $group: { _id: null, value: { $sum: "$price" } } }
       ]);
 

@@ -2,7 +2,7 @@ const rp = require("request-promise");
 
 const config = require("../../config/default");
 
-const getHistoricQuotes = (id, period) => {
+const getHistoricQuotes = (coinId, period) => {
   const timeEnd = Math.floor(Date.now() / 1000);
   let interval;
   let timeStart;
@@ -38,7 +38,7 @@ const getHistoricQuotes = (id, period) => {
     method: "GET",
     uri: "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/quotes/historical",
     qs: {
-      id,
+      id: coinId,
       interval,
       time_start: timeStart,
       time_end: timeEnd

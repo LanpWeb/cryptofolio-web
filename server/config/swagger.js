@@ -175,6 +175,18 @@ const swaggerOptions = {
           }]
         }
       },
+      "/portfolio/graph": {
+        get: {
+          tags: ["portfolio"],
+          summary: "Portfolio graph action",
+          responses: {
+            200: {}
+          },
+          security: [{
+            Bearer: []
+          }]
+        }
+      },
       "/user": {
         get: {
           tags: ["portfolio"],
@@ -209,8 +221,8 @@ const swaggerOptions = {
             schema: {
               type: "object",
               properties: {
-                coin: {
-                  type: "string"
+                coinId: {
+                  type: "number"
                 }
               }
             }
@@ -262,8 +274,8 @@ const swaggerOptions = {
                 type: {
                   type: "string"
                 },
-                coin: {
-                  type: "string"
+                coinId: {
+                  type: "integer"
                 },
                 amount: {
                   type: "integer"
@@ -272,7 +284,7 @@ const swaggerOptions = {
                   type: "integer"
                 },
                 date: {
-                  type: "string"
+                  type: "integer"
                 }
               }
             }
@@ -306,8 +318,8 @@ const swaggerOptions = {
                 type: {
                   type: "string"
                 },
-                coin: {
-                  type: "string"
+                coinId: {
+                  type: "integer"
                 },
                 amount: {
                   type: "integer"
@@ -316,7 +328,7 @@ const swaggerOptions = {
                   type: "integer"
                 },
                 date: {
-                  type: "string"
+                  type: "integer"
                 }
               }
             }
@@ -383,7 +395,7 @@ const swaggerOptions = {
           tags: ["cryptocurrency"],
           summary: "Get cryptocurrency graph action",
           parameters: [{
-            name: "id",
+            name: "coinId",
             in: "query",
             description: "Cryptocurrency id",
             required: true,

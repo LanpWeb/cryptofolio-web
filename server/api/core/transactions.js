@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const withAuth = require("../../middleware/withAuth");
 
 const Transaction = require("../../models/transactions");
@@ -21,7 +22,7 @@ exports.init = router => {
   router.post("/api/transactions", withAuth, async ctx => {
     const { id } = ctx.state.user;
     const {
-      type, coin, amount, price, date
+      type, coinId, amount, price, date
     } = ctx.request.body;
 
     if (type.length === 0) {
@@ -32,8 +33,8 @@ exports.init = router => {
       ctx.throw("Transaction type is invalid.", 400);
     }
 
-    if (coin.length === 0) {
-      ctx.throw("Coin is empty.", 400);
+    if (coinId.length === 0) {
+      ctx.throw("Coin id is empty.", 400);
     }
 
     if (!amount) {
@@ -42,7 +43,7 @@ exports.init = router => {
 
     if (type === "sale") {
       const totalAmount = await Transaction.aggregate([
-        { $match: { coin } },
+        { $match: { userId: mongoose.Types.ObjectId(id), coinId: parseInt(coinId, 10) } },
         { $group: { _id: null, value: { $sum: "$amount" } } }
       ]);
 
@@ -64,7 +65,7 @@ exports.init = router => {
       amount: type === "sale" ? -amount : amount,
       price: type === "sale" ? -price : price,
       type,
-      coin,
+      coinId,
       date
     });
 
@@ -75,7 +76,7 @@ exports.init = router => {
     const { id } = ctx.state.user;
     const { transactionId } = ctx.params;
     const {
-      type, coin, amount, price, date
+      type, coinId, amount, price, date
     } = ctx.request.body;
 
     if (transactionId.length === 0) {
@@ -99,8 +100,8 @@ exports.init = router => {
       ctx.throw("Transaction type is invalid.", 400);
     }
 
-    if (coin.length === 0) {
-      ctx.throw("Coin is empty.", 400);
+    if (coinId.length === 0) {
+      ctx.throw("Coin id is empty.", 400);
     }
 
     if (!amount) {
@@ -109,7 +110,7 @@ exports.init = router => {
 
     if (type === "sale") {
       const totalAmount = await Transaction.aggregate([
-        { $match: { coin } },
+        { $match: { userId: mongoose.Types.ObjectId(id), coinId: parseInt(coinId, 10) } },
         { $group: { _id: null, value: { $sum: "$amount" } } }
       ]);
 
@@ -130,7 +131,7 @@ exports.init = router => {
       amount: type === "sale" ? -amount : amount,
       price: type === "sale" ? -price : price,
       type,
-      coin,
+      coinId,
       date
     });
 

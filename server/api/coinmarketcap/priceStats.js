@@ -2,12 +2,12 @@ const rp = require("request-promise");
 
 const config = require("../../config/default");
 
-const getPriceStats = slug => {
+const getPriceStats = coinId => {
   const requestOptionsInfo = {
     method: "GET",
     uri: "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/price-performance-stats/latest",
     qs: {
-      slug
+      id: coinId
     },
     headers: {
       "X-CMC_PRO_API_KEY": config.coinMarketCapKey

@@ -2,12 +2,12 @@ const rp = require("request-promise");
 
 const config = require("../../config/default");
 
-const getQuotes = slugs => {
+const getQuotes = coinIds => {
   const requestOptionsInfo = {
     method: "GET",
     uri: "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest",
     qs: {
-      slug: slugs
+      id: coinIds
     },
     headers: {
       "X-CMC_PRO_API_KEY": config.coinMarketCapKey

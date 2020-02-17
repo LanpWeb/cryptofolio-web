@@ -7,10 +7,10 @@ const transactionSchema = new mongoose.Schema({
     enum: ["purchase", "sale"],
     default: "purchase"
   },
-  coin: String,
+  coinId: Number,
   amount: Number,
   price: Number,
-  date: String
+  date: Number
 });
 
 const Transaction = mongoose.model("Transaction", transactionSchema);

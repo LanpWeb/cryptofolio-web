@@ -6,8 +6,8 @@ exports.init = router => router.get("/api/cryptocurrency/info/:slug", async ctx 
   const { slug } = ctx.params;
 
   const infoRes = await getInfo(slug);
-  const quoteRes = await getQuote(slug);
-  const priceRes = await getPriceStats(slug);
+  const priceRes = await getPriceStats(infoRes.id);
+  const quoteRes = await getQuote(infoRes.id);
 
   ctx.status = 200;
   ctx.body = { ...infoRes, ...quoteRes, pricePeriods: priceRes.periods };
