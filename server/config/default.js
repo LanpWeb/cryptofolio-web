@@ -5,6 +5,7 @@ module.exports = {
   host: "localhost",
   port: process.env.NODE_ENV === "server-prod" ? process.env.PORT : 3004,
   coinMarketCapKey: process.env.COINMARKETCAP_KEY,
+  coinMarketCapUrl: process.env.COINMARKETCAP_URL,
   mongodbUrl: process.env.MONGODB_URL,
   accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
   refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,

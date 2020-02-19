@@ -8,5 +8,6 @@ Create `.env` file in the root of the project and fill such values:
 ACCESS_TOKEN_SECRET=
 REFRESH_TOKEN_SECRET=
 COINMARKETCAP_KEY=
+COINMARKETCAP_URL=
 MONGODB_URL=
 ```

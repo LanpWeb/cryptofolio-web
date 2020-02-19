@@ -274,8 +274,16 @@ const swaggerOptions = {
                 type: {
                   type: "string"
                 },
-                coinId: {
-                  type: "integer"
+                coin: {
+                  type: "object",
+                  properties: {
+                    id: {
+                      type: "integer"
+                    },
+                    name: {
+                      type: "string"
+                    }
+                  }
                 },
                 amount: {
                   type: "integer"
@@ -318,8 +326,16 @@ const swaggerOptions = {
                 type: {
                   type: "string"
                 },
-                coinId: {
-                  type: "integer"
+                coin: {
+                  type: "object",
+                  properties: {
+                    id: {
+                      type: "integer"
+                    },
+                    name: {
+                      type: "string"
+                    }
+                  }
                 },
                 amount: {
                   type: "integer"
