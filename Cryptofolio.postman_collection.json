@@ -113,7 +113,12 @@
 									"type": "text"
 								},
 								{
-									"key": "coinId",
+									"key": "coin.id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "coin.name",
 									"value": "",
 									"type": "text"
 								},
@@ -167,7 +172,12 @@
 									"type": "text"
 								},
 								{
-									"key": "coinId",
+									"key": "coin.id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "coin.name",
 									"value": "",
 									"type": "text"
 								},
@@ -189,13 +199,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{API_URL}}/transactions/5e4a5717395ab3d31d5f8ebe",
+							"raw": "{{API_URL}}/transactions/5e4d58d04c1f97343b2776bf",
 							"host": [
 								"{{API_URL}}"
 							],
 							"path": [
 								"transactions",
-								"5e4a5717395ab3d31d5f8ebe"
+								"5e4d58d04c1f97343b2776bf"
 							]
 						}
 					},
@@ -218,13 +228,13 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "{{API_URL}}/transactions/5e43d47f6b6f1c94c7bbf3b0",
+							"raw": "{{API_URL}}/transactions/5e4d31fc1e675f0d5037957d",
 							"host": [
 								"{{API_URL}}"
 							],
 							"path": [
 								"transactions",
-								"5e43d47f6b6f1c94c7bbf3b0"
+								"5e4d31fc1e675f0d5037957d"
 							]
 						}
 					},
@@ -727,7 +737,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZTNhOGEzYjQ0YTJjMTZiNWUzZWJmMmIiLCJpYXQiOjE1ODE5Mjk1NDcsImV4cCI6MTU4MjAxNTk0N30.linGImE5R8SPlRhnvklegSk_CNTo6c8aR7zNcU7Pr40",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZTRiYmFjMGNjYzY4NGZiMzA3NjlmNTUiLCJpYXQiOjE1ODIxMjcxNTcsImV4cCI6MTU4MjEyODA1N30.1-YxpummMPCNIpWorZjpNFiOcedDVNBnbf_XP7yr_w4",
 				"type": "string"
 			}
 		]
@@ -756,7 +766,7 @@
 	],
 	"variable": [
 		{
-			"id": "272c5623-6cf4-40c5-b95d-35e08fe2ab14",
+			"id": "b2b11e3e-9712-4fda-8474-d6c7c30e99f0",
 			"key": "API_URL",
 			"value": "http://localhost:3004/api",
 			"type": "string"
