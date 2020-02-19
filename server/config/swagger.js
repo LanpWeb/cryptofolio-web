@@ -439,19 +439,6 @@ const swaggerOptions = {
             type: "string",
             required: true,
             description: ""
-          }, {
-            name: "id",
-            in: "query",
-            description: "Should start from 1",
-            required: true,
-            type: "integer"
-          },
-          {
-            name: "period",
-            in: "query",
-            description: "Example: day",
-            required: true,
-            type: "string"
           }],
           responses: {
             200: {}
