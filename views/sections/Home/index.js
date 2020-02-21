@@ -71,13 +71,15 @@ const Home = ({
   return (
     <section className="home">
       <Header />
-      <button
-        onClick={loadWatchlist}
-        style={{ color: cryptoList.isWatchlist ? "red" : "black" }}
-        disabled={cryptoList.progress}
-      >
-        Only watchlist
-      </button>
+      {auth && (
+        <button
+          onClick={loadWatchlist}
+          style={{ color: cryptoList.isWatchlist ? "red" : "black" }}
+          disabled={cryptoList.progress}
+        >
+          Only watchlist
+        </button>
+      )}
       <div>
         {cryptoGlobalStats.progress && <p>Loading...</p>}
         <p>
