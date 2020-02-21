@@ -7,7 +7,7 @@ import {
   FETCH_JWT_DATA_REQUEST,
   SIGN_OUT_REQUEST,
   SIGN_OUT_SUCCESS,
-} from "./const";
+} from "ducks/auth/const";
 
 export const fetchUserInfo = createAction(FETCH_USER_INFO_REQUEST);
 export const tokenRefresh = createAction(TOKEN_REFRESH_REQUEST);

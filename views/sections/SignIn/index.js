@@ -20,7 +20,7 @@ const SignIn = ({
   const submit = useCallback(e => {
     e.preventDefault();
     signIn(email, password);
-  }, [email, password]);
+  }, [signIn, email, password]);
 
   return (
     <section className="signIn">

@@ -21,7 +21,7 @@ const SignUp = ({
   const submit = useCallback(e => {
     e.preventDefault();
     signUp(email, password, confirmPassword);
-  }, [email, password, confirmPassword]);
+  }, [signUp, email, password, confirmPassword]);
 
   return (
     <section className="signUp">

@@ -146,7 +146,7 @@ exports.getWatchlist = async ctx => {
       const quotesRes = await CryptocurrencyService.getQuotes(coinIds);
 
       ctx.status = 200;
-      ctx.body = quotesRes;
+      ctx.body = quotesRes.sort((a, b) => a.cmc_rank - b.cmc_rank);
     } catch (err) {
       ctx.throw(err.message, 400);
     }

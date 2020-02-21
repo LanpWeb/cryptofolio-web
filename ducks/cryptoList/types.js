@@ -22,6 +22,7 @@ export type State = {
   start: number,
   limit: number,
   loaded: boolean,
+  isWatchlist: boolean,
   progress: boolean,
   error: null | string
 };

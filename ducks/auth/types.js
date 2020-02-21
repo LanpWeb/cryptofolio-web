@@ -10,7 +10,6 @@ export type State = {
   },
   id: null | string,
   email: null | string,
-  watchlist: Array<string>,
   progress: boolean,
   error: null | string
 };

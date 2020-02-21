@@ -20,6 +20,7 @@ module.name_mapper='hoc' -> '<PROJECT_ROOT>/views/hoc'
 module.name_mapper='components' -> '<PROJECT_ROOT>/views/components'
 module.name_mapper='sections' -> '<PROJECT_ROOT>/views/sections'
 module.name_mapper='icons' -> '<PROJECT_ROOT>/views/icons'
+esproposal.optional_chaining=enable
 
 [strict]
 

@@ -8,6 +8,7 @@ import Layout from "hoc/layout";
 import Home from "sections/Home";
 
 import fetchCryptoListSaga from "ducks/cryptoList/sagas/fetchCryptoListSaga";
+import cryptoGlobalStatsSaga from "ducks/cryptoGlobalStats/sagas/cryptoGlobalStatsSaga";
 
 import type { NextPageContext } from "next";
 
@@ -23,6 +24,11 @@ HomePage.getInitialProps = async (ctx: NextPageContext) => {
   const { start, limit, data } = store.getState().cryptoList;
   if (data.length === 0) {
     await store.execSagaTasks(isServer, [{ task: fetchCryptoListSaga, options: { start, limit } }]);
+  }
+
+  const { loaded } = store.getState().cryptoGlobalStats;
+  if (!loaded) {
+    await store.execSagaTasks(isServer, [{ task: cryptoGlobalStatsSaga, options: {} }]);
   }
 
   return {};

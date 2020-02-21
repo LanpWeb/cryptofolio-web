@@ -18,11 +18,19 @@ import { moduleName as cryptoInfoModule } from "ducks/cryptoInfo/const";
 import mapCryptoReducer from "ducks/mapCrypto/reducer";
 import { moduleName as mapCryptoModule } from "ducks/mapCrypto/const";
 
+import cryptoGlobalStatsReducer from "ducks/cryptoGlobalStats/reducer";
+import { moduleName as cryptoGlobalStatsModule } from "ducks/cryptoGlobalStats/const";
+
+import watchlistReducer from "ducks/watchlist/reducer";
+import { moduleName as watchlistModule } from "ducks/watchlist/const";
+
 export default combineReducers({
   [authModule]: authReducer,
   [signInModule]: signInReducer,
   [signUpModule]: signUpReducer,
   [cryptoListModule]: cryptoListReducer,
   [cryptoInfoModule]: cryptoInfoReducer,
-  [mapCryptoModule]: mapCryptoReducer
+  [mapCryptoModule]: mapCryptoReducer,
+  [cryptoGlobalStatsModule]: cryptoGlobalStatsReducer,
+  [watchlistModule]: watchlistReducer
 });

@@ -10,6 +10,7 @@ import {
   FETCH_USER_INFO_SUCCESS,
   FETCH_USER_INFO_FAIL
 } from "ducks/auth/const";
+import { ADD_WATCHLIST } from "ducks/watchlist/const";
 
 import { stateSelector } from "ducks/auth/selectors";
 import type { UserInfoPayload } from "ducks/auth/types";
@@ -37,7 +38,9 @@ export default function* fetchUserInfoSaga({
     const res = yield call(axios, options);
 
     if (res && res.data) {
-      yield put({ type: FETCH_USER_INFO_SUCCESS, payload: res.data });
+      const { watchlist, ...otherData } = res.data;
+      yield put({ type: FETCH_USER_INFO_SUCCESS, payload: otherData });
+      yield put({ type: ADD_WATCHLIST, payload: watchlist });
     }
   } catch (err) {
     console.log("Error:: ", err);

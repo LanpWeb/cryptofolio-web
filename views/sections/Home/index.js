@@ -4,28 +4,93 @@ import React, { useCallback } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
 
-import { getCryptoList } from "ducks/cryptoList/actions";
+import { toggleWatchlist } from "ducks/watchlist/actions";
+import { getCryptoList, getWatchlist } from "ducks/cryptoList/actions";
 
 import Header from "components/Header";
 
 import type { Props } from "./types";
 
 const Home = ({
+  auth,
+  watchlist,
+  cryptoList,
+  cryptoGlobalStats,
   getCryptoList,
-  data,
-  start,
-  limit,
-  error,
-  loaded,
-  progress
+  toggleWatchlist,
+  getWatchlist,
 }: Props) => {
+  const loadWatchlist = useCallback(() => {
+    if (cryptoList.isWatchlist) {
+      getCryptoList(1, cryptoList.limit);
+    } else {
+      getWatchlist();
+    }
+  }, [getCryptoList, getWatchlist, cryptoList.limit, cryptoList.isWatchlist]);
+
   const loadMore = useCallback(() => {
-    getCryptoList(start, limit);
-  }, [getCryptoList, start, limit]);
+    getCryptoList(cryptoList.start, cryptoList.limit);
+  }, [getCryptoList, cryptoList.start, cryptoList.limit]);
+
+  const watchlistButtonClick = useCallback((coinId, action) => () => {
+    toggleWatchlist(coinId, action);
+  }, [toggleWatchlist]);
+
+  const isInWatchlist = coinId => {
+    if (!auth) {
+      return (
+        <Link href="/sign-in">
+          <a>
+            Add
+          </a>
+        </Link>
+      );
+    }
+
+    if (watchlist?.data.includes(coinId)) {
+      return (
+        <button
+          onClick={watchlistButtonClick(coinId, "REMOVE")}
+          disabled={watchlist?.toggledId === coinId && watchlist?.progress}
+        >
+          Remove
+        </button>
+      );
+    }
+
+    return (
+      <button
+        onClick={watchlistButtonClick(coinId, "ADD")}
+        disabled={watchlist?.toggledId === coinId && watchlist?.progress}
+      >
+        Add
+      </button>
+    );
+  };
 
   return (
     <section className="home">
       <Header />
+      <button
+        onClick={loadWatchlist}
+        style={{ color: cryptoList.isWatchlist ? "red" : "black" }}
+        disabled={cryptoList.progress}
+      >
+        Only watchlist
+      </button>
+      <div>
+        {cryptoGlobalStats.progress && <p>Loading...</p>}
+        <p>
+          $
+          {cryptoGlobalStats.data?.marketCap.toLocaleString()}
+        </p>
+        <p>
+          $
+          {cryptoGlobalStats.data?.vol24h.toLocaleString()}
+        </p>
+        <p>{cryptoGlobalStats.data?.btcDominance}</p>
+        {cryptoGlobalStats.error && <span className="error">{cryptoGlobalStats.error}</span>}
+      </div>
       <table>
         <thead>
           <tr>
@@ -53,15 +118,19 @@ const Home = ({
             <th>
               Price Graph (7d)
             </th>
+            <th>
+              Watchlist
+            </th>
           </tr>
         </thead>
         <tbody>
-          {data && Array.isArray(data) && data.map(crypto => (
+          {cryptoList.data.map(crypto => (
             <tr>
               <td>
                 {crypto.cmc_rank}
               </td>
               <td>
+                <img src={`https://s2.coinmarketcap.com/static/img/coins/32x32/${crypto.id}.png`} alt="logo" width="16" height="16" />
                 <Link href="/coin/[slug]" as={`/coin/${crypto.slug}`}>
                   <a>
                     {crypto.name}
@@ -91,18 +160,23 @@ const Home = ({
               <td>
                 <img src={`https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/${crypto.id}.png`} alt="sparkline" width="164" height="48" />
               </td>
+              <td>
+                {isInWatchlist(crypto.id)}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {error && <span className="error">{error}</span>}
-      {!loaded && (
+      {cryptoList.error && <span className="error">{cryptoList.error}</span>}
+      {!cryptoList.loaded && (
         <button
           className="load-more"
           onClick={loadMore}
-          disabled={progress}
+          disabled={cryptoList.progress}
         >
-          {progress ? "Loading..." : "Load More"}
+          {cryptoList.progress
+            ? "Loading..."
+            : "Load More"}
         </button>
       )}
     </section>
@@ -111,13 +185,19 @@ const Home = ({
 
 export default connect(
   ({
-    cryptoList: {
-      progress, error, loaded, data, limit, start
-    }
+    auth: { jwt: { auth } },
+    watchlist,
+    cryptoList,
+    cryptoGlobalStats
   }) => ({
-    progress, error, loaded, data, limit, start
+    auth,
+    watchlist,
+    cryptoList,
+    cryptoGlobalStats
   }),
   (dispatch) => ({
-    getCryptoList: (start, limit) => dispatch(getCryptoList({ start, limit }))
+    getCryptoList: (start, limit) => dispatch(getCryptoList({ start, limit })),
+    toggleWatchlist: (id, action) => dispatch(toggleWatchlist({ id, action })),
+    getWatchlist: () => dispatch(getWatchlist())
   })
 )(Home);

@@ -1,28 +1,15 @@
 // @flow
 
-type Crypto = {
-  id: number,
-  slug: string,
-  cmc_rank: number,
-  name: string,
-  symbol: string,
-  circulating_supply: number,
-  quote: {
-    USD: {
-      market_cap: number,
-      price: number,
-      volume_24h: number,
-      percent_change_24h: number
-    }
-  }
-}
+import type { State as CryptoListState } from "ducks/cryptoList/types";
+import type { State as CryptoGlobalStatsState } from "ducks/cryptoGlobalStats/types";
+import type { State as WatchlistState } from "ducks/watchlist/types";
 
 export type Props = {
-  data: Array<Crypto>,
-  start: number,
-  limit: number,
-  loaded: boolean,
-  progress: boolean,
-  error: null | string,
-  getCryptoList: (start: number, limit: number) => void
+  auth: boolean,
+  watchlist: WatchlistState,
+  cryptoList: CryptoListState,
+  cryptoGlobalStats: CryptoGlobalStatsState,
+  getCryptoList: (start: number, limit: number) => void,
+  toggleWatchlist: (id: number, action: "ADD" | "REMOVE") => void,
+  getWatchlist: () => void
 };

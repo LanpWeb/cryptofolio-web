@@ -6,6 +6,8 @@ import { watchSignUp } from "ducks/signUp/sagas";
 import { watchCryptoList } from "ducks/cryptoList/sagas";
 import { watchCryptoInfo } from "ducks/cryptoInfo/sagas";
 import { watchMapCrypto } from "ducks/mapCrypto/sagas";
+import { watchCryptoGlobalStats } from "ducks/cryptoGlobalStats/sagas";
+import { watchToggleWatchlist } from "ducks/watchlist/sagas";
 
 export default function* rootSaga() {
   yield all([
@@ -14,6 +16,8 @@ export default function* rootSaga() {
     watchSignUp(),
     watchCryptoList(),
     watchCryptoInfo(),
-    watchMapCrypto()
+    watchMapCrypto(),
+    watchCryptoGlobalStats(),
+    watchToggleWatchlist()
   ]);
 }

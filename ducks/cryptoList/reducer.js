@@ -1,26 +1,35 @@
 // @flow
-import { handleActions } from "redux-actions";
+import { handleActions, combineActions } from "redux-actions";
 
+import { TOGGLE_WATCHLIST_REMOVED } from "ducks/watchlist/const";
 import {
   FETCH_CRYPTO_LIST_START,
   FETCH_CRYPTO_LIST_SUCCESS,
-  FETCH_CRYPTO_LIST_FAIL
-} from "./const";
+  FETCH_CRYPTO_LIST_FAIL,
 
-import type { State } from "./types";
+  FETCH_WATCHLIST_START,
+  FETCH_WATCHLIST_SUCCESS,
+  FETCH_WATCHLIST_FAIL,
+} from "ducks/cryptoList/const";
+
+import type { State } from "ducks/cryptoList/types";
 
 export const initialState: State = {
   data: [],
   start: 1,
   limit: 10,
   loaded: false,
+  isWatchlist: false,
   progress: false,
   error: null
 };
 
 const cryptoListReducer = handleActions(
   {
-    [FETCH_CRYPTO_LIST_START]: (state: State) => ({
+    [combineActions(
+      FETCH_CRYPTO_LIST_START,
+      FETCH_WATCHLIST_START
+    )]: (state: State) => ({
       ...state,
       progress: true,
       error: null
@@ -29,13 +38,36 @@ const cryptoListReducer = handleActions(
     [FETCH_CRYPTO_LIST_SUCCESS]: (state: State, action) => ({
       ...state,
       start: state.start + state.limit,
-      data: [...state.data, ...action.payload],
-      loaded: action.payload.length === 0,
+      data: state.isWatchlist
+        ? [...action.payload]
+        : [...state.data, ...action.payload],
+      loaded: action.payload.length < state.limit,
+      isWatchlist: false,
       progress: false,
       error: null
     }),
 
-    [FETCH_CRYPTO_LIST_FAIL]: (state: State, action) => ({
+    [FETCH_WATCHLIST_SUCCESS]: (state: State, action) => ({
+      ...state,
+      start: 1,
+      data: [...action.payload],
+      loaded: true,
+      isWatchlist: true,
+      progress: false,
+      error: null
+    }),
+
+    [TOGGLE_WATCHLIST_REMOVED]: (state: State, action) => ({
+      ...state,
+      data: state.isWatchlist
+        ? state.data.filter(crypto => crypto.id !== action.payload)
+        : state.data,
+    }),
+
+    [combineActions(
+      FETCH_CRYPTO_LIST_FAIL,
+      FETCH_WATCHLIST_FAIL
+    )]: (state: State, action) => ({
       ...state,
       progress: false,
       error: action.payload.error
