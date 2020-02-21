@@ -30,16 +30,24 @@ const Coin = ({ cryptoInfo }: Props) => (
       {cryptoInfo.data?.quote.USD.percent_change_24h.toFixed(2)}
     </p>
     <br />
-    <p>Market Cap</p>
-    <p>
-      {/* eslint-disable-next-line camelcase */}
-      {cryptoInfo.data?.quote.USD.market_cap.toLocaleString()}
-    </p>
-    <p>
-      {/* eslint-disable-next-line camelcase */}
-      {cryptoInfo.data?.circulating_supply.toLocaleString()}
-      {cryptoInfo.data?.symbol}
-    </p>
+    {/* eslint-disable-next-line camelcase */}
+    {cryptoInfo.data?.quote.USD.market_cap && (
+      <div>
+        <p>Market Cap</p>
+        <p>
+          {/* eslint-disable-next-line camelcase */}
+          {cryptoInfo.data?.quote.USD.market_cap.toLocaleString()}
+        </p>
+      </div>
+    )}
+    {/* eslint-disable-next-line camelcase */}
+    {cryptoInfo.data?.circulating_supply && (
+      <p>
+        {/* eslint-disable-next-line camelcase */}
+        {cryptoInfo.data?.circulating_supply.toLocaleString()}
+        {cryptoInfo.data?.symbol}
+      </p>
+    )}
     <br />
     <p>Volume (24h)</p>
     <p>
@@ -52,19 +60,25 @@ const Coin = ({ cryptoInfo }: Props) => (
       {cryptoInfo.data?.symbol}
     </p>
     <br />
-    <div>
-      <p>Circulating Supply</p>
-      {/* eslint-disable-next-line camelcase */}
-      {cryptoInfo.data?.circulating_supply.toLocaleString()}
-      {cryptoInfo.data?.symbol}
-    </div>
+    {/* eslint-disable-next-line camelcase */}
+    {cryptoInfo.data?.circulating_supply && (
+      <div>
+        <p>Circulating Supply</p>
+        {/* eslint-disable-next-line camelcase */}
+        {cryptoInfo.data?.circulating_supply.toLocaleString()}
+        {cryptoInfo.data?.symbol}
+      </div>
+    )}
     <br />
-    <div>
-      <p>Max Supply</p>
-      {/* eslint-disable-next-line camelcase */}
-      {cryptoInfo.data?.max_supply.toLocaleString()}
-      {cryptoInfo.data?.symbol}
-    </div>
+    {/* eslint-disable-next-line camelcase */}
+    {cryptoInfo.data?.max_supply && (
+      <div>
+        <p>Max Supply</p>
+        {/* eslint-disable-next-line camelcase */}
+        {cryptoInfo.data?.max_supply.toLocaleString()}
+        {cryptoInfo.data?.symbol}
+      </div>
+    )}
     {cryptoInfo.data && <img src={`https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/${cryptoInfo.data.id}.png`} alt="sparkline" width="164" height="48" />}
     <br />
     <p>Links:</p>
@@ -127,34 +141,43 @@ const Coin = ({ cryptoInfo }: Props) => (
       {/* eslint-disable-next-line camelcase */}
       {cryptoInfo.data?.cmc_rank}
     </p>
-    <p>
-      Market cap $
-      {/* eslint-disable-next-line camelcase */}
-      {cryptoInfo.data?.quote.USD.market_cap.toLocaleString()}
-    </p>
+    {/* eslint-disable-next-line camelcase */}
+    {cryptoInfo.data?.quote.USD.market_cap && (
+      <p>
+        Market cap $
+        {/* eslint-disable-next-line camelcase */}
+        {cryptoInfo.data?.quote.USD.market_cap.toLocaleString()}
+      </p>
+    )}
     <p>
       24 volume $
       {/* eslint-disable-next-line camelcase */}
       {cryptoInfo.data?.quote.USD.volume_24h.toLocaleString()}
     </p>
-    <p>
-      Circulating supply
-      {/* eslint-disable-next-line camelcase */}
-      {cryptoInfo.data?.circulating_supply.toLocaleString()}
-      {cryptoInfo.data?.symbol}
-    </p>
+    {/* eslint-disable-next-line camelcase */}
+    {cryptoInfo.data?.circulating_supply && (
+      <p>
+        Circulating supply
+        {/* eslint-disable-next-line camelcase */}
+        {cryptoInfo.data?.circulating_supply.toLocaleString()}
+        {cryptoInfo.data?.symbol}
+      </p>
+    )}
     <p>
       Total supply
       {/* eslint-disable-next-line camelcase */}
       {cryptoInfo.data?.total_supply.toLocaleString()}
       {cryptoInfo.data?.symbol}
     </p>
-    <p>
-      Max supply
-      {/* eslint-disable-next-line camelcase */}
-      {cryptoInfo.data?.max_supply.toLocaleString()}
-      {cryptoInfo.data?.symbol}
-    </p>
+    {/* eslint-disable-next-line camelcase */}
+    {cryptoInfo.data?.max_supply && (
+      <p>
+        Max supply
+        {/* eslint-disable-next-line camelcase */}
+        {cryptoInfo.data?.max_supply.toLocaleString()}
+        {cryptoInfo.data?.symbol}
+      </p>
+    )}
     <p>
       All time high $
       {/* eslint-disable-next-line camelcase */}
