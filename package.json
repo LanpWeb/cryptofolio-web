@@ -40,6 +40,8 @@
     "bootstrap": "^4.4.1",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
+    "highcharts": "^8.0.0",
+    "highcharts-react-official": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",

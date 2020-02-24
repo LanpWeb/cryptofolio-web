@@ -133,36 +133,36 @@ exports.getInfo = async slug => {
   }
 };
 
-exports.getHistoricQuotes = async (coinId, period) => {
+exports.getHistoricQuotes = async coinId => {
   const timeEnd = 1567123200;
-  let timeStart = 1566086400;
-  let interval;
+  const timeStart = 1566086400;
+  const interval = "1h";
 
-  switch (period) {
-    // case "year":
-    //   interval = "30d";
-    //   timeStart = timeEnd - 31536000;
-    //   break;
-    // case "3months":
-    //   interval = "15d";
-    //   timeStart = timeEnd - 7884000;
-    //   break;
-    // case "month":
-    //   interval = "15d";
-    //   timeStart = timeEnd - 2628000;
-    //   break;
-    case "week":
-      interval = "12h";
-      timeStart = timeEnd - 604800;
-      break;
-    case "day":
-      interval = "30m";
-      timeStart = timeEnd - 86400;
-      break;
-    default:
-      interval = "1d";
-      break;
-  }
+  // switch (period) {
+  //   case "year":
+  //     interval = "30d";
+  //     timeStart = timeEnd - 31536000;
+  //     break;
+  //   case "3months":
+  //     interval = "15d";
+  //     timeStart = timeEnd - 7884000;
+  //     break;
+  //   case "month":
+  //     interval = "15d";
+  //     timeStart = timeEnd - 2628000;
+  //     break;
+  //   case "week":
+  //     interval = "12h";
+  //     timeStart = timeEnd - 604800;
+  //     break;
+  //   case "day":
+  //     interval = "30m";
+  //     timeStart = timeEnd - 86400;
+  //     break;
+  //   default:
+  //     interval = "1h";
+  //     break;
+  // }
 
   const requestOptionsInfo = {
     method: "GET",

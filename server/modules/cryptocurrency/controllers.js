@@ -1,17 +1,17 @@
 const CryptocurrencyService = require("./services");
 
-exports.getGraph = async ctx => {
-  const { coinId, period } = ctx.request.query;
+// exports.getGraph = async ctx => {
+//   const { coinId, period } = ctx.request.query;
 
-  try {
-    const res = await CryptocurrencyService.getHistoricQuotes(coinId, period);
+//   try {
+//     const res = await CryptocurrencyService.getHistoricQuotes(coinId, period);
 
-    ctx.status = 200;
-    ctx.body = res;
-  } catch (err) {
-    ctx.throw(err.message, 400);
-  }
-};
+//     ctx.status = 200;
+//     ctx.body = res;
+//   } catch (err) {
+//     ctx.throw(err.message, 400);
+//   }
+// };
 
 exports.getInfo = async ctx => {
   const { slug } = ctx.params;
@@ -20,9 +20,12 @@ exports.getInfo = async ctx => {
     const infoRes = await CryptocurrencyService.getInfo(slug);
     const priceRes = await CryptocurrencyService.getPriceStats(infoRes.id);
     const quoteRes = await CryptocurrencyService.getQuote(infoRes.id);
+    const graphRes = await CryptocurrencyService.getHistoricQuotes(infoRes.id);
 
     ctx.status = 200;
-    ctx.body = { ...infoRes, ...quoteRes, pricePeriods: priceRes.periods };
+    ctx.body = {
+      ...infoRes, ...quoteRes, pricePeriods: priceRes.periods, graph: graphRes.quotes
+    };
   } catch (err) {
     ctx.throw(err.message, 400);
   }

@@ -406,29 +406,29 @@ const swaggerOptions = {
           },
         }
       },
-      "/cryptocurrency/graph": {
-        get: {
-          tags: ["cryptocurrency"],
-          summary: "Get cryptocurrency graph action",
-          parameters: [{
-            name: "coinId",
-            in: "query",
-            description: "Cryptocurrency id",
-            required: true,
-            type: "integer"
-          },
-          {
-            name: "period",
-            in: "query",
-            description: "Example: day",
-            required: true,
-            type: "string"
-          }],
-          responses: {
-            200: {}
-          }
-        }
-      },
+      // "/cryptocurrency/graph": {
+      //   get: {
+      //     tags: ["cryptocurrency"],
+      //     summary: "Get cryptocurrency graph action",
+      //     parameters: [{
+      //       name: "coinId",
+      //       in: "query",
+      //       description: "Cryptocurrency id",
+      //       required: true,
+      //       type: "integer"
+      //     },
+      //     {
+      //       name: "period",
+      //       in: "query",
+      //       description: "Example: day",
+      //       required: true,
+      //       type: "string"
+      //     }],
+      //     responses: {
+      //       200: {}
+      //     }
+      //   }
+      // },
       "/cryptocurrency/info/{slug}": {
         get: {
           tags: ["cryptocurrency"],

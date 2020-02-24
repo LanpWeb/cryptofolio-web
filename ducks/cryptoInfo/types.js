@@ -1,7 +1,19 @@
 // @flow
 
+export type GraphItem = {
+  timestamp: string,
+  quote: {
+    USD: {
+      market_cap: number,
+      price: number,
+      volume_24h: number,
+      timestamp: string
+    }
+  }
+};
+
 export type Crypto = {
-  id: string,
+  id: number,
   name: string,
   symbol: string,
   logo: string,
@@ -37,7 +49,8 @@ export type Crypto = {
         }
       }
     }
-  }
+  },
+  graph: Array<GraphItem>
 };
 
 export type State = {
