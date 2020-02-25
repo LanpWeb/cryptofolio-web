@@ -7,12 +7,6 @@ import { connect } from "react-redux";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 
-import highchartsIndicators from "highcharts/indicators/indicators";
-import highchartsPivotPoints from "highcharts/indicators/pivot-points";
-import highchartsMacd from "highcharts/indicators/macd";
-import highchartsExporting from "highcharts/modules/exporting";
-import highchartsMap from "highcharts/modules/map";
-
 import { toggleWatchlist } from "ducks/watchlist/actions";
 
 import Header from "components/Header";
@@ -20,12 +14,6 @@ import Header from "components/Header";
 import type { Props } from "./types";
 
 if (typeof Highcharts === "object") {
-  highchartsIndicators(Highcharts);
-  highchartsPivotPoints(Highcharts);
-  highchartsMacd(Highcharts);
-  highchartsExporting(Highcharts);
-  highchartsMap(Highcharts);
-
   Highcharts.setOptions({
     lang: {
       numericSymbols: [" k", " M", " B", " T", " P", " E"],
@@ -311,12 +299,15 @@ const Coin = ({
           {cryptoInfo.data?.symbol}
         </p>
       )}
-      <p>
-        Total supply
-        {/* eslint-disable-next-line camelcase */}
-        {cryptoInfo.data?.total_supply.toLocaleString()}
-        {cryptoInfo.data?.symbol}
-      </p>
+      {/* eslint-disable-next-line camelcase */}
+      {cryptoInfo.data?.total_supply && (
+        <p>
+          Total supply
+          {/* eslint-disable-next-line camelcase */}
+          {cryptoInfo.data?.total_supply.toLocaleString()}
+          {cryptoInfo.data?.symbol}
+        </p>
+      )}
       {/* eslint-disable-next-line camelcase */}
       {cryptoInfo.data?.max_supply && (
         <p>

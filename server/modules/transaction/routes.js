@@ -10,7 +10,8 @@ exports.init = router => {
   router.put("/api/transactions/:transactionId", compose([UserMiddleware.withAuth, TransactionValidator.editTransaction]), TransactionController.editTransaction);
   router.delete("/api/transactions/:transactionId", compose([UserMiddleware.withAuth, TransactionValidator.deleteTransaction]), TransactionController.deleteTransaction);
 
-  router.get("/api/portfolio/stats", UserMiddleware.withAuth, TransactionController.getStats);
-  router.get("/api/portfolio/holdings", UserMiddleware.withAuth, TransactionController.getHoldings);
-  router.get("/api/portfolio/graph", UserMiddleware.withAuth, TransactionController.getGraph);
+  router.get("/api/portfolio", UserMiddleware.withAuth, TransactionController.getPortfolio);
+  // router.get("/api/portfolio/stats", UserMiddleware.withAuth, TransactionController.getStats);
+  // router.get("/api/portfolio/holdings", UserMiddleware.withAuth, TransactionController.getHoldings);
+  // router.get("/api/portfolio/graph", UserMiddleware.withAuth, TransactionController.getGraph);
 };

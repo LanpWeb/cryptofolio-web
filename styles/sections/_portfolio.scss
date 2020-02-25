@@ -1,0 +1,13 @@
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.portfolio .error {
+  color: red;
+}
+
+.portfolio .load-more {
+  margin: 48px;
+}

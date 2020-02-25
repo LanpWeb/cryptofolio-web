@@ -24,6 +24,12 @@ import { moduleName as cryptoGlobalStatsModule } from "ducks/cryptoGlobalStats/c
 import watchlistReducer from "ducks/watchlist/reducer";
 import { moduleName as watchlistModule } from "ducks/watchlist/const";
 
+import portfolioReducer from "ducks/portfolio/reducer";
+import { moduleName as portfolioModule } from "ducks/portfolio/const";
+
+import transactionsReducer from "ducks/transactions/reducer";
+import { moduleName as transactionsModule } from "ducks/transactions/const";
+
 export default combineReducers({
   [authModule]: authReducer,
   [signInModule]: signInReducer,
@@ -32,5 +38,7 @@ export default combineReducers({
   [cryptoInfoModule]: cryptoInfoReducer,
   [mapCryptoModule]: mapCryptoReducer,
   [cryptoGlobalStatsModule]: cryptoGlobalStatsReducer,
-  [watchlistModule]: watchlistReducer
+  [watchlistModule]: watchlistReducer,
+  [portfolioModule]: portfolioReducer,
+  [transactionsModule]: transactionsReducer
 });
