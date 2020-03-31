@@ -1,0 +1,167 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 34px;
+  min-width: 60px;
+  color: var(--gs-1);
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  background-color: var(--main-color-1);
+  border: unset;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s linear;
+  &__icon {
+    margin-right: 6px;
+  }
+
+  &:not(:disabled):not(&_text):hover {
+    background-color: #5ca3fa;
+  }
+  &:not(:disabled):not(&_text):active {
+    background-color: var(--main-color-3);
+  }
+
+  &:disabled,
+  &_disabled {
+    color: var(--gs-9);
+    background-color: var(--gs-2);
+    border: unset;
+    cursor: not-allowed;
+  }
+  &_xs {
+    width: 100px;
+  }
+  &_sm {
+    width: 120px;
+  }
+
+  &_md {
+    width: 150px;
+  }
+
+  &_auto {
+    width: 100%;
+  }
+
+  &_outline {
+    color: var(--main-color-1);
+    background-color: var(--gs-1);
+    border: 1px solid var(--main-color-1);
+
+    &:not(:disabled):hover {
+      background-color: #5ca3fa;
+      color: var(--gs-1);
+      border-color: #5ca3fa;
+    }
+    &:not(:disabled):active {
+      background-color: var(--main-color-3);
+      color: var(--gs-1);
+      border-color: var(--main-color-3);
+    }
+  }
+  &_social {
+    height: 40px;
+    background-color: var(--gs-2);
+    &:not(:disabled):hover {
+      background-color: var(--gs-3);
+    }
+  }
+  &_text {
+    width: auto;
+    height: auto;
+    min-width: auto;
+    color: var(--gs-9);
+    background: transparent;
+    &:hover {
+      color: var(--main-color-1);
+    }
+    &:hover svg[fill] {
+      fill: var(--main-color-1);
+      transition: all 0.15s linear;
+    }
+    &:hover svg[stroke] {
+      stroke: var(--main-color-1);
+      transition: all 0.15s linear;
+    }
+  }
+}
+
+.pure-btn {
+  background-color: transparent;
+  border: unset;
+  outline: none;
+}
+
+.button-toogle {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--gs-2);
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+
+  &__real {
+    display: none;
+  }
+
+  &__custom {
+    height: 34px;
+  }
+
+  &__switch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 50%;
+    height: 100%;
+    background-color: var(--main-color-1);
+    transition: all 0.15s linear;
+  }
+
+  &__text {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    z-index: 100;
+    height: 100%;
+    color: var(--gs-9);
+    cursor: pointer;
+    transition: all 0.15s linear;
+    user-select: none;
+    font-weight: 500;
+
+    &:first-child {
+      color: var(--gs-1);
+    }
+    &:last-child:hover {
+      color: var(--main-color-2);
+    }
+  }
+
+  &__real:checked ~ .button-toogle__custom .button-toogle__text:first-child {
+    color: var(--gs-9);
+  }
+  &__real:checked
+    ~ .button-toogle__custom
+    .button-toogle__text:first-child:hover {
+    color: var(--main-color-2);
+    transition: all 0.15s linear;
+  }
+
+  &__real:checked ~ .button-toogle__custom .button-toogle__text:last-child {
+    color: var(--gs-1);
+  }
+
+  &__real:checked ~ .button-toogle__switch {
+    left: 50%;
+  }
+}

@@ -4,6 +4,8 @@
 
 @import "base/fonts";
 
+@import "base/text";
+
 @import "base/colours";
 
 // Bootstrap 4 Grid only
@@ -85,26 +87,6 @@
   box-sizing: border-box;
 }
 
-*::-webkit-input-placeholder {
-  color: #bdbdbd;
-  opacity: 1;
-}
-
-*:-moz-placeholder {
-  color: #bdbdbd;
-  opacity: 1;
-}
-
-*::-moz-placeholder {
-  color: #bdbdbd;
-  opacity: 1;
-}
-
-*:-ms-input-placeholder {
-  color: #bdbdbd;
-  opacity: 1;
-}
-
 body {
   font-family: "Roboto", sans-serif;
   background: #fff;
@@ -114,35 +96,6 @@ body {
   margin-right: 0;
   margin-bottom: 0;
   margin-left: 0;
-}
-
-canvas {
-  user-select: none;
-}
-
-// Covers everything except sidebar
-.main {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: calc(100% - 200px);
-  min-height: 100vh;
-  margin-left: auto;
-  padding: 75px 0;
-  background-color: var(--gs-2);
-
-  &_pt0 {
-    flex-grow: 1;
-    padding-top: 0px;
-  }
-
-  &_padding-fix {
-    flex-grow: 1;
-    width: auto;
-    padding-top: 75px;
-  }
 }
 
 .centered {
@@ -180,11 +133,6 @@ canvas {
   justify-content: space-between;
 }
 
-.jcsb {
-  display: flex;
-  justify-content: space-between;
-}
-
 // Base
 
 @import "./base/icons";
@@ -200,5 +148,9 @@ canvas {
 @import "./sections/portfolio";
 
 // // Components
+
+@import "./components/button";
+
+@import "./components/link";
 
 @import "./components/header";
