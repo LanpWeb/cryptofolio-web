@@ -7,27 +7,24 @@ import type { Props } from "./types";
 export const UpChevron = ({ customClassName = "" }: Props) => {
   const iconClassName = classNames(
     {
-      "icon-frame": true
+      icon: true
     },
     customClassName
   );
   return (
-    <span className={iconClassName}>
-      <svg
-        width="10"
-        height="6"
-        stroke="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon"
-      >
-        <path
-          d="M1 5l4-4 4 4"
-          fill="none"
-          strokeWidth="1.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </span>
+    <svg
+      viewBox="0 0 16 16"
+      stroke="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={iconClassName}
+    >
+      <path
+        d="M4 10l4-4 4 4"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
   );
 };

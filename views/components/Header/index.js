@@ -11,6 +11,9 @@ import Search from "components/Search";
 import type { Props } from "./types";
 import { RoundInfo } from "../icons/RoundInfo";
 import ButtonToogle from "../ButtonToogle";
+import InputField from "../Input";
+import { Close } from "../icons/Close";
+import { Check } from "../icons/Check";
 
 const Header = ({ auth, email, signOut }: Props) => {
   const [isToogle, setToogle] = useState(false);
@@ -48,7 +51,11 @@ const Header = ({ auth, email, signOut }: Props) => {
 
   return (
     <div className="header centered">
-      <ButtonToogle checked={isToogle} handleChange={handler} />
+      <InputField
+        label="asdsadsa"
+        wrapClassName="sign-in__input"
+        handleChange={() => {}}
+      />
       <Link href="/">
         <a className="btn btn_text">Home</a>
       </Link>
