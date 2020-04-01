@@ -9,6 +9,7 @@
   "typescript.validate.enable": false,
   "eslint.alwaysShowStatus": true,
   "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
   "eslint.lintTask.enable": true,
   "eslint.options": {
     "configFile": ".eslintrc"
@@ -17,8 +18,10 @@
   "less.validate": false,
   "scss.validate": false,
   // Optional BUT IMPORTANT: If you have the prettier extension enabled for other languages like CSS and HTML, turn it off for JS since we are doing it through Eslint already
-  "prettier.disableLanguages": ["javascript", "javascriptreact"],
-  "editor.tabSize": 2,
+  "prettier.disableLanguages": [
+    "javascript",
+    "javascriptreact"
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   }
