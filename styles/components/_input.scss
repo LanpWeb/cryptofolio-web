@@ -9,9 +9,10 @@
   background-color: var(--gs-1);
   border: 1px solid var(--gs-4);
   border-radius: 5px;
+  <<<<<<<HEAD
   transition: all 0.15s linear;
-
-  &:focus {
+  =======transition: all 0.15s linear;
+  >>>>>>>14070c50c10af7a83a583ff408ca15df3a681d50 &:focus {
     border-color: var(--main-color-1);
     outline: none;
   }
