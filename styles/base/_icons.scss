@@ -4,50 +4,63 @@
   justify-content: center;
   width: 16px;
   height: 16px;
+
   &_md {
     width: 20px;
     height: 20px;
   }
+
   &_lg {
     width: 22px;
     height: 22px;
   }
 }
+
 .icon {
   width: 100%;
-  transition: all 0.15s linear;
+  transition: all .15s linear;
+
+  &:not(&_primary):not(&_error):not(&_success):not(&_secondary):hover[fill] {
+    cursor: pointer;
+    fill: var(--main-color-1);
+  }
+
+  &:not(&_primary):not(&_error):not(&_success):not(&_secondary):hover[stroke] {
+    cursor: pointer;
+    stroke: var(--main-color-1);
+  }
 
   &[fill] {
     fill: var(--gs-7);
   }
+
   &[stroke] {
     stroke: var(--gs-7);
   }
-  &:not(&_primary):not(&_error):not(&_success):not(&_secondary):hover[fill] {
-    fill: var(--main-color-1);
-    cursor: pointer;
-  }
-  &:not(&_primary):not(&_error):not(&_success):not(&_secondary):hover[stroke] {
-    stroke: var(--main-color-1);
-    cursor: pointer;
-  }
+
   &_socials {
+
     &[fill] {
       fill: var(--gs-6);
     }
+
     &[stroke] {
       stroke: var(--gs-6);
     }
   }
+
   &_secondary[fill] {
     fill: var(--gs-7);
   }
+
   &_primary[fill] {
     fill: var(--main-color-1);
   }
+
   &_error[fill] {
     fill: var(--red-2);
   }
+
   &_success[fill] {
     fill: var(--green);
   }

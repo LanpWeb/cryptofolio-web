@@ -4,24 +4,12 @@
   padding: 0 15px;
   color: var(--g-8);
   font-size: 13px;
+  font-family: "Roboto", sans-serif;
   line-height: 24px;
   background-color: var(--gs-1);
-  font-family: "Roboto", sans-serif;
   border: 1px solid var(--gs-4);
   border-radius: 5px;
-  transition: all 0.15s linear;
-
-  &_sm {
-    height: 34px;
-  }
-
-  &_md {
-    height: 36px;
-  }
-
-  &_border_none {
-    border: none;
-  }
+  transition: all .15s linear;
 
   &:focus {
     border-color: var(--main-color-1);
@@ -37,13 +25,25 @@
     }
   }
 
+  &_sm {
+    height: 34px;
+  }
+
+  &_md {
+    height: 36px;
+  }
+
+  &_border_none {
+    border-width: none;
+  }
+
   &__password-btn {
     position: absolute;
     top: 50%;
     right: 0;
-    margin-right: 15px;
-    height: 20px;
     width: 20px;
+    height: 20px;
+    margin-right: 15px;
     transform: translateY(-50%);
   }
 
@@ -83,6 +83,7 @@
     align-items: center;
     margin-bottom: 6px;
     color: var(--g-7);
+
     &_acent {
       color: var(--gs-8);
     }
