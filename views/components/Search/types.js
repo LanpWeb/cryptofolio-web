@@ -12,5 +12,7 @@ export type Props = {
   progress: boolean,
   error: null | string,
   loaded: boolean,
-  getMapCrypto: () => void
+  getMapCrypto: () => void,
+  shape:? "bordered"
+
 };
