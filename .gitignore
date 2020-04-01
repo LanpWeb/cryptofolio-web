@@ -53,3 +53,4 @@ server/cookieStore
 
 pm2/logs
 yarn.lock
+package-lock.json
