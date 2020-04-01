@@ -44,6 +44,7 @@
     "react/state-in-constructor": [1, "never"],
     "react/jsx-no-target-blank": 0,
     "react/require-default-props": 0,
+    "linebreak-style": 0,
 
     "no-shadow": 0,
 
