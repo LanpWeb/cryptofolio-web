@@ -12,6 +12,7 @@ import Header from "components/Header";
 import type { Props } from "./types";
 
 import Button from "../../components/Button";
+import Footer from "../../components/Footer";
 
 const Home = ({
   auth,
@@ -161,6 +162,7 @@ const Home = ({
           {cryptoList.progress ? "Loading..." : "Load More"}
         </Button>
       )}
+      <Footer />
     </section>
   );
 };

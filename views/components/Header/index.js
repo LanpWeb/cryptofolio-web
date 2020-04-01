@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { signOut } from "ducks/auth/actions";
 
 import Search from "components/Search";
+import Checkbox from "../Checkbox";
 
 import type { Props } from "./types";
 import { RoundInfo } from "../icons/RoundInfo";
@@ -18,11 +19,9 @@ import { Check } from "../icons/Check";
 const Header = ({ auth, email, signOut }: Props) => {
   const [isToogle, setToogle] = useState(false);
   const handler = () => {
-    setToogle(isToogle === false ? true : false);
+    setToogle(isToogle === false);
   };
-  {
-    console.log(isToogle);
-  }
+
   const getTabs = useMemo(() => {
     if (!auth) {
       return (
@@ -51,7 +50,7 @@ const Header = ({ auth, email, signOut }: Props) => {
 
   return (
     <div className="header centered">
-      <PasswordInput label="asdsadsa" handleChange={() => {}} />
+      <Checkbox intent="error" label="sadkjsdk" />
       <Link href="/">
         <a className="btn btn_text">Home</a>
       </Link>
