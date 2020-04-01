@@ -11,7 +11,7 @@ import Search from "components/Search";
 import type { Props } from "./types";
 import { RoundInfo } from "../icons/RoundInfo";
 import ButtonToogle from "../ButtonToogle";
-import InputField from "../Input";
+import PasswordInput from "../PasswordInput";
 import { Close } from "../icons/Close";
 import { Check } from "../icons/Check";
 
@@ -51,11 +51,7 @@ const Header = ({ auth, email, signOut }: Props) => {
 
   return (
     <div className="header centered">
-      <InputField
-        label="asdsadsa"
-        wrapClassName="sign-in__input"
-        handleChange={() => {}}
-      />
+      <PasswordInput label="asdsadsa" handleChange={() => {}} />
       <Link href="/">
         <a className="btn btn_text">Home</a>
       </Link>
