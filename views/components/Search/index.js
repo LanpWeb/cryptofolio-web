@@ -16,11 +16,8 @@ const getSuggestions = (value, data) => {
 
   return inputLength === 0
     ? []
-    : data.filter(
-        lang =>
-          lang.name.toLowerCase().slice(0, inputLength) === inputValue ||
-          lang.symbol.toLowerCase().slice(0, inputLength) === inputValue
-      );
+    : data.filter(lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
+          || lang.symbol.toLowerCase().slice(0, inputLength) === inputValue);
 };
 
 const getSuggestionValue = () => "";
@@ -92,7 +89,11 @@ const Search = ({
 };
 
 export default connect(
-  ({ mapCrypto: { data, progress, error, loaded } }) => ({
+  ({
+    mapCrypto: {
+      data, progress, error, loaded
+    }
+  }) => ({
     data,
     progress,
     error,

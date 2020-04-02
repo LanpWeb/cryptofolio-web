@@ -1,15 +1,20 @@
 // @flow
 
 import React from "react";
+import classNames from "classnames";
 import type { Props } from "./types";
 
-const Button = ({ children, className, handleClick, icon }: Props) => {
+
+const TextButton = ({
+  children, className, handleClick, icon
+}: Props) => {
+  const textButtonClassName = classNames("text-btn ", className);
   return (
-    <button className="text-btn" onClick={handleClick}>
+    <button className={textButtonClassName} onClick={handleClick}>
       {icon && <span className="icon-frame btn__icon">{icon}</span>}
       {children}
     </button>
   );
 };
 
-export default Button;
+export default TextButton;
