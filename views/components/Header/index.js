@@ -15,6 +15,7 @@ import ButtonToogle from "../ButtonToogle";
 import PasswordInput from "../PasswordInput";
 import { Close } from "../icons/Close";
 import { Check } from "../icons/Check";
+import DropMenu from "../DropMenu";
 
 const Header = ({ auth, email, signOut }: Props) => {
   const [isToogle, setToogle] = useState(false);
@@ -50,7 +51,7 @@ const Header = ({ auth, email, signOut }: Props) => {
 
   return (
     <div className="header centered">
-      <Checkbox intent="error" label="sadkjsdk" />
+      <DropMenu />
       <Link href="/">
         <a className="btn btn_text">Home</a>
       </Link>
