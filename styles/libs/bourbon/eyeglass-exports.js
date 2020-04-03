@@ -1,7 +1,7 @@
-var bourbon = require('./index')
+// const bourbon = require("./index");
 
-module.exports = function(eyeglass, sass) {
-  return {
-    sassDir: bourbon.includePaths[0]
-  }
-}
+// module.exports = function (eyeglass, sass) {
+//   return {
+//     sassDir: bourbon.includePaths[0]
+//   };
+// };

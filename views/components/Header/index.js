@@ -6,9 +6,13 @@ import { connect } from "react-redux";
 import { signOut } from "ducks/auth/actions";
 import Search from "components/Search";
 import type { Props } from "./types";
-import Breadcrumbs from "../Breadcrumbs";
 
 const Header = ({ auth, email, signOut }: Props) => {
+  const [isToogle, setToogle] = useState(true);
+  const closeToastHandler = () => {
+    setToogle(false);
+  };
+
   const getTabs = useMemo(() => {
     if (!auth) {
       return (
@@ -37,7 +41,6 @@ const Header = ({ auth, email, signOut }: Props) => {
 
   return (
     <div className="header centered">
-      <Breadcrumbs />
       <Link href="/">
         <a className="btn btn_text">Home</a>
       </Link>
