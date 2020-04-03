@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { signOut } from "ducks/auth/actions";
 import Search from "components/Search";
 import type { Props } from "./types";
-import Toast from "../Toast";
 
 const Header = ({ auth, email, signOut }: Props) => {
   const [isToogle, setToogle] = useState(true);
@@ -42,7 +41,6 @@ const Header = ({ auth, email, signOut }: Props) => {
 
   return (
     <div className="header centered">
-      <Toast intent="success" active={isToogle} closeToast={closeToastHandler} />
       <Link href="/">
         <a className="btn btn_text">Home</a>
       </Link>
