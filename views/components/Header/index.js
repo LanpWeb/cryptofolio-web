@@ -3,23 +3,15 @@
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
-
 import { signOut } from "ducks/auth/actions";
-
 import Search from "components/Search";
-import Checkbox from "../Checkbox";
-
 import type { Props } from "./types";
-import { RoundInfo } from "../icons/RoundInfo";
-import ButtonToogle from "../ButtonToogle";
-import PasswordInput from "../PasswordInput";
-import { Close } from "../icons/Close";
-import { Check } from "../icons/Check";
+import Toast from "../Toast";
 
 const Header = ({ auth, email, signOut }: Props) => {
-  const [isToogle, setToogle] = useState(false);
-  const handler = () => {
-    setToogle(isToogle === false);
+  const [isToogle, setToogle] = useState(true);
+  const closeToastHandler = () => {
+    setToogle(false);
   };
 
   const getTabs = useMemo(() => {
@@ -50,7 +42,7 @@ const Header = ({ auth, email, signOut }: Props) => {
 
   return (
     <div className="header centered">
-      <Checkbox intent="error" label="sadkjsdk" />
+      <Toast intent="success" active={isToogle} closeToast={closeToastHandler} />
       <Link href="/">
         <a className="btn btn_text">Home</a>
       </Link>
