@@ -2,14 +2,15 @@
 
 export type Props = {|
   placeholder?: string,
-  size?: "sm" | "md" | "auto",
-  inputSize?: "sm" | "md",
-  style?: "border-none",
+  size?: "xs" |"sm" | "md" |"lg" |"auto",
+  height?: "xs"|"sm" | "md",
+  intent?: "success" | "warning" | "error",
+  shape?: "border-none",
   label?: string,
   disabled?: boolean,
   acentLabel?: boolean,
   wrapClassName?: string,
   inputClassName?: string,
   value?: string,
-  handleChange: (value: string) => void
+  handleChange?: (value: string) => void
 |};

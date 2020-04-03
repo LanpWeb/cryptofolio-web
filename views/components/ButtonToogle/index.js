@@ -7,9 +7,9 @@ import type { Props } from "./types";
 const ButtonToogle = ({
   checked = false,
   handleChange = () => {},
-  className
+  className, disabled, bg
 }: Props) => {
-  const buttonToogleClassName = classNames("button-toogle", className);
+  const buttonToogleClassName = classNames("button-toogle", { "button-toogle_disabled": disabled, "button-toogle_bg_white": bg === "white" }, className);
   return (
     <label className={buttonToogleClassName}>
       <input
@@ -17,6 +17,7 @@ const ButtonToogle = ({
         className="button-toogle__real"
         onChange={e => handleChange(e.target.checked)}
         checked={checked}
+        disabled={disabled}
       />
       <div className="button-toogle__switch" />
       <div className="button-toogle__custom aic">

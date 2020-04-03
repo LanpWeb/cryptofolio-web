@@ -18,16 +18,15 @@
   cursor: pointer;
   transition: all .15s linear;
 
-  &:not(:disabled):not(&_text):hover {
-    background-color: #5ca3fa;
+  &:not(:disabled):not(&_disabled):not(&_text):hover {
+    background-color: var(--main-color-0);
   }
 
-  &:not(:disabled):not(&_text):active {
+  &:not(:disabled):not(&_disabled):not(&_text):active {
     background-color: var(--main-color-3);
   }
 
-  &:disabled,
-  &_disabled {
+  &:disabled {
     color: var(--gs-9);
     background-color: var(--gs-2);
     border: unset;
@@ -36,6 +35,10 @@
 
   &__icon {
     margin-right: 6px;
+  }
+
+  &_height_lg {
+    height: 40px;
   }
 
   &_xs {
@@ -50,6 +53,10 @@
     width: 150px;
   }
 
+  &_lg {
+    width: 300px;
+  }
+
   &_auto {
     width: 100%;
   }
@@ -59,17 +66,24 @@
     background-color: var(--gs-1);
     border: 1px solid var(--main-color-1);
 
-    &:not(:disabled):hover {
+    &:not(:disabled):not(.btn_disabled):hover {
       color: var(--gs-1);
-      background-color: #5ca3fa;
-      border-color: #5ca3fa;
+      background-color: var(--main-color-0);
+      border-color: var(--main-color-0);
     }
 
-    &:not(:disabled):active {
+    &:not(:disabled):not(.btn_disabled):active {
       color: var(--gs-1);
       background-color: var(--main-color-3);
       border-color: var(--main-color-3);
     }
+  }
+
+  &_disabled {
+    color: var(--gs-9);
+    background-color: var(--gs-2);
+    border: unset;
+    cursor: not-allowed;
   }
 
   &_social {
@@ -176,5 +190,22 @@
 
   &__real:checked ~ .button-toogle__switch {
     left: 50%;
+  }
+
+  &_bg_white:not(&_disabled) {
+    background-color: var(--gs-1);
+  }
+
+  &_disabled {
+
+    & .button-toogle__switch {
+      background-color: transparent;
+    }
+
+    & .button-toogle__text,
+    & .button-toogle__text:hover {
+      color: var(--gs-9);
+      cursor: not-allowed;
+    }
   }
 }

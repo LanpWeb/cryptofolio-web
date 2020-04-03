@@ -6,6 +6,7 @@ import type { Props } from "./types";
 
 const Button = ({
   size,
+  height,
   shape,
   children,
   className,
@@ -14,9 +15,11 @@ const Button = ({
   icon
 }: Props) => {
   const btnClassName = classNames("btn", className, {
+    btn_height_lg: height === "lg",
     btn_xs: size === "xs",
     btn_sm: size === "sm",
     btn_md: size === "md",
+    btn_lg: size === "lg",
     btn_auto: size === "auto",
     btn_outline: shape === "outline",
     btn_social: shape === "social",

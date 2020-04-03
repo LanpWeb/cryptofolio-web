@@ -4,12 +4,12 @@ import React from "react";
 import classNames from "classnames";
 import type { Props } from "../types";
 
-export const Behance = ({ customClassName = "" }: Props) => {
+export const Behance = ({ className = "" }: Props) => {
   const iconClassName = classNames(
     {
-      "icon icon_socials": true
+      "icon icon_socials icon_hovered": true
     },
-    customClassName
+    className
   );
   return (
     <svg
