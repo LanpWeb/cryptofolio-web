@@ -37,8 +37,8 @@ const InputField = ({
     inputClassName
   );
   const labelClass = classnames({
-    "p4 input-label": true,
-    "input-label_acent": acentLabel === true
+    "p4 input__label": true,
+    input__label_acent: acentLabel === true
   });
 
   return (
