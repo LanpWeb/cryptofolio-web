@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
 import { signOut } from "ducks/auth/actions";
