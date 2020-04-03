@@ -1,8 +1,8 @@
 // @flow
 
 import React from "react";
-import type { Props } from "./types";
 import classNames from "classnames";
+import type { Props } from "./types";
 
 const ButtonToogle = ({
   checked = false,
@@ -18,7 +18,7 @@ const ButtonToogle = ({
         onChange={e => handleChange(e.target.checked)}
         checked={checked}
       />
-      <div className="button-toogle__switch"></div>
+      <div className="button-toogle__switch" />
       <div className="button-toogle__custom aic">
         <span className="button-toogle__text c3 aic">Buy</span>
         <span className="button-toogle__text c3 aic">Sell</span>
