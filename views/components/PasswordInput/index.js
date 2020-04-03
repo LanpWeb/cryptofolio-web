@@ -44,8 +44,8 @@ const PasswordInput = ({
     inputClassName
   );
   const labelClass = classnames({
-    "p4 input-label": true,
-    "input-label_acent": acentLabel === true
+    "p4 input__label": true,
+    input__label_acent: acentLabel === true
   });
   return (
     <label className={wrapClass}>
@@ -62,7 +62,10 @@ const PasswordInput = ({
         {!disabled && (
           <button
             className="pure-btn input__password-btn"
-            onClick={inputTypeHandleChange}
+            onClick={(e) => {
+              e.preventDefault();
+              inputTypeHandleChange();
+            }}
             disabled={disabled}
           >
             {inputType === "password" ? <CloseEye /> : <Eye />}
