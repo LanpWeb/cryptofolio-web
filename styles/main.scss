@@ -113,6 +113,11 @@ body {
   align-items: center;
 }
 
+.aife {
+  display: flex;
+  align-items: flex-end;
+}
+
 .jcc {
   display: flex;
   justify-content: center;
@@ -164,6 +169,8 @@ body {
 @import "./components/droplist";
 
 @import "./components/toast";
+
+@import "./components/search";
 
 @import "./components/header";
 

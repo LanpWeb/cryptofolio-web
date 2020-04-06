@@ -93,7 +93,6 @@ const SearchBar = ({
     [progress, data]
   );
   const onSuggestionsClearRequested = useCallback(() => setSuggestions([]), []);
-  console.log(shape);
   const inputProps = {
     placeholder: "Search...",
     value,
