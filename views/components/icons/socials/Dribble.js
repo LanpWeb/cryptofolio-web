@@ -4,12 +4,12 @@ import React from "react";
 import classNames from "classnames";
 import type { Props } from "../types";
 
-export const Dribble = ({ customClassName = "" }: Props) => {
+export const Dribble = ({ className = "" }: Props) => {
   const iconClassName = classNames(
     {
-      "icon icon_socials": true
+      "icon icon_socials icon_hovered": true
     },
-    customClassName
+    className
   );
   return (
     <svg

@@ -4,15 +4,17 @@ import React from "react";
 import classNames from "classnames";
 import type { Props } from "./types";
 
-export const Check = ({ customClassName = "", intent = "" }: Props) => {
+export const Check = ({ className = "", intent = "" }: Props) => {
   const iconClassName = classNames(
     {
-      "icon icon_secondary": true,
+      icon: true,
       icon_primary: intent === "primary",
       icon_error: intent === "error",
-      icon_success: intent === "success"
+      icon_success: intent === "success",
+      icon_warning: intent === "warning"
+
     },
-    customClassName
+    className
   );
   return (
     <svg

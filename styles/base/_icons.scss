@@ -20,22 +20,30 @@
   width: 100%;
   transition: all .15s linear;
 
-  &:not(&_primary):not(&_error):not(&_success):not(&_secondary):hover[fill] {
-    cursor: pointer;
-    fill: var(--main-color-1);
-  }
-
-  &:not(&_primary):not(&_error):not(&_success):not(&_secondary):hover[stroke] {
-    cursor: pointer;
-    stroke: var(--main-color-1);
-  }
-
   &[fill] {
     fill: var(--gs-7);
   }
 
   &[stroke] {
     stroke: var(--gs-7);
+  }
+
+  &_hovered:hover[fill] {
+    cursor: pointer;
+    fill: var(--main-color-1);
+  }
+
+  &_hovered:hover[stroke] {
+    cursor: pointer;
+    stroke: var(--main-color-1);
+  }
+
+  &_active[fill] {
+    fill: var(--main-color-1);
+  }
+
+  &_active[stroke] {
+    stroke: var(--main-color-1);
   }
 
   &_socials {
@@ -58,10 +66,34 @@
   }
 
   &_error[fill] {
-    fill: var(--red-2);
+    fill: var(--red-4);
   }
 
   &_success[fill] {
-    fill: var(--green);
+    fill: var(--green-4);
+  }
+
+  &_warning[fill] {
+    fill: var(--yellow-4);
+  }
+
+  &_secondary[stroke] {
+    stroke: var(--gs-7);
+  }
+
+  &_primary[stroke] {
+    stroke: var(--main-color-1);
+  }
+
+  &_error[stroke] {
+    stroke: var(--red-4);
+  }
+
+  &_success[stroke] {
+    stroke: var(--green-4);
+  }
+
+  &_warning[stroke] {
+    stroke: var(--yellow-4);
   }
 }

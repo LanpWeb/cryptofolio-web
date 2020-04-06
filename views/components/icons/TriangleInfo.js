@@ -4,7 +4,7 @@ import React from "react";
 import classNames from "classnames";
 import type { Props } from "./types";
 
-export const RoundCheck = ({ className = "", intent = "" }: Props) => {
+export const TriangleInfo = ({ className = "", intent = "" }: Props) => {
   const iconClassName = classNames(
     {
       icon: true,
@@ -16,17 +16,6 @@ export const RoundCheck = ({ className = "", intent = "" }: Props) => {
     className
   );
   return (
-    <svg
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={iconClassName}
-    >
-      <rect width="16" height="16" rx="8" />
-      <path
-        d="M10.88 5L12 6.058 6.776 11 4 8.375l1.12-1.058 1.656 1.56L10.88 5z"
-        fill="#fff"
-      />
-    </svg>
+    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={iconClassName}><path d="M8.727 9.842H7.273V6.895h1.454v2.947zm0 2.947H7.273v-1.473h1.454v1.473zM0 15h16L8 1 0 15z" /></svg>
   );
 };

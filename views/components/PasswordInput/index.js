@@ -7,14 +7,15 @@ import { Eye } from "../icons/Eye";
 import type { Props } from "./types";
 
 const PasswordInput = ({
-  placeholder = "Password",
+  placeholder = "Enter password",
   label,
   inputClassName,
   wrapClassName,
   size,
   value,
-  inputSize,
-  style,
+  height,
+  shape,
+  intent,
   acentLabel,
   disabled,
   handleChange = () => {}
@@ -28,8 +29,10 @@ const PasswordInput = ({
   const wrapClass = classnames(
     {
       "input-wrap": true,
+      "input-wrap_xs": size === "xs",
       "input-wrap_sm": size === "sm",
       "input-wrap_md": size === "md",
+      "input-wrap_lg": size === "lg",
       "input-wrap_auto": size === "auto"
     },
     wrapClassName
@@ -37,9 +40,13 @@ const PasswordInput = ({
   const inputClass = classnames(
     {
       "input input_password": true,
-      input_sm: inputSize === "sm",
-      input_md: inputSize === "md",
-      input_border_none: style === "border-none"
+      input_height_xs: height === "xs",
+      input_height_sm: height === "sm",
+      input_height_md: height === "md",
+      input_success: intent === "success",
+      input_warning: intent === "warning",
+      input_error: intent === "error",
+      input_border_none: shape === "border-none"
     },
     inputClassName
   );
@@ -68,7 +75,7 @@ const PasswordInput = ({
             }}
             disabled={disabled}
           >
-            {inputType === "password" ? <CloseEye /> : <Eye />}
+            {inputType === "password" ? <CloseEye /> : <Eye active />}
           </button>
         )}
       </div>

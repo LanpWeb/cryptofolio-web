@@ -4,12 +4,12 @@ import React from "react";
 import classNames from "classnames";
 import type { Props } from "./types";
 
-export const UpChevron = ({ customClassName = "" }: Props) => {
+export const UpChevron = ({ className = "" }: Props) => {
   const iconClassName = classNames(
     {
-      icon: true
+      "icon icon_hovered": true
     },
-    customClassName
+    className
   );
   return (
     <svg
