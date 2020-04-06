@@ -4,15 +4,10 @@ import React, { useMemo } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
 import { signOut } from "ducks/auth/actions";
-import Search from "components/Search";
+import SearchBar from "components/Search";
 import type { Props } from "./types";
 
 const Header = ({ auth, email, signOut }: Props) => {
-  const [isToogle, setToogle] = useState(true);
-  const closeToastHandler = () => {
-    setToogle(false);
-  };
-
   const getTabs = useMemo(() => {
     if (!auth) {
       return (
@@ -45,7 +40,8 @@ const Header = ({ auth, email, signOut }: Props) => {
         <a className="btn btn_text">Home</a>
       </Link>
       {getTabs}
-      <Search />
+
+      <SearchBar />
     </div>
   );
 };

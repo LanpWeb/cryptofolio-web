@@ -2,12 +2,12 @@
 
 import React, { useState, useCallback } from "react";
 import Autosuggest from "react-autosuggest";
+import classNames from "classnames";
 import Link from "next/link";
-
 import { connect } from "react-redux";
-
 import { getMapCrypto } from "ducks/mapCrypto/actions";
-
+import { Search } from "../icons/Search";
+import { Close } from "../icons/Close";
 import type { Props } from "./types";
 
 const getSuggestions = (value, data) => {
@@ -16,40 +16,65 @@ const getSuggestions = (value, data) => {
 
   return inputLength === 0
     ? []
-    : data.filter(lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
-          || lang.symbol.toLowerCase().slice(0, inputLength) === inputValue);
+    : data.filter(
+      lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue
+          || lang.symbol.toLowerCase().slice(0, inputLength) === inputValue
+    );
 };
 
 const getSuggestionValue = () => "";
 const renderSuggestion = suggestion => (
   <Link href="/coin/[slug]" as={`/coin/${suggestion.slug}`}>
-    <a>
+    <span className="aic p3 fw-medium search__link">
       <img
         src={`https://s2.coinmarketcap.com/static/img/coins/32x32/${suggestion.id}.png`}
         alt="logo"
-        width="16"
-        height="16"
+        className="search__img"
       />
       {`${suggestion.name} (${suggestion.symbol})`}
-    </a>
+    </span>
   </Link>
 );
-const renderInputComponent = inputProps => (
-  <div>
-    <input {...inputProps} />
-  </div>
-);
+const renderInputComponent = inputProps => {
+  const searchBarClassName = classNames(
+    {
+      search__input: true,
+      search__input_bordered: inputProps.shape === "bordered",
+    },
 
-const Search = ({
+  );
+  return (
+    <div className="search__inner">
+      <input {...inputProps} className={searchBarClassName} />
+      {inputProps.value.length > 0
+        ? (
+          <button
+            className="pure-btn search__password-btn"
+            onClick={inputProps.deleteValue}
+          >
+            <Close />
+          </button>
+        ) : (
+          <button
+            className="pure-btn search__password-btn"
+          >
+            <Search />
+          </button>
+        )}
+    </div>
+  );
+};
+
+const SearchBar = ({
   data,
   progress,
-  // error,
   loaded,
-  getMapCrypto
+  getMapCrypto,
+  shape
+
 }: Props) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-
   const onChange = useCallback(
     (event: any, { newValue }: any) => setValue(newValue),
     []
@@ -58,7 +83,8 @@ const Search = ({
     loaded,
     getMapCrypto
   ]);
-
+  const deleteValue = useCallback(() => setValue(""),
+    []);
   const onSuggestionsFetchRequested = useCallback(
     ({ value }: any) => {
       if (progress) return;
@@ -67,17 +93,19 @@ const Search = ({
     [progress, data]
   );
   const onSuggestionsClearRequested = useCallback(() => setSuggestions([]), []);
-
+  console.log(shape);
   const inputProps = {
-    placeholder: "Search",
+    placeholder: "Search...",
     value,
     onChange,
-    onClick
+    onClick,
+    deleteValue,
+    shape
   };
 
   return (
     <Autosuggest
-      suggestions={suggestions.slice(0, 10)}
+      suggestions={suggestions.slice(0, 6)}
       onSuggestionsFetchRequested={onSuggestionsFetchRequested}
       onSuggestionsClearRequested={onSuggestionsClearRequested}
       getSuggestionValue={getSuggestionValue}
@@ -102,4 +130,4 @@ export default connect(
   dispatch => ({
     getMapCrypto: () => dispatch(getMapCrypto())
   })
-)(Search);
+)(SearchBar);
