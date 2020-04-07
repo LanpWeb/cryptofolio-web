@@ -9,9 +9,6 @@ jobs:
   build:
     # This job runs on Linux
     runs-on: ubuntu-latest
-    env:
-      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 12.x
@@ -19,19 +16,18 @@ jobs:
         with:
           node-version: 12.x
       - name: Yarn Install
-        run: |
-          yarn install
+        run: yarn install
       - name: Flow
-        run: |
-          yarn flow
+        run: yarn flow
       - name: Eslint
-        run: |
-          yarn eslint
+        run: yarn eslint
       - name: Stylelint
-        run: |
-          yarn stylelint
+        run: yarn stylelint
       - name: Deploy to Heroku
         run: |
           git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
           git fetch --prune --unshallow
           git push heroku master -f
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
