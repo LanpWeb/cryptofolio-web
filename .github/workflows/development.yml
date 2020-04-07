@@ -1,7 +1,7 @@
 name: Flow / Eslint / Stylelint
 
-# Trigger the workflow on push or pull request
-on: [push, pull_request]
+# Trigger the workflow on pull request
+on: pull_request
 
 jobs:
   build:
