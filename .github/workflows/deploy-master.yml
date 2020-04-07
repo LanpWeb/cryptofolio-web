@@ -33,9 +33,9 @@ jobs:
       #     yarn stylelint
       - uses: akhileshns/heroku-deploy@v3.0.2 # This is the action
         with:
-          heroku_api_key: $HEROKU_API_KEY
-          heroku_app_name: $HEROKU_APP_NAME #Must be unique in Heroku
-          heroku_email: $HEROKU_EMAIL
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }} #Must be unique in Heroku
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
       # - name: Add Heroku
       #   run: |
       #     git remote add heroku git@heroku.com:$HEROKU_APP_NAME.git
