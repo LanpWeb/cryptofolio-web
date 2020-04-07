@@ -1,0 +1,26 @@
+name: Deploy to Heroku
+
+# Trigger the workflow on push action
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Yarn Install
+        run: |
+          yarn install
+      - name: Add Remote Origin Heroku
+        run: |
+          git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+      - name: Deploy to Heroku
+        run: |
+          git push heroku master
