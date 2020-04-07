@@ -18,24 +18,20 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      # - name: Yarn Install
-      #   run: |
-      #     yarn install
-      # - name: Flow
-      #   run: |
-      #     yarn flow
-      # - name: Eslint
-      #   run: |
-      #     yarn eslint
-      # - name: Stylelint
-      #   run: |
-      #     yarn stylelint
+      - name: Yarn Install
+        run: |
+          yarn install
+      - name: Flow
+        run: |
+          yarn flow
+      - name: Eslint
+        run: |
+          yarn eslint
+      - name: Stylelint
+        run: |
+          yarn stylelint
       - name: Add Heroku
         run: |
           git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
-      - name: Fetch Heroku History
-        run: |
           git fetch --prune --unshallow
-      - name: Deploy to Heroku
-        run: |
           git push heroku master -f
