@@ -1,25 +1,21 @@
 {
-  "javascript.validate.enable": false,
-  // Set the default
+  // Makes ESlint extension format code on save
   "editor.formatOnSave": true,
-  // Enable per-language
-  "[javascript]": {
-    "editor.formatOnSave": true
-  },
-  "typescript.validate.enable": false,
-  "eslint.alwaysShowStatus": true,
-  "eslint.enable": true,
-  "eslint.lintTask.enable": true,
-  "eslint.options": {
-    "configFile": ".eslintrc"
-  },
-  "css.validate": false,
-  "less.validate": false,
-  "scss.validate": false,
-  // Optional BUT IMPORTANT: If you have the prettier extension enabled for other languages like CSS and HTML, turn it off for JS since we are doing it through Eslint already
-  "prettier.disableLanguages": ["javascript", "javascriptreact"],
-  "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
+  },
+
+  // Disable VSCode built-in validation
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+
+  // Disabling Prettier formatting with VSCode extension because it'll be handled by ESlint and it's built-in Prettier plugin
+  "prettier.disableLanguages": ["javascript", "javascriptreact"],
+
+  // Eslint-related rules
+  "eslint.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.options": {
+    "configFile": ".eslintrc"
   }
 }
