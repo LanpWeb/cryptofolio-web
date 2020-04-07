@@ -12,12 +12,13 @@ jobs:
     env:
       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
+      # - name: Use Node.js 12.x
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 12.x
       # - name: Yarn Install
       #   run: |
       #     yarn install
@@ -30,12 +31,17 @@ jobs:
       # - name: Stylelint
       #   run: |
       #     yarn stylelint
-      - name: Add Heroku
-        run: |
-          git remote add heroku git@heroku.com:$HEROKU_APP_NAME.git
+      - uses: akhileshns/heroku-deploy@v3.0.2 # This is the action
+        with:
+          heroku_api_key: $HEROKU_API_KEY
+          heroku_app_name: $HEROKU_APP_NAME #Must be unique in Heroku
+          heroku_email: $HEROKU_EMAIL
+      # - name: Add Heroku
+      #   run: |
+      #     git remote add heroku git@heroku.com:$HEROKU_APP_NAME.git
       # - name: Fetch Heroku History
       #   run: |
       #     git fetch --all --unshallow
-      - name: Deploy to Heroku
-        run: |
-          git push heroku master -f
+      # - name: Deploy to Heroku
+      #   run: |
+      #     git push heroku master -f
