@@ -24,8 +24,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run build
-    - run: npm test
-      env:
-        CI: true
+    - name: Installind dependencies & build
+      run: yarn install
+    - name: Running tests
+      run: yarn test
+      
+    env:
+      CI: true
+      ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+      COINMARKETCAP_KEY: ${{ secrets.COINMARKETCAP_KEY }}
+      COINMARKETCAP_URL: ${{ secrets.COINMARKETCAP_URL }}
+      MONGODB_URL: ${{ secrets.MONGODB_URL }}
+      REFRESH_TOKEN_SECRET: ${{ secrets.REFRESH_TOKEN_SECRET }}
