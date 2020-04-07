@@ -18,18 +18,21 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Yarn Install
-        run: |
-          yarn install
-      - name: Flow
-        run: |
-          yarn flow
-      - name: Eslint
-        run: |
-          yarn eslint
-      - name: Stylelint
-        run: |
-          yarn stylelint
+      # - name: Yarn Install
+      #   run: |
+      #     yarn install
+      # - name: Flow
+      #   run: |
+      #     yarn flow
+      # - name: Eslint
+      #   run: |
+      #     yarn eslint
+      # - name: Stylelint
+      #   run: |
+      #     yarn stylelint
+      - name: Fetch
+        run: git fetch --all --unshallow
+
       - name: Configure Heroku
         run: heroku config:set GIT_HASH=${GITHUB_SHA} GIT_BRANCH=${GITHUB_REF} --app $HEROKU_APP_NAME
 
