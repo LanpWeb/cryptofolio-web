@@ -27,9 +27,10 @@ jobs:
       - name: Stylelint
         run: |
           yarn stylelint
-      - name: Add Remote Origin Heroku
+      - name: Add Heroku
         run: |
           git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+          git fetch --all --unshallow
       - name: Deploy to Heroku
         run: |
           git push heroku HEAD:master -f
