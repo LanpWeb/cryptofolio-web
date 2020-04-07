@@ -1,6 +1,6 @@
 name: Deploy to Heroku
 
-# Trigger the workflow on push action
+# Trigger the workflow on push action in master branch
 on:
   push:
     branches: master
