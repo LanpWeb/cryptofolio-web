@@ -1,0 +1,33 @@
+name: Deploy to Heroku
+
+# Trigger the workflow on push action in master branch
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Yarn Install
+        run: yarn install
+      - name: Flow
+        run: yarn flow
+      - name: Eslint
+        run: yarn eslint
+      - name: Stylelint
+        run: yarn stylelint
+      - name: Deploy to Heroku
+        run: |
+          git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+          git fetch --prune --unshallow
+          git push heroku master -f
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
