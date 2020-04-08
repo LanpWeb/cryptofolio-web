@@ -1,0 +1,100 @@
+.dropmenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+
+  &__title {
+    padding-right: 17px;
+    color: var(--main-color-1);
+    user-select: none;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    width: 8px;
+    height: 4px;
+    transform: translateY(-50%);
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      display: block;
+      width: 5px;
+      height: 1px;
+      background-color: var(--main-color-1);
+      transition: all .2s linear;
+      content: "";
+    }
+
+    &::before {
+      left: 0;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    &::after {
+      right: 0;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+  }
+
+  &__content {
+    position: absolute;
+    right: 50%;
+    bottom: 0;
+    width: calc(100% + 20px);
+    min-width: 120px;
+    height: 0;
+    overflow: hidden;
+    background-color: var(--gs-1);
+    border-radius: 5px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, .05),
+      0px 3px 5px rgba(173, 170, 206, .15);
+    transform: translate(50%, 100%);
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    padding-left: 15px;
+    background-color: var(--gs-1);
+
+    &:hover .dropmenu__text {
+      color: var(--main-color-1);
+    }
+
+    &_active {
+      background-color: var(--gs-2);
+    }
+
+    &_active .dropmenu__text {
+      color: var(--main-color-1);
+    }
+  }
+
+  &__text {
+    color: #3c3c3c;
+    transition: all .2s linear;
+  }
+
+  &_open {
+
+    & .dropmenu__content {
+      height: auto;
+    }
+
+    & .dropmenu__arrow::before {
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+    & .dropmenu__arrow::after {
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+}
