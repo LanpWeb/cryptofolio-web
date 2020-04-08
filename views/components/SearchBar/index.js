@@ -49,14 +49,14 @@ const renderInputComponent = inputProps => {
       {inputProps.value.length > 0
         ? (
           <button
-            className="pure-btn search__password-btn"
+            className="pure-btn search__btn"
             onClick={inputProps.deleteValue}
           >
             <Close />
           </button>
         ) : (
           <button
-            className="pure-btn search__password-btn"
+            className="pure-btn search__btn"
           >
             <Search />
           </button>
@@ -93,7 +93,6 @@ const SearchBar = ({
     [progress, data]
   );
   const onSuggestionsClearRequested = useCallback(() => setSuggestions([]), []);
-  console.log(shape);
   const inputProps = {
     placeholder: "Search...",
     value,
