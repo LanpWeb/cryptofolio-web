@@ -89,7 +89,7 @@ const Header = ({
       <div className="container aic jcsb header__inner">
         <nav className="header__nav aic">
           <Link href="/">
-            <span className="header__logo"><Logo /></span>
+            <span className="header__logo"><Logo customClassName="header__icon" /></span>
           </Link>
           <ul className="header__list aic">
             {getTabs}
