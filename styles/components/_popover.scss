@@ -1,0 +1,59 @@
+.popover {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  width: 160px;
+  min-height: 70px;
+  padding: 12px 15px;
+  text-align: left;
+  background-color: var(--gs-1);
+  border-radius: 5px;
+  box-shadow: 3px 4px 40px rgba(5, 41, 92, .1);
+
+  &_md {
+    width: 210px;
+  }
+
+  &_lg {
+    width: 280px;
+  }
+
+  &_right {
+    top: 50%;
+    right: 0;
+    transform: translateX(calc(100% + 13px)) translateY(-50%);
+
+    & .popover__triangle {
+      top: 50%;
+      left: 0;
+      border-color: transparent var(--gs-1) transparent transparent;
+      border-width: 6px 8px 6px 0;
+      transform: translateX(-100%) translateY(-50%);
+    }
+  }
+
+  &_left {
+    top: 50%;
+    left: 0;
+    transform: translateX(calc(-100% - 13px)) translateY(-50%);
+
+    & .popover__triangle {
+      top: 50%;
+      right: 0;
+      border-color: transparent transparent transparent var(--gs-1);
+      border-width: 6px 0 6px 8px;
+      transform: translateX(100%) translateY(-50%);
+    }
+  }
+
+  &_active {
+    display: flex;
+  }
+
+  user &__triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+}
