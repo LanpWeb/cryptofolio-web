@@ -24,13 +24,12 @@ const Home = ({
   getWatchlist
 }: Props) => {
   const loadWatchlist = useCallback(() => {
-    if (cryptoList.isWatchlist) {
-      getCryptoList(1, cryptoList.limit);
-    } else {
-      getWatchlist();
-    }
-  }, [getCryptoList, getWatchlist, cryptoList.limit, cryptoList.isWatchlist]);
+    getWatchlist();
+  }, [getWatchlist]);
 
+  const loadAllCoins = useCallback(() => {
+    getCryptoList(1, cryptoList.limit);
+  }, [getCryptoList, cryptoList.limit]);
   const loadMore = useCallback(() => {
     getCryptoList(cryptoList.start, cryptoList.limit);
   }, [getCryptoList, cryptoList.start, cryptoList.limit]);
@@ -74,7 +73,7 @@ const Home = ({
 
   return (
     <section className="home">
-      <Header />
+      <Header loadWatchlist={loadWatchlist} loadAllCoins={loadAllCoins} cryptoList={cryptoList} getWatchlist={getWatchlist} />
       {auth && (
         <button
           onClick={loadWatchlist}
