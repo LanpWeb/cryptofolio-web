@@ -20,7 +20,7 @@ const Header = ({
     {
       name: "Settings",
       id: 1,
-      handler: () => {}
+      route: "/"
     },
     {
       name: "Log out",
@@ -40,7 +40,9 @@ const Header = ({
     return (
       <>
         <li className="header__item">
-          <button onClick={loadAllCoins} className="pure-btn c2 fw-medium header__link">All coins</button>
+          <Link href="/" as="/app">
+            <button onClick={loadAllCoins} className="pure-btn c2 fw-medium header__link">All coins</button>
+          </Link>
         </li>
         <li className="header__item">
           <Link href="/" as="/app">
@@ -87,7 +89,7 @@ const Header = ({
       <div className="container aic jcsb header__inner">
         <nav className="header__nav aic">
           <Link href="/">
-            <span href="#" className="header__logo"><Logo /></span>
+            <span className="header__logo"><Logo /></span>
           </Link>
           <ul className="header__list aic">
             {getTabs}
