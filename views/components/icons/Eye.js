@@ -4,12 +4,14 @@ import React from "react";
 import classNames from "classnames";
 import type { Props } from "./types";
 
-export const Eye = ({ customClassName = "" }: Props) => {
+export const Eye = ({ className = "", active }: Props) => {
   const iconClassName = classNames(
     {
-      icon: true
+      "icon icon_hovered": true,
+      icon_active: active,
+
     },
-    customClassName
+    className
   );
   return (
     <svg

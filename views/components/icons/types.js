@@ -1,6 +1,7 @@
 // @flow
 
 export type Props = {
-  customClassName?: string,
-  intent?: "primary" | "error" | "success"
+  className?: string,
+  intent?: "primary" | "error" | "success" | "warning",
+  active?: boolean
 };

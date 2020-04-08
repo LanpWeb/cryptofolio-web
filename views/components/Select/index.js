@@ -20,13 +20,15 @@ const initialOptions = [
 ];
 const Select = ({
   placeholder = "Select...",
-  options = initialOptions
+  options = initialOptions,
+  size
 }: Props) => {
   const [isOpened, openDrop] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
   const selectClassName = classNames({
     select: true,
+    select_lg: size === "lg",
     select_open: isOpened === true
   });
 
