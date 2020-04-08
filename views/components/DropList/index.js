@@ -2,6 +2,7 @@
 
 import React from "react";
 import classNames from "classnames";
+import Link from "next/link";
 import type { Props } from "./types";
 
 const initialOptions = [
@@ -36,14 +37,29 @@ const DropList = ({
 
   return (
     <div className={droplistClassName}>
-      {options.map(({ name, handler, id }) => (
-        <div
-          className="droplist__option"
-          onClick={() => handler()}
-          key={id}
-        >
-          <p className="p3 droplist__text">{name}</p>
-        </div>
+      {options.map(({
+        name, handler, id, route
+      }) => (
+
+        route ? (
+          <Link href={route}>
+            <div
+              className="droplist__option"
+              key={id}
+            >
+              <p className="p3 droplist__text">{name}</p>
+            </div>
+          </Link>
+        ) : (
+          <div
+            className="droplist__option"
+            onClick={() => handler()}
+            key={id}
+          >
+            <p className="p3 droplist__text">{name}</p>
+          </div>
+        )
+
       ))}
     </div>
   );
