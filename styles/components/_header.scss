@@ -57,11 +57,12 @@
       user-select: none;
     }
 
-    &:hover {
+    &:not(&_active):hover {
       color: var(--main-color-1);
     }
 
-    &:hover.header__link:after {
+    &:hover.header__link:after,
+    &_active.header__link:after {
       opacity: 1;
     }
   }
