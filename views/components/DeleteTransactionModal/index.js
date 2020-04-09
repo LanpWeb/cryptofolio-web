@@ -2,9 +2,9 @@
 
 import React from "react";
 import classNames from "classnames";
+import { Close } from "components/icons/Close";
+import Button from "components/Button";
 import type { Props } from "./types";
-import { Close } from "../icons/Close";
-import Button from "../Button";
 
 const DeleteTransactionMofal = ({
   caption = "Are you sure you want to delete this transaction?", text = "You cannot undo this action",

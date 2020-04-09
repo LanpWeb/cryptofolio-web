@@ -2,9 +2,9 @@
 
 import React from "react";
 import classNames from "classnames";
+import { Close } from "components/icons/Close";
+import { RoundCheck } from "components/icons/RoundCheck";
 import type { Props } from "./types";
-import { Close } from "../icons/Close";
-import { RoundCheck } from "../icons/RoundCheck";
 
 
 const Toast = ({

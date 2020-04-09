@@ -3,16 +3,12 @@
 import React, { useCallback } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
-
 import { toggleWatchlist } from "ducks/watchlist/actions";
 import { getCryptoList, getWatchlist } from "ducks/cryptoList/actions";
-
 import Header from "components/Header";
-
+import Button from "components/Button";
+import Footer from "components/Footer";
 import type { Props } from "./types";
-
-import Button from "../../components/Button";
-import Footer from "../../components/Footer";
 
 const Home = ({
   auth,

@@ -53,7 +53,7 @@ const DropList = ({
         ) : (
           <div
             className="droplist__option"
-            onClick={() => handler()}
+            onClick={() => handler?.()}
             key={id}
           >
             <p className="p3 droplist__text">{name}</p>

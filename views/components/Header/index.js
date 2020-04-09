@@ -7,9 +7,9 @@ import { connect } from "react-redux";
 import classNames from "classnames";
 import { signOut } from "ducks/auth/actions";
 import SearchBar from "components/SearchBar";
+import DropList from "components/DropList";
+import Logo from "components/icons/Logo";
 import type { Props } from "./types";
-import Logo from "../icons/Logo";
-import DropList from "../DropList";
 
 const Header = ({
   auth, email, signOut, loadWatchlist, loadAllCoins
@@ -89,7 +89,7 @@ const Header = ({
       <div className="container aic jcsb header__inner">
         <nav className="header__nav aic">
           <Link href="/">
-            <span className="header__logo"><Logo customClassName="header__icon" /></span>
+            <span className="header__logo"><Logo className="header__icon" /></span>
           </Link>
           <ul className="header__list aic">
             {getTabs}
