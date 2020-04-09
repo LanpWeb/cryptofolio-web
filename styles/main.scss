@@ -142,16 +142,6 @@ body {
 
 @import "./base/icons";
 
-// // Sections
-
-@import "./sections/home";
-
-@import "./sections/signIn";
-
-@import "./sections/signUp";
-
-@import "./sections/portfolio";
-
 // // Components
 
 @import "./components/button";
@@ -180,4 +170,16 @@ body {
 
 @import "./components/header";
 
+@import "./components/coin-card";
+
 @import "./components/footer";
+
+// // Sections
+
+@import "./sections/home";
+
+@import "./sections/signIn";
+
+@import "./sections/signUp";
+
+@import "./sections/portfolio";
