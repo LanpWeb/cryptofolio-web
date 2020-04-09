@@ -119,7 +119,7 @@ exports.getPortfolio = async ctx => {
       result.graph.push({ price: graphCurrentValue, date });
     });
 
-    result.change24h.percent = (result.change24h.value * 100) / result.currentValue;
+    result.change24h.percent = (result.change24h.value * 100) / result.currentValue || 0;
     result.holdings.sort((a, b) => b.price - a.price);
 
     ctx.status = 200;
