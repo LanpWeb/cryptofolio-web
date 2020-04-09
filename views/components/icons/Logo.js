@@ -4,12 +4,12 @@ import React from "react";
 import classNames from "classnames";
 import type { Props } from "./types";
 
-const Logo = ({ customClassName = "" }: Props) => {
+const Logo = ({ className = "" }: Props) => {
   const iconClassName = classNames(
     {
       logo: true
     },
-    customClassName
+    className
   );
   return (
     <svg width="156" className={iconClassName} viewBox="0 0 156 38" fill="none" xmlns="http://www.w3.org/2000/svg">

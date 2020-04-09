@@ -7,7 +7,7 @@ import { Eye } from "../icons/Eye";
 import type { Props } from "./types";
 
 const CoinCard = ({
-  order = 1, id = "1", slug, name = "Basic Attention Token", marketCap = "171 155 540 318,86", price = "9 558,552", volume = "15 955 380 784,348", circulatingSupply = "19 639 376 092,582", symbol = "USD", percentChange = 3.5, isInWatchlist = () => (<span className="coin-card__btn"><Eye /></span>)
+  order = 1, id = "1", slug, name = "Basic Attention Token", marketCap = "171 155 540 318,86", price = "9 558,552", volume = "15 955 380 784,348", circulatingSupply = "19 639 376 092,582", symbol = "USD", percentChange = "3.5", isInWatchlist = () => (<span className="coin-card__btn"><Eye /></span>)
 }:Props) => (
   <div className="coin-card aic jcsb">
     <div className="table-item table-item_lg aic">
@@ -41,7 +41,7 @@ const CoinCard = ({
     <span className="table-item table-item_sm p3 coin-card__text centered">
       {percentChange}
       %
-      <span className="coin-card__triangle centered">{percentChange > 0 ? (<svg width="8" height="7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 1L.536 5.5h6.928L4 1z" fill="#4FC971" /></svg>) : (<svg width="8" height="7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l3.464-4.5H.536L4 6z" fill="#EC6E47" /></svg>)}</span>
+      <span className="coin-card__triangle centered">{Number(percentChange) > 0 ? (<svg width="8" height="7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 1L.536 5.5h6.928L4 1z" fill="#4FC971" /></svg>) : (<svg width="8" height="7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l3.464-4.5H.536L4 6z" fill="#EC6E47" /></svg>)}</span>
 
     </span>
     <span className="table-item p3 coin-card__graf">

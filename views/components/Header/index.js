@@ -8,11 +8,6 @@ import Search from "components/Search";
 import type { Props } from "./types";
 
 const Header = ({ auth, email, signOut }: Props) => {
-  const [isToogle, setToogle] = useState(true);
-  const closeToastHandler = () => {
-    setToogle(false);
-  };
-
   const getTabs = useMemo(() => {
     if (!auth) {
       return (

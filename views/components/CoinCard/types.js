@@ -4,13 +4,13 @@
 export type Props = {
     order?: number | string,
     id?: number | string,
-    slug?: string,
+    slug: string,
     name?: string,
     marketCap?: string,
     price?: string,
     volume?: string,
     circulatingSupply?: string,
     symbol?: string,
-    percentChange?: string | number,
+    percentChange: string,
     isInWatchlist: (any) => Object
   };

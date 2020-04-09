@@ -1,7 +1,7 @@
 // @flow
 
 export type Props = {|
-    router?: any,
+    router: any,
     items?: Array<{title: string, route: string}>,
     className?: string
   |};
