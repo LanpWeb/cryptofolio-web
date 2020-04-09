@@ -1,0 +1,36 @@
+.settings {
+  min-height: 100vh;
+  background-color: var(--ac-2);
+
+  &__inner {
+    padding-top: 40px;
+    padding-bottom: 70px;
+  }
+
+  &__wrapper {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  &__caption {
+    margin-bottom: 40px;
+    color: var(--g-9);
+  }
+
+  &__details:not(:last-child) {
+    margin-bottom: 50px;
+  }
+
+  &__subcaption {
+    margin-bottom: 21px;
+    color: var(--g-8);
+  }
+
+  &__field {
+    margin-bottom: 21px;
+
+    &_last {
+      margin-bottom: 30px;
+    }
+  }
+}
