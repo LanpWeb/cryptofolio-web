@@ -1,0 +1,23 @@
+name: Flow / Eslint / Stylelint
+
+# Trigger the workflow on pull request
+on: pull_request
+
+jobs:
+  build:
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Yarn Install
+        run: yarn install
+      - name: Flow
+        run: yarn flow
+      - name: Eslint
+        run: yarn eslint
+      - name: Stylelint
+        run: yarn stylelint
