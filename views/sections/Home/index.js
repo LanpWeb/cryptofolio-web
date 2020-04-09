@@ -1,18 +1,15 @@
 // @flow
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
-
 import { toggleWatchlist } from "ducks/watchlist/actions";
 import { getCryptoList, getWatchlist } from "ducks/cryptoList/actions";
-
 import Header from "components/Header";
-import { Eye } from "../../components/icons/Eye";
-import CoinCard from "../../components/CoinCard";
-
-import Button from "../../components/Button";
-import Footer from "../../components/Footer";
+import { Eye } from "components/icons/Eye";
+import CoinCard from "components/CoinCard";
+import Button from "components/Button";
+import Footer from "components/Footer";
 import type { Props } from "./types";
 
 const Home = ({
@@ -22,15 +19,8 @@ const Home = ({
   cryptoGlobalStats,
   getCryptoList,
   toggleWatchlist,
-  getWatchlist
 }: Props) => {
-  const loadWatchlist = useCallback(() => {
-    getWatchlist();
-  }, [getWatchlist]);
-
-  const loadAllCoins = useCallback(() => {
-    getCryptoList(1, cryptoList.limit);
-  }, [getCryptoList, cryptoList.limit]);
+  useEffect(() => { getCryptoList(1, cryptoList.limit); }, [getCryptoList, cryptoList.limit]);
   const loadMore = useCallback(() => {
     getCryptoList(cryptoList.start, cryptoList.limit);
   }, [getCryptoList, cryptoList.start, cryptoList.limit]);
@@ -78,7 +68,7 @@ const Home = ({
 
   return (
     <section className="home">
-      <Header loadWatchlist={loadWatchlist} loadAllCoins={loadAllCoins} cryptoList={cryptoList} getWatchlist={getWatchlist} />
+      <Header />
       <div className="container">
         <div className="home__inner">
           <div className="aic jcsb home__info">

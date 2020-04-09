@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import classnames from "classnames";
-import { CloseEye } from "../icons/CloseEye";
-import { Eye } from "../icons/Eye";
+import { CloseEye } from "components/icons/CloseEye";
+import { Eye } from "components/icons/Eye";
 import type { Props } from "./types";
 
 const PasswordInput = ({

@@ -6,8 +6,8 @@ import classNames from "classnames";
 import Link from "next/link";
 import { connect } from "react-redux";
 import { getMapCrypto } from "ducks/mapCrypto/actions";
-import { Search } from "../icons/Search";
-import { Close } from "../icons/Close";
+import { Search } from "components/icons/Search";
+import { Close } from "components/icons/Close";
 import type { Props } from "./types";
 
 const getSuggestions = (value, data) => {
