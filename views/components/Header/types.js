@@ -3,5 +3,9 @@
 export type Props = {
   auth: boolean,
   email: null | string,
-  signOut: () => void
+  router: any,
+  items?: Array<{title: string, route: string}>,
+  signOut: () => void,
+  loadWatchlist: () => void,
+  loadAllCoins:() => void
 };

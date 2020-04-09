@@ -3,16 +3,12 @@
 import React, { useCallback } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
-
 import { toggleWatchlist } from "ducks/watchlist/actions";
 import { getCryptoList, getWatchlist } from "ducks/cryptoList/actions";
-
 import Header from "components/Header";
-
+import Button from "components/Button";
+import Footer from "components/Footer";
 import type { Props } from "./types";
-
-import Button from "../../components/Button";
-import Footer from "../../components/Footer";
 
 const Home = ({
   auth,
@@ -24,13 +20,12 @@ const Home = ({
   getWatchlist
 }: Props) => {
   const loadWatchlist = useCallback(() => {
-    if (cryptoList.isWatchlist) {
-      getCryptoList(1, cryptoList.limit);
-    } else {
-      getWatchlist();
-    }
-  }, [getCryptoList, getWatchlist, cryptoList.limit, cryptoList.isWatchlist]);
+    getWatchlist();
+  }, [getWatchlist]);
 
+  const loadAllCoins = useCallback(() => {
+    getCryptoList(1, cryptoList.limit);
+  }, [getCryptoList, cryptoList.limit]);
   const loadMore = useCallback(() => {
     getCryptoList(cryptoList.start, cryptoList.limit);
   }, [getCryptoList, cryptoList.start, cryptoList.limit]);
@@ -74,7 +69,7 @@ const Home = ({
 
   return (
     <section className="home">
-      <Header />
+      <Header loadWatchlist={loadWatchlist} loadAllCoins={loadAllCoins} cryptoList={cryptoList} getWatchlist={getWatchlist} />
       {auth && (
         <button
           onClick={loadWatchlist}

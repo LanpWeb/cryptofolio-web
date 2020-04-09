@@ -2,10 +2,10 @@
 
 import React from "react";
 import classnames from "classnames";
+import { RoundCheck } from "components/icons/RoundCheck";
+import { TriangleInfo } from "components/icons/TriangleInfo";
+import { SquareInfo } from "components/icons/SquareInfo";
 import type { Props } from "./types";
-import { RoundCheck } from "../icons/RoundCheck";
-import { TriangleInfo } from "../icons/TriangleInfo";
-import { SquareInfo } from "../icons/SquareInfo";
 
 const Input = ({
   placeholder = "Email",

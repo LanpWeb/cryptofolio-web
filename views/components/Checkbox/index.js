@@ -2,8 +2,9 @@
 
 import React from "react";
 import classNames from "classnames";
+import { Check } from "components/icons/Check";
 import type { Props } from "./types";
-import { Check } from "../icons/Check";
+
 
 const Checkbox = ({
   handleChange = () => {},
