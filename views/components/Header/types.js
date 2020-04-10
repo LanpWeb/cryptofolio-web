@@ -6,6 +6,4 @@ export type Props = {
   router: any,
   items?: Array<{title: string, route: string}>,
   signOut: () => void,
-  loadWatchlist: () => void,
-  loadAllCoins:() => void
 };

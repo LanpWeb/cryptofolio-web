@@ -15,6 +15,7 @@ export type GraphItem = {
 export type Crypto = {
   id: number,
   name: string,
+  slug: string,
   symbol: string,
   logo: string,
   category: string,

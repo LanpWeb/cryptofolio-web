@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
 import { toggleWatchlist } from "ducks/watchlist/actions";
-import { getCryptoList, getWatchlist } from "ducks/cryptoList/actions";
+import { getCryptoList } from "ducks/cryptoList/actions";
 import Header from "components/Header";
 import Button from "components/Button";
 import Footer from "components/Footer";
@@ -17,27 +17,20 @@ const Home = ({
   cryptoGlobalStats,
   getCryptoList,
   toggleWatchlist,
-  getWatchlist
 }: Props) => {
-  const loadWatchlist = useCallback(() => {
-    getWatchlist();
-  }, [getWatchlist]);
-
-  const loadAllCoins = useCallback(() => {
-    getCryptoList(1, cryptoList.limit);
-  }, [getCryptoList, cryptoList.limit]);
   const loadMore = useCallback(() => {
     getCryptoList(cryptoList.start, cryptoList.limit);
   }, [getCryptoList, cryptoList.start, cryptoList.limit]);
 
   const watchlistButtonClick = useCallback(
-    (coinId, action) => () => {
-      toggleWatchlist(coinId, action);
+    (crypto) => () => {
+      const action = watchlist?.ids.includes(crypto.id) ? "REMOVE" : "ADD";
+      toggleWatchlist(crypto, action);
     },
-    [toggleWatchlist]
+    [watchlist, toggleWatchlist]
   );
 
-  const isInWatchlist = coinId => {
+  const isInWatchlist = crypto => {
     if (!auth) {
       return (
         <Link href="/sign-in">
@@ -46,39 +39,19 @@ const Home = ({
       );
     }
 
-    if (watchlist?.data.includes(coinId)) {
-      return (
-        <button
-          onClick={watchlistButtonClick(coinId, "REMOVE")}
-          disabled={watchlist?.toggledId === coinId && watchlist?.progress}
-        >
-          Remove
-        </button>
-      );
-    }
-
     return (
       <button
-        onClick={watchlistButtonClick(coinId, "ADD")}
-        disabled={watchlist?.toggledId === coinId && watchlist?.progress}
+        onClick={watchlistButtonClick(crypto)}
+        disabled={watchlist?.toggledId === crypto.id && watchlist?.progress}
       >
-        Add
+        {watchlist?.ids.includes(crypto.id) ? "Remove" : "Add"}
       </button>
     );
   };
 
   return (
     <section className="home">
-      <Header loadWatchlist={loadWatchlist} loadAllCoins={loadAllCoins} cryptoList={cryptoList} getWatchlist={getWatchlist} />
-      {auth && (
-        <button
-          onClick={loadWatchlist}
-          style={{ color: cryptoList.isWatchlist ? "red" : "black" }}
-          disabled={cryptoList.progress}
-        >
-          Only watchlist
-        </button>
-      )}
+      <Header />
       <div>
         {cryptoGlobalStats.progress && <p>Loading...</p>}
         <p>
@@ -149,7 +122,7 @@ const Home = ({
                   height="48"
                 />
               </td>
-              <td>{isInWatchlist(crypto.id)}</td>
+              <td>{isInWatchlist(crypto)}</td>
             </tr>
           ))}
         </tbody>
@@ -195,7 +168,6 @@ export default connect(
   }),
   dispatch => ({
     getCryptoList: (start, limit) => dispatch(getCryptoList({ start, limit })),
-    toggleWatchlist: (id, action) => dispatch(toggleWatchlist({ id, action })),
-    getWatchlist: () => dispatch(getWatchlist())
+    toggleWatchlist: (crypto, action) => dispatch(toggleWatchlist({ crypto, action })),
   })
 )(Home);
