@@ -28,7 +28,7 @@ const Footer = () => (
             <Insta />
           </a>
           <a href="#" target="_blank" className="footer__link">
-            <Facebook />
+            <Facebook hovered />
           </a>
           <a href="#" target="_blank" className="footer__link">
             <LinkedIn />

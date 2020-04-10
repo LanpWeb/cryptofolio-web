@@ -34,7 +34,7 @@
     height: 100%;
     color: var(--gs-9);
     cursor: pointer;
-    transition: all 0.2s linear;
+    transition: all .2s linear;
     user-select: none;
 
     &:after {
@@ -46,7 +46,7 @@
       height: 2px;
       background-color: var(--main-color-1);
       opacity: 0;
-      transition: opacity 0.2s linear;
+      transition: opacity .2s linear;
       content: "";
       user-select: none;
     }
@@ -92,7 +92,7 @@
       width: 5px;
       height: 1px;
       background-color: var(--gs-9);
-      transition: all 0.2s linear;
+      transition: all .2s linear;
       content: "";
     }
 
@@ -108,6 +108,7 @@
   }
 
   &_active {
+
     & .header-user__arrow::before {
       transform: translateY(-50%) rotate(-45deg);
     }
