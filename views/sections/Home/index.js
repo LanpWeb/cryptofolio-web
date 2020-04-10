@@ -56,7 +56,7 @@ const Home = ({
     <section className="home">
       <Header />
       <div className="container">
-        <div className="home__inner">
+        <div className="home__inner aic">
           <div className="aic jcsb home__info">
             <div className="home__market-info aic">
               <p className="p4 home__cap">
