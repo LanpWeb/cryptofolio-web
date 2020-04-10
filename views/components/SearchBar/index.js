@@ -23,6 +23,7 @@ const getSuggestions = (value, data) => {
 };
 
 const getSuggestionValue = () => "";
+
 const renderSuggestion = suggestion => (
   <Link href="/coin/[slug]" as={`/coin/${suggestion.slug}`}>
     <span className="aic p3 fw-medium search__link">
@@ -35,14 +36,15 @@ const renderSuggestion = suggestion => (
     </span>
   </Link>
 );
+
 const renderInputComponent = inputProps => {
   const searchBarClassName = classNames(
     {
       search__input: true,
       search__input_bordered: inputProps.shape === "bordered",
     },
-
   );
+
   return (
     <div className="search__inner">
       <input {...inputProps} className={searchBarClassName} />
@@ -75,16 +77,20 @@ const SearchBar = ({
 }: Props) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+
   const onChange = useCallback(
     (event: any, { newValue }: any) => setValue(newValue),
-    []
+    [setValue]
   );
+
   const onClick = useCallback(() => !loaded && getMapCrypto(), [
     loaded,
     getMapCrypto
   ]);
+
   const deleteValue = useCallback(() => setValue(""),
-    []);
+    [setValue]);
+
   const onSuggestionsFetchRequested = useCallback(
     ({ value }: any) => {
       if (progress) return;
@@ -92,6 +98,7 @@ const SearchBar = ({
     },
     [progress, data]
   );
+
   const onSuggestionsClearRequested = useCallback(() => setSuggestions([]), []);
   const inputProps = {
     placeholder: "Search...",
@@ -101,7 +108,6 @@ const SearchBar = ({
     deleteValue,
     shape
   };
-
   return (
     <Autosuggest
       suggestions={suggestions.slice(0, 6)}

@@ -3,7 +3,7 @@
 export type Props = {|
     active:boolean,
     text?:string,
-    time?:any,
+    time?:string,
     intent?: "primary" | "error" | "success",
     className?:string,
     closeToast?: () => void,

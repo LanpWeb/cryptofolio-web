@@ -20,6 +20,7 @@ const initialItems = [
     route: "/signUp"
   },
 ];
+
 const Breadcrumbs = ({
   router, className, items = initialItems
 }:Props) => {
@@ -27,9 +28,7 @@ const Breadcrumbs = ({
     " breadcrumbs", className
 
   );
-
   return (
-
     <ul className={brcrClassName}>
       {items.map(({ title, route }) => (
         <li className="breadcrumbs__item" key={title}>
@@ -45,7 +44,6 @@ const Breadcrumbs = ({
         </li>
       )) }
     </ul>
-
   );
 };
 
