@@ -102,8 +102,7 @@
   },
   "lint-staged": {
     "*.scss": [
-      "stylelint --fix --config ./.stylelintrc",
-      "git add"
+      "stylelint --fix --config ./.stylelintrc"
     ]
   }
 }
