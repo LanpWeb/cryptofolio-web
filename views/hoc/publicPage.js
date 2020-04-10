@@ -33,7 +33,7 @@ const publicPage = (WrappedComponent: NextPage) => {
     const { jwt } = store.getState().auth;
 
     if (jwt.accessToken) {
-      redirect("/app", ctx);
+      redirect("/portfolio", ctx);
     }
 
     const componentProps = WrappedComponent.getInitialProps && (await WrappedComponent.getInitialProps(ctx));

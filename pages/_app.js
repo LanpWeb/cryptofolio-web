@@ -95,7 +95,7 @@ class MyApp extends App {
     if (event.key === "signin") {
       console.log("signed in from storage!");
       if (router.pathname === "/signIn" || router.pathname === "/signUp") {
-        redirect("/app");
+        redirect("/portfolio");
       } else {
         tokenRefresh();
       }
