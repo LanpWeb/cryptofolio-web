@@ -1,0 +1,27 @@
+.footer {
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--gs-1);
+
+  &__logo {
+    margin-right: 30px;
+  }
+
+  &__text {
+    color: var(--gs-6);
+    user-select: none;
+  }
+
+  &__links {
+    margin-left: 26px;
+  }
+
+  &__link {
+    width: 22px;
+    height: 22px;
+  }
+
+  &__link:not(:last-child) {
+    margin-right: 15px;
+  }
+}

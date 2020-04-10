@@ -1,0 +1,21 @@
+.delete-tr-modal {
+
+  &__container {
+    flex-direction: column;
+    padding: 44px;
+  }
+
+  &__caption {
+    margin-bottom: 20px;
+    color: var(--g-7);
+  }
+
+  &__text {
+    margin-bottom: 35px;
+    color: var(--gs-7);
+  }
+
+  &__btn:not(:last-child) {
+    margin-right: 25px;
+  }
+}

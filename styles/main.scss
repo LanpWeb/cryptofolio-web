@@ -4,6 +4,8 @@
 
 @import "base/fonts";
 
+@import "base/text";
+
 @import "base/colours";
 
 // Bootstrap 4 Grid only
@@ -85,26 +87,6 @@
   box-sizing: border-box;
 }
 
-*::-webkit-input-placeholder {
-  color: #bdbdbd;
-  opacity: 1;
-}
-
-*:-moz-placeholder {
-  color: #bdbdbd;
-  opacity: 1;
-}
-
-*::-moz-placeholder {
-  color: #bdbdbd;
-  opacity: 1;
-}
-
-*:-ms-input-placeholder {
-  color: #bdbdbd;
-  opacity: 1;
-}
-
 body {
   font-family: "Roboto", sans-serif;
   background: #fff;
@@ -114,35 +96,6 @@ body {
   margin-right: 0;
   margin-bottom: 0;
   margin-left: 0;
-}
-
-canvas {
-  user-select: none;
-}
-
-// Covers everything except sidebar
-.main {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: calc(100% - 200px);
-  min-height: 100vh;
-  margin-left: auto;
-  padding: 75px 0;
-  background-color: var(--gs-2);
-
-  &_pt0 {
-    flex-grow: 1;
-    padding-top: 0px;
-  }
-
-  &_padding-fix {
-    flex-grow: 1;
-    width: auto;
-    padding-top: 75px;
-  }
 }
 
 .centered {
@@ -160,6 +113,11 @@ canvas {
   align-items: center;
 }
 
+.aife {
+  display: flex;
+  align-items: flex-end;
+}
+
 .jcc {
   display: flex;
   justify-content: center;
@@ -173,11 +131,6 @@ canvas {
 .jcfs {
   display: flex;
   justify-content: flex-start;
-}
-
-.jcsb {
-  display: flex;
-  justify-content: space-between;
 }
 
 .jcsb {
@@ -201,4 +154,30 @@ canvas {
 
 // // Components
 
+@import "./components/button";
+
+@import "./components/link";
+
+@import "./components/input";
+
+@import "./components/select";
+
+@import "./components/breadcrumbs";
+
+@import "./components/dropmenu";
+
+@import "./components/droplist";
+
+@import "./components/toast";
+
+@import "./components/search";
+
+@import "./components/modal";
+
+@import "./components/popover";
+
+@import "./components/delete-tr-modal";
+
 @import "./components/header";
+
+@import "./components/footer";
