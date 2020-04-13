@@ -1,41 +1,41 @@
 // @flow
 
-import React, { useState } from "react";
-import classNames from "classnames";
-import type { Props } from "./types";
+import React, { useState } from 'react'
+import classNames from 'classnames'
+import type { Props } from './types'
 
 const initialOptions = [
   {
-    name: "Bitcoin (BTC)",
-    id: 1
+    name: 'Bitcoin (BTC)',
+    id: 1,
   },
   {
-    name: "BitMoney (BIT)",
-    id: 2
+    name: 'BitMoney (BIT)',
+    id: 2,
   },
   {
-    name: "BitRewards (BIT)",
-    id: 3
-  }
-];
+    name: 'BitRewards (BIT)',
+    id: 3,
+  },
+]
 const Select = ({
-  placeholder = "Select...",
+  placeholder = 'Select...',
   options = initialOptions,
-  size
+  size,
 }: Props) => {
-  const [isOpened, openDrop] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [isOpened, openDrop] = useState(false)
+  const [selectedOption, setSelectedOption] = useState(null)
 
   const selectClassName = classNames({
     select: true,
-    select_lg: size === "lg",
-    select_open: isOpened === true
-  });
+    select_lg: size === 'lg',
+    select_open: isOpened === true,
+  })
 
   const selectTitleClassName = classNames({
-    "p3 select__title ": true,
-    select__title_placeholder: selectedOption === null
-  });
+    'p3 select__title ': true,
+    select__title_placeholder: selectedOption === null,
+  })
 
   return (
     <div
@@ -47,7 +47,7 @@ const Select = ({
       </p>
       <div className="select__arrow" />
       <div className="select__content">
-        {options.map(option => (
+        {options.map((option) => (
           <div
             className="select__option"
             onClick={() => setSelectedOption(option)}
@@ -58,7 +58,7 @@ const Select = ({
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Select;
+export default Select

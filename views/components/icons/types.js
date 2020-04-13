@@ -2,6 +2,6 @@
 
 export type Props = {
   className?: string,
-  intent?: "primary" | "error" | "success" | "warning",
-  active?: boolean
-};
+  intent?: 'primary' | 'error' | 'success' | 'warning',
+  active?: boolean,
+}

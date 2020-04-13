@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export const LanpLogo = () => (
   <svg width="49" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -16,4 +16,4 @@ export const LanpLogo = () => (
       </clipPath>
     </defs>
   </svg>
-);
+)
