@@ -60,7 +60,11 @@ const SignUp = ({
 
   return (
     <section className="sign centered">
-      <Logo customClassName="sign__logo" />
+      <Link href="/">
+        <span className="sign__logo">
+          <Logo   />
+        </span>
+      </Link>
       <form onSubmit={submit} className="sign__form aic">
         <span className="sign__caption">Sign Up</span>
         <Input value={email} placeholder="Email" handleChange={setEmail} wrapClassName="sign__email" />
