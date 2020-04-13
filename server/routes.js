@@ -1,5 +1,5 @@
 // add all new routes here
-const routes = require("next-routes");
+const routes = require('next-routes')
 
 // Name   Page      Pattern
 // module.exports = routes()                           // ----   ----      -----

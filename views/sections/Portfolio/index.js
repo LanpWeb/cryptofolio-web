@@ -85,18 +85,16 @@ const Portfolio = ({
       </div>
       <Footer />
     </section>
-  );
-};
+  )
+}
 
 export default connect(
-  ({
+  ({ portfolio, transactions }) => ({
     portfolio,
-    transactions
-  }) => ({
-    portfolio,
-    transactions
+    transactions,
   }),
   (dispatch) => ({
-    getTransactions: (start, limit) => dispatch(getTransactions({ start, limit }))
+    getTransactions: (start, limit) =>
+      dispatch(getTransactions({ start, limit })),
   })
-)(Portfolio);
+)(Portfolio)

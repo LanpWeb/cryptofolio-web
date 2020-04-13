@@ -1,7 +1,5 @@
-import { createAction } from "redux-actions";
+import { createAction } from 'redux-actions'
 
-import {
-  SIGN_UP_REQUEST
-} from "./const";
+import { SIGN_UP_REQUEST } from './const'
 
-export const signUp = createAction(SIGN_UP_REQUEST);
+export const signUp = createAction(SIGN_UP_REQUEST)
