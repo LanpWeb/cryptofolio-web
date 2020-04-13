@@ -4,12 +4,12 @@ import React from 'react'
 import classNames from 'classnames'
 import type { Props } from './types'
 
+const initialItems = [{ text: "Buy" }, { text: "Sell" }];
+
 const ButtonToogle = ({
   checked = false,
+  className, disabled, bg, items = initialItems,
   handleChange = () => {},
-  className,
-  disabled,
-  bg,
 }: Props) => {
   const buttonToogleClassName = classNames(
     'button-toogle',
@@ -30,8 +30,7 @@ const ButtonToogle = ({
       />
       <div className="button-toogle__switch" />
       <div className="button-toogle__custom aic">
-        <span className="button-toogle__text c3 aic">Buy</span>
-        <span className="button-toogle__text c3 aic">Sell</span>
+        {items.map(({ text }) => (<span className="button-toogle__text c3 aic">{text}</span>))}
       </div>
     </label>
   )
