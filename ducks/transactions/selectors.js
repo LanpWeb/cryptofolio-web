@@ -1,7 +1,7 @@
 // @flow
 
-import { moduleName } from "ducks/transactions/const";
+import { moduleName } from 'ducks/transactions/const'
 
-import type { State } from "ducks/transactions/types";
+import type { State } from 'ducks/transactions/types'
 
-export const stateSelector = (state: Object): State => state[moduleName];
+export const stateSelector = (state: Object): State => state[moduleName]

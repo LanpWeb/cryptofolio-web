@@ -7,5 +7,5 @@ export type Props = {
   items?: Array<{title: string, route: string}>,
   signOut: () => void,
   loadWatchlist: () => void,
-  loadAllCoins:() => void
-};
+  loadAllCoins: () => void,
+}

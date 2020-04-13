@@ -1,14 +1,14 @@
 // @flow
 
-import React from "react";
-import Head from "next/head";
+import React from 'react'
+import Head from 'next/head'
 
 type Props = {
   children: Object,
-  title?: string
-};
+  title?: string,
+}
 
-export default ({ children, title = "React-Next-Koa-Starter" }: Props) => (
+const Layout = ({ children, title = 'React-Next-Koa-Starter' }: Props) => (
   <div>
     <Head>
       <title>{title}</title>
@@ -18,4 +18,6 @@ export default ({ children, title = "React-Next-Koa-Starter" }: Props) => (
 
     {children}
   </div>
-);
+)
+
+export default Layout
