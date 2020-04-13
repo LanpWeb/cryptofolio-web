@@ -9,34 +9,29 @@ import { signOut } from 'ducks/auth/actions'
 import SearchBar from 'components/SearchBar'
 import DropList from 'components/DropList'
 import Logo from 'components/icons/Logo'
+import { withRouter } from 'next/router'
 import type { Props } from './types'
-import React, { useMemo, useState } from "react";
-import Link from "next/link";
-import { connect } from "react-redux";
-import classNames from "classnames";
-import { withRouter } from "next/router";
-import { signOut } from "ducks/auth/actions";
-import SearchBar from "components/SearchBar";
-import DropList from "components/DropList";
-import Logo from "components/icons/Logo";
-import type { Props } from "./types";
 
 const initialItems = [
   {
-    title: "All coins",
-    route: "/"
+    title: 'All coins',
+    route: '/',
   },
   {
-    title: "Watchlist",
-    route: "/watchlist"
+    title: 'Watchlist',
+    route: '/watchlist',
   },
   {
-    title: "Portfolio",
-    route: "/portfolio"
+    title: 'Portfolio',
+    route: '/portfolio',
   },
-];
+]
 const Header = ({
-  auth, email, signOut, router, items = initialItems
+  auth,
+  email,
+  signOut,
+  router,
+  items = initialItems,
 }: Props) => {
   const [dropIsOpen, setDropOpen] = useState(false)
 
@@ -56,7 +51,9 @@ const Header = ({
     if (!auth) {
       return (
         <li className="header__item">
-          <span className="c2 fw-medium header__link header__link_active aic">All coins</span>
+          <span className="c2 fw-medium header__link header__link_active aic">
+            All coins
+          </span>
         </li>
       )
     }
@@ -65,19 +62,20 @@ const Header = ({
         {items.map(({ title, route }) => (
           <li className="header__item" key={title}>
             <Link href={route}>
-              <span className={classNames({
-                "c2 fw-medium header__link aic": true,
-                header__link_active: router.asPath === route,
-              })}
+              <span
+                className={classNames({
+                  'c2 fw-medium header__link aic': true,
+                  header__link_active: router.asPath === route,
+                })}
               >
                 {title}
               </span>
             </Link>
           </li>
-        )) }
+        ))}
       </>
-    );
-  }, [auth, items, router.asPath]);
+    )
+  }, [auth, items, router.asPath])
 
   const getButton = useMemo(() => {
     const dropOpenHandler = () => {
@@ -126,17 +124,19 @@ const Header = ({
   )
 }
 
-export default withRouter(connect(
-  ({
-    auth: {
-      jwt: { auth },
+export default withRouter(
+  connect(
+    ({
+      auth: {
+        jwt: { auth },
+        email,
+      },
+    }) => ({
+      auth,
       email,
-    },
-  }) => ({
-    auth,
-    email,
-  }),
-  (dispatch) => ({
-    signOut: () => dispatch(signOut()),
-  })
-)(Header));
+    }),
+    (dispatch) => ({
+      signOut: () => dispatch(signOut()),
+    })
+  )(Header)
+)
