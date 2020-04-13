@@ -30,7 +30,7 @@ const DateSelect = ({
         value={startDate}
         type="text"
         className="input input_height_xs date-select__input "
-        placeholder="Start"
+        placeholder={!disabled ? "Start" : ""}
         maxLength="10"
         disabled={disabled}
         onChange={e => startDateHandler(e.target.value)}
@@ -41,7 +41,7 @@ const DateSelect = ({
         value={endDate}
         type="text"
         className="input input_height_xs date-select__input"
-        placeholder="End"
+        placeholder={!disabled ? "End" : ""}
         maxLength="10"
         disabled={disabled}
         onChange={e => endDateHandler(e.target.value)}

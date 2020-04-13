@@ -5,6 +5,11 @@
     padding: 5px 26px;
     color: var(--gs-8);
     line-height: 22;
+
+    &:disabled {
+      background-color: var(--gs-2);
+      border: 0;
+    }
   }
 
   &__separator {
