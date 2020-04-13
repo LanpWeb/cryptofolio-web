@@ -20,6 +20,7 @@ const ButtonToogle = ({
         disabled={disabled}
       />
       <div className="button-toogle__switch" />
+      {console.log(checked)}
       <div className="button-toogle__custom aic">
         <span className="button-toogle__text c3 aic">Buy</span>
         <span className="button-toogle__text c3 aic">Sell</span>

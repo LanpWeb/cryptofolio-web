@@ -12,4 +12,4 @@ const routes = require("next-routes");
 module.exports = routes()
   .add("signIn", "/sign-in")
   .add("signUp", "/sign-up")
-  .add("portfolio", "/app");
+  .add("portfolio", "/portfolio");
