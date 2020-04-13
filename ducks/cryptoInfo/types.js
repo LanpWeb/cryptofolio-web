@@ -7,10 +7,10 @@ export type GraphItem = {
       market_cap: number,
       price: number,
       volume_24h: number,
-      timestamp: string
-    }
-  }
-};
+      timestamp: string,
+    },
+  },
+}
 
 export type Crypto = {
   id: number,
@@ -24,7 +24,7 @@ export type Crypto = {
     technical_doc: Array<string>,
     message_board: Array<string>,
     explorer: Array<string>,
-    source_code: Array<string>
+    source_code: Array<string>,
   },
   tags: Array<string>,
   cmc_rank: number,
@@ -36,8 +36,8 @@ export type Crypto = {
       market_cap: number,
       price: number,
       volume_24h: number,
-      percent_change_24h: number
-    }
+      percent_change_24h: number,
+    },
   },
   pricePeriods: {
     all_time: {
@@ -45,22 +45,22 @@ export type Crypto = {
         USD: {
           percent_change: number,
           high: number,
-          low: number
-        }
-      }
-    }
+          low: number,
+        },
+      },
+    },
   },
-  graph: Array<GraphItem>
-};
+  graph: Array<GraphItem>,
+}
 
 export type State = {
   data: null | Crypto,
   progress: boolean,
-  error: null | string
-};
+  error: null | string,
+}
 
 export type CryptoInfoPayload = {
   payload: {
-    slug: string
-  }
-};
+    slug: string,
+  },
+}
