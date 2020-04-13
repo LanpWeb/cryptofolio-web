@@ -1,26 +1,25 @@
 // @flow
 
-import React, { useState, useCallback } from "react";
-import { connect } from "react-redux";
+import React, { useCallback, useState } from 'react'
+import { connect } from 'react-redux'
 
-import { signIn } from "ducks/signIn/actions";
+import { signIn } from 'ducks/signIn/actions'
 
-import Header from "components/Header";
+import Header from 'components/Header'
 
-import type { Props } from "./types";
+import type { Props } from './types'
 
-const SignIn = ({
-  progress,
-  error,
-  signIn
-}: Props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const SignIn = ({ progress, error, signIn }: Props) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const submit = useCallback(e => {
-    e.preventDefault();
-    signIn(email, password);
-  }, [signIn, email, password]);
+  const submit = useCallback(
+    (e) => {
+      e.preventDefault()
+      signIn(email, password)
+    },
+    [signIn, email, password]
+  )
 
   return (
     <section className="signIn">
@@ -30,31 +29,29 @@ const SignIn = ({
           value={email}
           type="text"
           placeholder="Email"
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           value={password}
           type="text"
           placeholder="Password"
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button
-          type="submit"
-          disabled={progress}
-        >
+        <button type="submit" disabled={progress}>
           Sign In
         </button>
       </form>
       <span className="error">{error && error}</span>
     </section>
-  );
-};
+  )
+}
 
 export default connect(
   ({ signIn: { progress, error } }) => ({
-    progress, error
+    progress,
+    error,
   }),
   (dispatch) => ({
-    signIn: (email, password) => dispatch(signIn({ email, password }))
+    signIn: (email, password) => dispatch(signIn({ email, password })),
   })
-)(SignIn);
+)(SignIn)

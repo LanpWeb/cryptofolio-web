@@ -1,5 +1,5 @@
 // add all new routes here
-const routes = require("next-routes");
+const routes = require('next-routes')
 
 // Name   Page      Pattern
 // module.exports = routes()                           // ----   ----      -----
@@ -10,6 +10,6 @@ const routes = require("next-routes");
 // .add({name: 'beta', pattern: '/v3', page: 'v3'})    // beta   v3        /v3
 
 module.exports = routes()
-  .add("signIn", "/sign-in")
-  .add("signUp", "/sign-up")
-  .add("portfolio", "/app");
+  .add('signIn', '/sign-in')
+  .add('signUp', '/sign-up')
+  .add('portfolio', '/app')

@@ -5,5 +5,5 @@ export type Props = {
   email: null | string,
   signOut: () => void,
   loadWatchlist: () => void,
-  loadAllCoins:() => void
-};
+  loadAllCoins: () => void,
+}

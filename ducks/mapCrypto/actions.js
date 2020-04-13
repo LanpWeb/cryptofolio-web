@@ -1,7 +1,5 @@
-import { createAction } from "redux-actions";
+import { createAction } from 'redux-actions'
 
-import {
-  MAP_CRYPTO_REQUEST
-} from "./const";
+import { MAP_CRYPTO_REQUEST } from './const'
 
-export const getMapCrypto = createAction(MAP_CRYPTO_REQUEST);
+export const getMapCrypto = createAction(MAP_CRYPTO_REQUEST)
