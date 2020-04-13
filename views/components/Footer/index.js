@@ -1,10 +1,10 @@
-import React from "react";
-import { Behance } from "components/icons/socials/Behance";
-import { Dribble } from "components/icons/socials/Dribble";
-import { Insta } from "components/icons/socials/Insta";
-import { Facebook } from "components/icons/socials/Facebook";
-import { LinkedIn } from "components/icons/socials/LinkedIn";
-import { LanpLogo } from "components/icons/LanpLogo";
+import React from 'react'
+import { Behance } from 'components/icons/socials/Behance'
+import { Dribble } from 'components/icons/socials/Dribble'
+import { Insta } from 'components/icons/socials/Insta'
+import { Facebook } from 'components/icons/socials/Facebook'
+import { LinkedIn } from 'components/icons/socials/LinkedIn'
+import { LanpLogo } from 'components/icons/LanpLogo'
 
 const Footer = () => (
   <footer className="footer">
@@ -37,6 +37,6 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+)
 
-export default Footer;
+export default Footer

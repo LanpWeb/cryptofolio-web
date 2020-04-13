@@ -1,0 +1,81 @@
+.table-item {
+  width: 13.8%;
+  white-space: nowrap;
+  text-align: left;
+
+  &_xs {
+    width: 16px;
+    height: 16px;
+  }
+
+  &_sm {
+    width: 7.5%;
+  }
+
+  &_md {
+    width: 10%;
+  }
+
+  &_lg {
+    width: 18%;
+  }
+}
+
+.coin-card {
+  padding: 15px 25px 15px 20px;
+  background-color: var(--gs-1);
+  border-bottom: 1px solid var(--ac-2);
+  transition: all .15s linear;
+
+  &:hover {
+    background-color: var(--ac-2);
+  }
+
+  &__text {
+    overflow: hidden;
+    color: var(--gs-9);
+    text-overflow: ellipsis;
+  }
+
+  &__coin {
+    margin-left: 29px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__link {
+    max-width: 125px;
+    overflow: hidden;
+    color: var(--g-8);
+    text-overflow: ellipsis;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__logo {
+    width: 16px;
+    height: 16px;
+    margin-right: 12px;
+    background-color: transparent;
+  }
+
+  &__graf {
+    display: block;
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  &__triangle {
+    margin-left: 5px;
+  }
+
+  &__btn {
+    width: 16px;
+    height: 16px;
+  }
+}

@@ -1,36 +1,36 @@
 // @flow
-import type { NextPageContext } from "next";
+import type { NextPageContext } from 'next'
 
 export type State = {
   silentRefreshToSet: boolean,
   jwt: {
     auth: boolean,
     accessToken: null | string,
-    exp: null | Number
+    exp: null | Number,
   },
   id: null | string,
   email: null | string,
   progress: boolean,
-  error: null | string
-};
+  error: null | string,
+}
 
 export type RefreshTokenPayload = {
   payload: {
     isServer: boolean,
     refreshToken?: string,
-    ctx?: NextPageContext
-  }
+    ctx?: NextPageContext,
+  },
 }
 
 export type JWTDataPayload = {
   payload: {
     accessToken: string,
-    isServer: boolean
-  }
+    isServer: boolean,
+  },
 }
 
 export type UserInfoPayload = {
   payload: {
-    accessToken: string
-  }
+    accessToken: string,
+  },
 }
