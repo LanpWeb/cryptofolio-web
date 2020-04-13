@@ -18,14 +18,14 @@ import { stateSelector } from 'ducks/watchlist/selectors'
 import type { ToggleWatchlistPayload } from 'ducks/watchlist/types'
 
 export default function* toggleWatchlistSaga({
-  payload: { id, action },
+  payload: { crypto, action },
 }: ToggleWatchlistPayload): Generator<any, any, any> {
   const state = yield select(stateSelector)
   const accessToken = yield select(accessTokenSelector)
 
   if (state.progress) return true
 
-  yield put({ type: TOGGLE_WATCHLIST_START, payload: id })
+  yield put({ type: TOGGLE_WATCHLIST_START, payload: crypto })
 
   try {
     const options = {
@@ -35,17 +35,17 @@ export default function* toggleWatchlistSaga({
         Authorization: `Bearer ${accessToken}`,
       },
       data: {
-        coinId: id,
+        coinId: crypto.id,
       },
     }
 
     const res = yield call(axios, options)
     if (res && res.data) {
       if (action === 'ADD') {
-        yield put({ type: TOGGLE_WATCHLIST_ADDED, payload: id })
+        yield put({ type: TOGGLE_WATCHLIST_ADDED, payload: crypto })
       }
       if (action === 'REMOVE') {
-        yield put({ type: TOGGLE_WATCHLIST_REMOVED, payload: id })
+        yield put({ type: TOGGLE_WATCHLIST_REMOVED, payload: crypto })
       }
     }
   } catch (err) {

@@ -1,10 +1,10 @@
 // @flow
 
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import { toggleWatchlist } from 'ducks/watchlist/actions'
-import { getCryptoList, getWatchlist } from 'ducks/cryptoList/actions'
+import { getCryptoList } from 'ducks/cryptoList/actions'
 import Header from 'components/Header'
 import { Eye } from 'components/icons/Eye'
 import CoinCard from 'components/CoinCard'
@@ -20,21 +20,19 @@ const Home = ({
   getCryptoList,
   toggleWatchlist,
 }: Props) => {
-  useEffect(() => {
-    getCryptoList(1, cryptoList.limit)
-  }, [getCryptoList, cryptoList.limit])
   const loadMore = useCallback(() => {
     getCryptoList(cryptoList.start, cryptoList.limit)
   }, [getCryptoList, cryptoList.start, cryptoList.limit])
 
   const watchlistButtonClick = useCallback(
-    (coinId, action) => () => {
-      toggleWatchlist(coinId, action)
+    (crypto) => () => {
+      const action = watchlist?.ids.includes(crypto.id) ? 'REMOVE' : 'ADD'
+      toggleWatchlist(crypto, action)
     },
-    [toggleWatchlist]
+    [watchlist, toggleWatchlist]
   )
 
-  const isInWatchlist = (coinId) => {
+  const isInWatchlist = (crypto) => {
     if (!auth) {
       return (
         <Link href="/sign-in">
@@ -45,25 +43,13 @@ const Home = ({
       )
     }
 
-    if (watchlist?.data.includes(coinId)) {
-      return (
-        <button
-          className="pure-btn coin-card__btn"
-          onClick={watchlistButtonClick(coinId, 'REMOVE')}
-          disabled={watchlist?.toggledId === coinId && watchlist?.progress}
-        >
-          <Eye active />
-        </button>
-      )
-    }
-
     return (
       <button
         className="pure-btn coin-card__btn"
-        onClick={watchlistButtonClick(coinId, 'ADD')}
-        disabled={watchlist?.toggledId === coinId && watchlist?.progress}
+        onClick={watchlistButtonClick(crypto)}
+        disabled={watchlist?.toggledId === crypto.id && watchlist?.progress}
       >
-        <Eye />
+        <Eye active={watchlist?.ids.includes(crypto.id)} />
       </button>
     )
   }
@@ -72,7 +58,7 @@ const Home = ({
     <section className="home">
       <Header />
       <div className="container">
-        <div className="home__inner">
+        <div className="home__inner aic">
           <div className="aic jcsb home__info">
             <div className="home__market-info aic">
               <p className="p4 home__cap">
@@ -161,7 +147,7 @@ const Home = ({
                 circulatingSupply={crypto.circulating_supply.toLocaleString()}
                 symbol={crypto.symbol}
                 percentChange={crypto.quote.USD.percent_change_24h.toFixed(2)}
-                isInWatchlist={isInWatchlist}
+                isInWatchlist={isInWatchlist(crypto)}
               />
             ))}
           </div>
@@ -193,7 +179,7 @@ export default connect(
   }),
   (dispatch) => ({
     getCryptoList: (start, limit) => dispatch(getCryptoList({ start, limit })),
-    toggleWatchlist: (id, action) => dispatch(toggleWatchlist({ id, action })),
-    getWatchlist: () => dispatch(getWatchlist()),
+    toggleWatchlist: (crypto, action) =>
+      dispatch(toggleWatchlist({ crypto, action })),
   })
 )(Home)

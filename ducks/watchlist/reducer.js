@@ -1,9 +1,12 @@
 // @flow
-import { handleActions } from 'redux-actions'
+import { combineActions, handleActions } from 'redux-actions'
 
 import { SIGN_OUT_SUCCESS } from 'ducks/auth/const'
 import {
-  ADD_WATCHLIST,
+  FETCH_WATCHLIST_FAIL,
+  FETCH_WATCHLIST_START,
+  FETCH_WATCHLIST_SUCCESS,
+  INITIAL_WATCHLIST_IDS,
   TOGGLE_WATCHLIST_ADDED,
   TOGGLE_WATCHLIST_FAIL,
   TOGGLE_WATCHLIST_REMOVED,
@@ -14,42 +17,70 @@ import type { State } from 'ducks/watchlist/types'
 
 export const initialState: State = {
   data: [],
+  recommended: [],
+  ids: [],
   toggledId: 0,
+  loaded: false,
   progress: false,
   error: null,
 }
 
 const watchlistReducer = handleActions(
   {
-    [TOGGLE_WATCHLIST_START]: (state: State, action) => ({
+    [FETCH_WATCHLIST_START]: (state: State) => ({
       ...state,
-      toggledId: action.payload,
+      toggledId: 0,
       progress: true,
       error: null,
     }),
 
-    [ADD_WATCHLIST]: (state: State, action) => ({
-      data: action.payload,
+    [TOGGLE_WATCHLIST_START]: (state: State, action) => ({
+      ...state,
+      toggledId: action.payload.id,
+      progress: true,
+      error: null,
+    }),
+
+    [INITIAL_WATCHLIST_IDS]: (state: State, action) => ({
+      ...state,
+      ids: action.payload,
       toggledId: 0,
       progress: false,
       error: null,
     }),
 
+    [FETCH_WATCHLIST_SUCCESS]: (state: State, action) => ({
+      ...state,
+      data: [...action.payload.data],
+      recommended: [...action.payload.recommended],
+      toggledId: 0,
+      loaded: true,
+      progress: false,
+      error: null,
+    }),
+
     [TOGGLE_WATCHLIST_ADDED]: (state: State, action) => ({
+      ...state,
       data: [...state.data, action.payload],
+      ids: [...state.ids, action.payload.id],
       toggledId: 0,
       progress: false,
       error: null,
     }),
 
     [TOGGLE_WATCHLIST_REMOVED]: (state: State, action) => ({
-      data: state.data.filter((id) => id !== action.payload),
+      ...state,
+      data: state.data.filter((crypto) => crypto.id !== action.payload.id),
+      ids: state.ids.filter((id) => id !== action.payload.id),
       toggledId: 0,
       progress: false,
       error: null,
     }),
 
-    [TOGGLE_WATCHLIST_FAIL]: (state: State, action) => ({
+    [combineActions(FETCH_WATCHLIST_FAIL, TOGGLE_WATCHLIST_FAIL)]: (
+      state: State,
+      action
+    ) => ({
       ...state,
       toggledId: 0,
       progress: false,

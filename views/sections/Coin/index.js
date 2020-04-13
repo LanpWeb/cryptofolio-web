@@ -26,14 +26,17 @@ if (typeof Highcharts === 'object') {
 
 const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
   const watchlistButtonClick = useCallback(
-    (coinId, action) => () => {
-      toggleWatchlist(coinId, action)
+    (crypto) => () => {
+      const action = watchlist?.ids.includes(crypto?.id) ? 'REMOVE' : 'ADD'
+      if (crypto) {
+        toggleWatchlist(crypto, action)
+      }
     },
-    [toggleWatchlist]
+    [watchlist, toggleWatchlist]
   )
 
-  const isInWatchlist = (coinId) => {
-    if (!coinId) return null
+  const isInWatchlist = (crypto) => {
+    if (!crypto?.id) return null
     if (!auth) {
       return (
         <Link href="/sign-in">
@@ -42,23 +45,12 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
       )
     }
 
-    if (watchlist?.data.includes(coinId)) {
-      return (
-        <button
-          onClick={watchlistButtonClick(coinId, 'REMOVE')}
-          disabled={watchlist?.toggledId === coinId && watchlist?.progress}
-        >
-          Remove
-        </button>
-      )
-    }
-
     return (
       <button
-        onClick={watchlistButtonClick(coinId, 'ADD')}
-        disabled={watchlist?.toggledId === coinId && watchlist?.progress}
+        onClick={watchlistButtonClick(crypto)}
+        disabled={watchlist?.toggledId === crypto?.id && watchlist?.progress}
       >
-        Add
+        {watchlist?.ids.includes(crypto?.id) ? 'Remove' : 'Add'}
       </button>
     )
   }
@@ -154,7 +146,7 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
       />
       {cryptoInfo.progress && <p>Loading...</p>}
       <img src={cryptoInfo.data?.logo} alt="logo" width="32" height="32" />
-      {isInWatchlist(cryptoInfo.data?.id)}
+      {isInWatchlist(cryptoInfo.data)}
       <p>
         {cryptoInfo.data?.name}({cryptoInfo.data?.symbol})
       </p>
@@ -380,6 +372,7 @@ export default connect(
     watchlist,
   }),
   (dispatch) => ({
-    toggleWatchlist: (id, action) => dispatch(toggleWatchlist({ id, action })),
+    toggleWatchlist: (crypto, action) =>
+      dispatch(toggleWatchlist({ crypto, action })),
   })
 )(Coin)

@@ -140,20 +140,27 @@ exports.getMe = async (ctx) => {
 exports.getWatchlist = async (ctx) => {
   const { watchlist } = ctx.state.user
 
-  if (watchlist.length === 0) {
-    ctx.status = 200
-    ctx.body = []
-  } else {
-    const coinIds = watchlist.join(',')
+  try {
+    const recommended = await CryptocurrencyService.getLatest(1, 10)
 
-    try {
-      const quotesRes = await CryptocurrencyService.getQuotes(coinIds)
+    if (watchlist.length === 0) {
+      ctx.status = 200
+      ctx.body = {
+        data: [],
+        recommended,
+      }
+    } else {
+      const coinIds = watchlist.join(',')
+      const data = await CryptocurrencyService.getQuotes(coinIds)
 
       ctx.status = 200
-      ctx.body = quotesRes.sort((a, b) => a.cmc_rank - b.cmc_rank)
-    } catch (err) {
-      ctx.throw(err.message, 400)
+      ctx.body = {
+        data,
+        recommended,
+      }
     }
+  } catch (err) {
+    ctx.throw(err.message, 400)
   }
 }
 

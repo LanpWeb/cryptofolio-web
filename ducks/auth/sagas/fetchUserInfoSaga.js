@@ -10,7 +10,7 @@ import {
   FETCH_USER_INFO_START,
   FETCH_USER_INFO_SUCCESS,
 } from 'ducks/auth/const'
-import { ADD_WATCHLIST } from 'ducks/watchlist/const'
+import { INITIAL_WATCHLIST_IDS } from 'ducks/watchlist/const'
 
 import { stateSelector } from 'ducks/auth/selectors'
 import type { UserInfoPayload } from 'ducks/auth/types'
@@ -38,7 +38,7 @@ export default function* fetchUserInfoSaga({
     if (res && res.data) {
       const { watchlist, ...otherData } = res.data
       yield put({ type: FETCH_USER_INFO_SUCCESS, payload: otherData })
-      yield put({ type: ADD_WATCHLIST, payload: watchlist })
+      yield put({ type: INITIAL_WATCHLIST_IDS, payload: watchlist })
     }
   } catch (err) {
     console.log('Error:: ', err)

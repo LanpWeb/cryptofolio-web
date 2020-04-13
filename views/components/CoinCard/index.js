@@ -17,7 +17,7 @@ const CoinCard = ({
   circulatingSupply = '19 639 376 092,582',
   symbol = 'USD',
   percentChange = '3.5',
-  isInWatchlist = () => (
+  isInWatchlist = (
     <span className="coin-card__btn">
       <Eye />
     </span>
@@ -78,7 +78,7 @@ const CoinCard = ({
         className="coin-card__img"
       />
     </span>
-    {isInWatchlist(id)}
+    {isInWatchlist}
   </div>
 )
 

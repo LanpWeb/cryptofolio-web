@@ -1,4 +1,5 @@
 // @flow
+import type { Node } from 'react'
 
 export type Props = {
   order?: number | string,
@@ -11,5 +12,5 @@ export type Props = {
   circulatingSupply?: string,
   symbol?: string,
   percentChange: string,
-  isInWatchlist: (any) => Object,
+  isInWatchlist: Node,
 }

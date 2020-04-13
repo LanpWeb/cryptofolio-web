@@ -1,10 +1,11 @@
 .home {
+  min-height: 100vh;
   background-color: var(--ac-2);
 
   &__inner {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    min-height: calc(100vh - 192px);
     margin: 35px 0px;
   }
 
@@ -20,6 +21,10 @@
   &__cap,
   &__volume {
     margin-right: 35px;
+  }
+
+  &__caption {
+    color: var(--g-8);
   }
 
   &__text {
@@ -49,5 +54,22 @@
 
   &__empty {
     width: 16px;
+  }
+}
+
+.empty-data {
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 30px 40px;
+  background-color: var(--gs-1);
+  border-radius: 5px;
+
+  &__caption {
+    margin-bottom: 10px;
+    color: var(--g-8);
+  }
+
+  &__text {
+    color: var(--gs-7);
   }
 }

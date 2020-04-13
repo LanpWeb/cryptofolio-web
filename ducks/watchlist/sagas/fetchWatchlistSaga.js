@@ -9,10 +9,10 @@ import {
   FETCH_WATCHLIST_FAIL,
   FETCH_WATCHLIST_START,
   FETCH_WATCHLIST_SUCCESS,
-} from 'ducks/cryptoList/const'
+} from 'ducks/watchlist/const'
 
 import { accessTokenSelector } from 'ducks/auth/selectors'
-import { stateSelector } from 'ducks/cryptoList/selectors'
+import { stateSelector } from 'ducks/watchlist/selectors'
 
 export default function* fetchWatchlistSaga(): Generator<any, any, any> {
   const state = yield select(stateSelector)
