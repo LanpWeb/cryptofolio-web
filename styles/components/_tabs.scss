@@ -1,14 +1,13 @@
 .tabs {
-
   &__item {
     padding: 5px 14px;
     color: var(--gs-9);
     background-color: var(--gs-2);
     border-radius: 5px;
-    transition: all .15s linear;
+    transition: all 0.15s linear;
     user-select: none;
 
-    &:not(&_active):hover {
+    &:not(&_active):not(&_disabled):hover {
       color: var(--main-color-1);
       background-color: var(--gs-3);
       cursor: pointer;
@@ -17,6 +16,9 @@
     &_active {
       color: var(--gs-1);
       background-color: var(--main-color-1);
+    }
+    &_disabled {
+      cursor: not-allowed;
     }
   }
 

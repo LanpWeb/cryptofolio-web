@@ -13,7 +13,9 @@ const InitialContent = [
   { text: "All time", id: 6, handler: () => {} }
 ];
 
-const Tabs = ({ content = InitialContent, selected = 6, className }:Props) => {
+const Tabs = ({
+  content = InitialContent, disabled, selected = 6, className
+}:Props) => {
   const [selectedTab, setSelectedTab] = useState(selected);
   const tabsClassName = classNames("tabs aic", className);
 
@@ -23,7 +25,8 @@ const Tabs = ({ content = InitialContent, selected = 6, className }:Props) => {
         <span
           className={classNames({
             "p3 tabs__item": true,
-            tabs__item_active: id === selectedTab
+            tabs__item_active: id === selectedTab && !disabled,
+            tabs__item_disabled: disabled
           })}
           key={id}
           onClick={() => { setSelectedTab(id); handler(); }}
