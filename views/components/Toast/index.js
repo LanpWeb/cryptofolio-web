@@ -1,19 +1,26 @@
 // @flow
 
-import React from "react";
-import classNames from "classnames";
-import type { Props } from "./types";
-import { Close } from "../icons/Close";
-import { RoundCheck } from "../icons/RoundCheck";
-
+import React from 'react'
+import classNames from 'classnames'
+import { Close } from 'components/icons/Close'
+import { RoundCheck } from 'components/icons/RoundCheck'
+import type { Props } from './types'
 
 const Toast = ({
-  active = false, closeToast = () => {}, text = "Password was changed", time = "21:22", intent, className
-}:Props) => {
-  const toastClassName = classNames({
-    "toast jcsb": true,
-    toast_active: active === true
-  }, className);
+  active = false,
+  closeToast = () => {},
+  text = 'Password was changed',
+  time = '21:22',
+  intent,
+  className,
+}: Props) => {
+  const toastClassName = classNames(
+    {
+      'toast jcsb': true,
+      toast_active: active === true,
+    },
+    className
+  )
 
   return (
     <div className={toastClassName}>
@@ -22,9 +29,7 @@ const Toast = ({
           <span className="toast__icon">
             <RoundCheck intent={intent} />
           </span>
-          <p className="c3 toast__text fw-medium">
-            {text}
-          </p>
+          <p className="c3 toast__text fw-medium">{text}</p>
         </div>
         <span className="toast__time p4">{time}</span>
       </div>
@@ -32,7 +37,7 @@ const Toast = ({
         <Close />
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Toast;
+export default Toast

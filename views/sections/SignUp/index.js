@@ -3,7 +3,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { connect } from "react-redux";
 
-import { signUp } from "ducks/signUp/actions";
+import { signUp } from 'ducks/signUp/actions'
 
 import Link from "next/link";
 import Input from "components/Input";
@@ -13,7 +13,7 @@ import Button from "components/Button";
 import Google from "components/icons/socials/Google";
 import { Facebook } from "components/icons/socials/Facebook";
 
-import type { Props } from "./types";
+import type { Props } from './types'
 
 const SignUp = ({
   progress,
@@ -88,14 +88,16 @@ const SignUp = ({
       </span>
       <span className="error">{error && error}</span>
     </section>
-  );
-};
+  )
+}
 
 export default connect(
   ({ signUp: { progress, error } }) => ({
-    progress, error
+    progress,
+    error,
   }),
   (dispatch) => ({
-    signUp: (email, password, confirmPassword) => dispatch(signUp({ email, password, confirmPassword }))
+    signUp: (email, password, confirmPassword) =>
+      dispatch(signUp({ email, password, confirmPassword })),
   })
-)(SignUp);
+)(SignUp)

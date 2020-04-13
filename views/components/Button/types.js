@@ -9,5 +9,5 @@ export type Props = {|
   children?: Object,
   handleClick?: () => void,
   className?: string,
-  disabled?: boolean
-|};
+  disabled?: boolean,
+|}

@@ -113,6 +113,11 @@ body {
   align-items: center;
 }
 
+.aifs {
+  display: flex;
+  align-items: flex-start;
+}
+
 .aife {
   display: flex;
   align-items: flex-end;
@@ -144,6 +149,8 @@ body {
 
 @import "./sections/portfolio";
 
+@import "./sections/settings";
+
 // // Components
 
 @import "./components/button";
@@ -164,15 +171,27 @@ body {
 
 @import "./components/search";
 
+@import "./components/stats";
+
 @import "./components/modal";
 
 @import "./components/popover";
+
+@import "./components/transactions";
+
+@import "./components/holdings";
+
+@import "./components/tabs";
 
 @import "./components/delete-tr-modal";
 
 @import "./components/header";
 
+@import "./components/coin-card";
+
 @import "./components/footer";
+
+@import "./components/date-select";
 
 // // Sections
 

@@ -1,7 +1,9 @@
 // @flow
 
+import type { NextRouter } from 'next/router'
+
 export type Props = {|
-    router?: any,
-    items?: Array<{title: string, route: string}>,
-    className?: string
-  |};
+  router: NextRouter,
+  items?: Array<{ title: string, route: string }>,
+  className?: string,
+|}

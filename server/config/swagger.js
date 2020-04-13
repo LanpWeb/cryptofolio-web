@@ -1,410 +1,456 @@
-const swaggerHost = process.env.NODE_ENV === "server-prod" ? "cryptofolio-web.herokuapp.com" : "localhost:3004";
+const swaggerHost =
+  process.env.NODE_ENV === 'server-prod'
+    ? 'cryptofolio-web.herokuapp.com'
+    : 'localhost:3004'
 
 const swaggerOptions = {
   spec: {
-    swagger: "2.0",
+    swagger: '2.0',
     info: {
-      description: "An Open Source project for monitoring crypto coins and your portfolio.",
-      version: "1.0.0",
-      title: "Cryprofolio"
+      description:
+        'An Open Source project for monitoring crypto coins and your portfolio.',
+      version: '1.0.0',
+      title: 'Cryprofolio',
     },
     host: swaggerHost,
-    basePath: "/api",
-    tags: [{
-      name: "auth",
-      description: "Authorization"
-    },
-    {
-      name: "portfolio",
-      description: "Portfolio"
-    },
-    {
-      name: "cryptocurrency",
-      description: "Cryptocurrency"
-    },
-    {
-      name: "watchlist",
-      description: "Watchlist"
-    },
-    {
-      name: "transactions",
-      description: "Transactions"
-    },
-    {
-      name: "settings",
-      description: "Settings"
-    }
+    basePath: '/api',
+    tags: [
+      {
+        name: 'auth',
+        description: 'Authorization',
+      },
+      {
+        name: 'portfolio',
+        description: 'Portfolio',
+      },
+      {
+        name: 'cryptocurrency',
+        description: 'Cryptocurrency',
+      },
+      {
+        name: 'watchlist',
+        description: 'Watchlist',
+      },
+      {
+        name: 'transactions',
+        description: 'Transactions',
+      },
+      {
+        name: 'settings',
+        description: 'Settings',
+      },
     ],
-    schemes: ["https", "http"],
+    schemes: ['https', 'http'],
     paths: {
-      "/sign-in": {
+      '/sign-in': {
         post: {
-          tags: ["auth"],
-          summary: "Sign in action",
-          parameters: [{
-            in: "body",
-            name: "body",
-            description: "",
-            required: true,
-            schema: {
-              type: "object",
-              properties: {
-                email: {
-                  type: "string"
+          tags: ['auth'],
+          summary: 'Sign in action',
+          parameters: [
+            {
+              in: 'body',
+              name: 'body',
+              description: '',
+              required: true,
+              schema: {
+                type: 'object',
+                properties: {
+                  email: {
+                    type: 'string',
+                  },
+                  password: {
+                    type: 'string',
+                  },
                 },
-                password: {
-                  type: "string"
-                }
-              }
-            }
-          }],
+              },
+            },
+          ],
           responses: {
-            200: {}
+            200: {},
           },
-        }
+        },
       },
-      "/sign-up": {
+      '/sign-up': {
         post: {
-          tags: ["auth"],
-          summary: "Sign up action",
-          parameters: [{
-            in: "body",
-            name: "body",
-            description: "",
-            required: true,
-            schema: {
-              type: "object",
-              properties: {
-                email: {
-                  type: "string"
+          tags: ['auth'],
+          summary: 'Sign up action',
+          parameters: [
+            {
+              in: 'body',
+              name: 'body',
+              description: '',
+              required: true,
+              schema: {
+                type: 'object',
+                properties: {
+                  email: {
+                    type: 'string',
+                  },
+                  password: {
+                    type: 'string',
+                  },
+                  confirmPassword: {
+                    type: 'string',
+                  },
                 },
-                password: {
-                  type: "string"
+              },
+            },
+          ],
+          responses: {
+            200: {},
+          },
+        },
+      },
+      '/verify-jwt': {
+        post: {
+          tags: ['auth'],
+          summary: 'Verify access token action',
+          parameters: [
+            {
+              in: 'body',
+              name: 'body',
+              description: '',
+              required: true,
+              schema: {
+                type: 'object',
+                properties: {
+                  accessToken: {
+                    type: 'string',
+                  },
                 },
-                confirmPassword: {
-                  type: "string"
-                }
-              }
-            }
-          }],
+              },
+            },
+          ],
           responses: {
-            200: {}
+            200: {},
           },
-        }
+        },
       },
-      "/verify-jwt": {
+      '/refresh-token': {
         post: {
-          tags: ["auth"],
-          summary: "Verify access token action",
-          parameters: [{
-            in: "body",
-            name: "body",
-            description: "",
-            required: true,
-            schema: {
-              type: "object",
-              properties: {
-                accessToken: {
-                  type: "string"
-                }
-              }
-            }
-          }],
+          tags: ['auth'],
+          summary: 'Get new refresh token action',
           responses: {
-            200: {}
+            200: {},
           },
-        }
+        },
       },
-      "/refresh-token": {
+      '/logout': {
         post: {
-          tags: ["auth"],
-          summary: "Get new refresh token action",
+          tags: ['auth'],
+          summary: 'Logout action',
           responses: {
-            200: {}
+            200: {},
           },
-        }
+        },
       },
-      "/logout": {
+      '/forced-logout': {
         post: {
-          tags: ["auth"],
-          summary: "Logout action",
+          tags: ['auth'],
+          summary: 'Forced logout action',
           responses: {
-            200: {}
+            200: {},
           },
-        }
+        },
       },
-      "/forced-logout": {
+      '/devices-logout': {
         post: {
-          tags: ["auth"],
-          summary: "Forced logout action",
+          tags: ['auth'],
+          summary: 'Logout from all devices action',
           responses: {
-            200: {}
+            200: {},
           },
-        }
+        },
       },
-      "/devices-logout": {
-        post: {
-          tags: ["auth"],
-          summary: "Logout from all devices action",
-          responses: {
-            200: {}
-          },
-        }
-      },
-      "/portfolio/holdings": {
+      '/portfolio/holdings': {
         get: {
-          tags: ["portfolio"],
-          summary: "Portfolio information action",
+          tags: ['portfolio'],
+          summary: 'Portfolio information action',
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
-        }
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
+        },
       },
-      "/portfolio/stats": {
+      '/portfolio/stats': {
         get: {
-          tags: ["portfolio"],
-          summary: "Portfolio statistics action",
+          tags: ['portfolio'],
+          summary: 'Portfolio statistics action',
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
-        }
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
+        },
       },
-      "/portfolio/graph": {
+      '/portfolio/graph': {
         get: {
-          tags: ["portfolio"],
-          summary: "Portfolio graph action",
+          tags: ['portfolio'],
+          summary: 'Portfolio graph action',
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
-        }
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
+        },
       },
-      "/user": {
+      '/user': {
         get: {
-          tags: ["portfolio"],
-          summary: "Get user information action",
+          tags: ['portfolio'],
+          summary: 'Get user information action',
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
-        }
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
+        },
       },
-      "/watchlist": {
+      '/watchlist': {
         get: {
-          tags: ["watchlist"],
+          tags: ['watchlist'],
           summary: "Get user's watchlist action",
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
         },
         post: {
-          tags: ["watchlist"],
+          tags: ['watchlist'],
           summary: "Toggle watchlist's coin action",
-          parameters: [{
-            in: "body",
-            name: "body",
-            description: "",
-            required: true,
-            schema: {
-              type: "object",
-              properties: {
-                coinId: {
-                  type: "number"
-                }
-              }
-            }
-          }],
+          parameters: [
+            {
+              in: 'body',
+              name: 'body',
+              description: '',
+              required: true,
+              schema: {
+                type: 'object',
+                properties: {
+                  coinId: {
+                    type: 'number',
+                  },
+                },
+              },
+            },
+          ],
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
-        }
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
+        },
       },
-      "/transactions": {
+      '/transactions': {
         get: {
-          tags: ["transactions"],
+          tags: ['transactions'],
           summary: "Get user's transactions action",
-          parameters: [{
-            name: "start",
-            in: "query",
-            description: "Should start from zero",
-            required: true,
-            type: "integer"
-          },
-          {
-            name: "limit",
-            in: "query",
-            description: "",
-            required: true,
-            type: "integer"
-          }],
+          parameters: [
+            {
+              name: 'start',
+              in: 'query',
+              description: 'Should start from zero',
+              required: true,
+              type: 'integer',
+            },
+            {
+              name: 'limit',
+              in: 'query',
+              description: '',
+              required: true,
+              type: 'integer',
+            },
+          ],
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
         },
         post: {
-          tags: ["transactions"],
+          tags: ['transactions'],
           summary: "Create new user's transaction action",
-          parameters: [{
-            in: "body",
-            name: "body",
-            description: "",
-            required: true,
-            schema: {
-              type: "object",
-              properties: {
-                type: {
-                  type: "string"
-                },
-                coin: {
-                  type: "object",
-                  properties: {
-                    id: {
-                      type: "integer"
+          parameters: [
+            {
+              in: 'body',
+              name: 'body',
+              description: '',
+              required: true,
+              schema: {
+                type: 'object',
+                properties: {
+                  type: {
+                    type: 'string',
+                  },
+                  coin: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'integer',
+                      },
+                      name: {
+                        type: 'string',
+                      },
                     },
-                    name: {
-                      type: "string"
-                    }
-                  }
+                  },
+                  amount: {
+                    type: 'integer',
+                  },
+                  price: {
+                    type: 'integer',
+                  },
+                  date: {
+                    type: 'integer',
+                  },
                 },
-                amount: {
-                  type: "integer"
-                },
-                price: {
-                  type: "integer"
-                },
-                date: {
-                  type: "integer"
-                }
-              }
-            }
-          }],
+              },
+            },
+          ],
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
-        }
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
+        },
       },
-      "/transactions/{transactionId}": {
+      '/transactions/{transactionId}': {
         put: {
-          tags: ["transactions"],
+          tags: ['transactions'],
           summary: "Edit user's transaction action",
-          parameters: [{
-            in: "path",
-            name: "transactionId",
-            type: "string",
-            required: true,
-            description: ""
-          }, {
-            in: "body",
-            name: "body",
-            description: "",
-            required: true,
-            schema: {
-              type: "object",
-              properties: {
-                type: {
-                  type: "string"
-                },
-                coin: {
-                  type: "object",
-                  properties: {
-                    id: {
-                      type: "integer"
+          parameters: [
+            {
+              in: 'path',
+              name: 'transactionId',
+              type: 'string',
+              required: true,
+              description: '',
+            },
+            {
+              in: 'body',
+              name: 'body',
+              description: '',
+              required: true,
+              schema: {
+                type: 'object',
+                properties: {
+                  type: {
+                    type: 'string',
+                  },
+                  coin: {
+                    type: 'object',
+                    properties: {
+                      id: {
+                        type: 'integer',
+                      },
+                      name: {
+                        type: 'string',
+                      },
                     },
-                    name: {
-                      type: "string"
-                    }
-                  }
+                  },
+                  amount: {
+                    type: 'integer',
+                  },
+                  price: {
+                    type: 'integer',
+                  },
+                  date: {
+                    type: 'integer',
+                  },
                 },
-                amount: {
-                  type: "integer"
-                },
-                price: {
-                  type: "integer"
-                },
-                date: {
-                  type: "integer"
-                }
-              }
-            }
-          }],
+              },
+            },
+          ],
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
         },
         delete: {
-          tags: ["transactions"],
+          tags: ['transactions'],
           summary: "Delete user's transaction action",
-          parameters: [{
-            in: "path",
-            name: "transactionId",
-            type: "string",
-            required: true,
-            description: ""
-          }],
+          parameters: [
+            {
+              in: 'path',
+              name: 'transactionId',
+              type: 'string',
+              required: true,
+              description: '',
+            },
+          ],
           responses: {
-            200: {}
+            200: {},
           },
-          security: [{
-            Bearer: []
-          }]
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
         },
       },
-      "/change-password": {
+      '/change-password': {
         post: {
-          tags: ["settings"],
-          summary: "Change password action",
-          parameters: [{
-            in: "body",
-            name: "body",
-            description: "",
-            required: true,
-            schema: {
-              type: "object",
-              properties: {
-                password: {
-                  type: "string"
+          tags: ['settings'],
+          summary: 'Change password action',
+          parameters: [
+            {
+              in: 'body',
+              name: 'body',
+              description: '',
+              required: true,
+              schema: {
+                type: 'object',
+                properties: {
+                  password: {
+                    type: 'string',
+                  },
+                  confirmPassword: {
+                    type: 'string',
+                  },
+                  newPassword: {
+                    type: 'string',
+                  },
                 },
-                confirmPassword: {
-                  type: "string"
-                },
-                newPassword: {
-                  type: "string"
-                }
-              }
-            }
-          }],
-          security: [{
-            Bearer: []
-          }],
+              },
+            },
+          ],
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
           responses: {
-            200: {}
+            200: {},
           },
-        }
+        },
       },
       // "/cryptocurrency/graph": {
       //   get: {
@@ -429,76 +475,80 @@ const swaggerOptions = {
       //     }
       //   }
       // },
-      "/cryptocurrency/info/{slug}": {
+      '/cryptocurrency/info/{slug}': {
         get: {
-          tags: ["cryptocurrency"],
-          summary: "Get cryptocurrency info action",
-          parameters: [{
-            in: "path",
-            name: "slug",
-            type: "string",
-            required: true,
-            description: ""
-          }],
+          tags: ['cryptocurrency'],
+          summary: 'Get cryptocurrency info action',
+          parameters: [
+            {
+              in: 'path',
+              name: 'slug',
+              type: 'string',
+              required: true,
+              description: '',
+            },
+          ],
           responses: {
-            200: {}
-          }
-        }
-      },
-      "/cryptocurrency/latest": {
-        get: {
-          tags: ["cryptocurrency"],
-          summary: "Get latest cryptocurrency action",
-          parameters: [{
-            name: "start",
-            in: "query",
-            description: "Should start from 1",
-            required: true,
-            type: "integer"
+            200: {},
           },
-          {
-            name: "limit",
-            in: "query",
-            description: "",
-            required: true,
-            type: "integer"
-          }],
-          responses: {
-            200: {}
-          }
-        }
+        },
       },
-      "/cryptocurrency/map": {
+      '/cryptocurrency/latest': {
         get: {
-          tags: ["cryptocurrency"],
-          summary: "Get map cryptocurrency for search action",
+          tags: ['cryptocurrency'],
+          summary: 'Get latest cryptocurrency action',
+          parameters: [
+            {
+              name: 'start',
+              in: 'query',
+              description: 'Should start from 1',
+              required: true,
+              type: 'integer',
+            },
+            {
+              name: 'limit',
+              in: 'query',
+              description: '',
+              required: true,
+              type: 'integer',
+            },
+          ],
           responses: {
-            200: {}
-          }
-        }
+            200: {},
+          },
+        },
       },
-      "/cryptocurrency/global-stats": {
+      '/cryptocurrency/map': {
         get: {
-          tags: ["cryptocurrency"],
-          summary: "Get global cryptocurrency stats action",
+          tags: ['cryptocurrency'],
+          summary: 'Get map cryptocurrency for search action',
           responses: {
-            200: {}
-          }
-        }
-      }
+            200: {},
+          },
+        },
+      },
+      '/cryptocurrency/global-stats': {
+        get: {
+          tags: ['cryptocurrency'],
+          summary: 'Get global cryptocurrency stats action',
+          responses: {
+            200: {},
+          },
+        },
+      },
     },
     securityDefinitions: {
       Bearer: {
-        type: "apiKey",
-        name: "Authorization",
-        in: "header"
-      }
+        type: 'apiKey',
+        name: 'Authorization',
+        in: 'header',
+      },
     },
     externalDocs: {
-      description: "Find out more about Swagger",
-      url: "http://swagger.io"
-    }
-  }
-};
+      description: 'Find out more about Swagger',
+      url: 'http://swagger.io',
+    },
+  },
+}
 
-module.exports = swaggerOptions;
+module.exports = swaggerOptions
