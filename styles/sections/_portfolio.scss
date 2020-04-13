@@ -1,25 +1,39 @@
 .portfolio {
   // min-height: 100vh;
   &__inner {
-    background-color: var(--ac-2);
     min-height: calc(100vh - 122px);
     padding-top: 20px;
+    background-color: var(--ac-2);
   }
+
   &__income {
-    background-color: var(--gs-1);
     margin-top: 20px;
     margin-bottom: 30px;
+    background-color: var(--gs-1);
     border-radius: 5px;
   }
+
   &__graf-section {
     padding: 20px;
-    border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
   }
+
   &__tabs {
     margin-right: 20px;
   }
+
   &__graf {
     height: 250px;
+    margin-top: 20px;
+  }
+
+  &__text {
+    color: var(--gs-7);
+  }
+
+  &__holdings,
+  &__transactions {
+    margin-top: 20px;
   }
 }
