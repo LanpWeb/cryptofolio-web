@@ -2,8 +2,8 @@
 
 export type GraphItem = {
   price: number,
-  date: number
-};
+  date: number,
+}
 
 export type Holding = {
   coinId: number,
@@ -13,23 +13,23 @@ export type Holding = {
   totalAmount: number,
   totalCost: number,
   myValue: number,
-  profit: number
-};
+  profit: number,
+}
 
 export type Portfolio = {
   currentValue: number,
   change24h: {
     value: number,
-    percent: number
+    percent: number,
   },
   totalCost: number,
   totalProfit: number,
   holdings: Array<Holding>,
-  graph: Array<GraphItem>
-};
+  graph: Array<GraphItem>,
+}
 
 export type State = {
   data: null | Portfolio,
   progress: boolean,
-  error: null | string
-};
+  error: null | string,
+}
