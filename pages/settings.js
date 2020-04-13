@@ -1,16 +1,16 @@
 // @flow
 
-import React from "react";
+import React from 'react'
 
-import privatePage from "hoc/privatePage";
+import privatePage from 'hoc/privatePage'
 
-import Layout from "hoc/layout";
-import Settings from "sections/Settings";
+import Layout from 'hoc/layout'
+import Settings from 'sections/Settings'
 
 const SettingsPage = () => (
   <Layout>
     <Settings />
   </Layout>
-);
+)
 
-export default privatePage(SettingsPage);
+export default privatePage(SettingsPage)

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const HoldingHeader = () => (
   <div className="holding-header aic jcsb">
@@ -22,7 +22,6 @@ const HoldingHeader = () => (
       % Profit
     </span>
   </div>
-);
+)
 
-
-export default HoldingHeader;
+export default HoldingHeader

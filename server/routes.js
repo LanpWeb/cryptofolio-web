@@ -10,7 +10,7 @@ const routes = require('next-routes')
 // .add({name: 'beta', pattern: '/v3', page: 'v3'})    // beta   v3        /v3
 
 module.exports = routes()
-  .add("signIn", "/sign-in")
-  .add("signUp", "/sign-up")
-  .add("portfolio", "/app")
-  .add("settings", "/settings");
+  .add('signIn', '/sign-in')
+  .add('signUp', '/sign-up')
+  .add('portfolio', '/app')
+  .add('settings', '/settings')
