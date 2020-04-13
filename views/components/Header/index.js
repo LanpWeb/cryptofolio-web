@@ -39,7 +39,7 @@ const Header = ({
     {
       name: 'Settings',
       id: 1,
-      route: '/',
+      route: '/settings',
     },
     {
       name: 'Log out',
