@@ -27,7 +27,12 @@ const Button = ({
     btn_text: shape === 'text',
   })
   return (
-    <button className={btnClassName} onClick={handleClick} disabled={disabled} type={type}>
+    <button
+      className={btnClassName}
+      onClick={handleClick}
+      disabled={disabled}
+      type={type}
+    >
       {icon && <span className="icon-frame btn__icon">{icon}</span>}
       {children}
     </button>

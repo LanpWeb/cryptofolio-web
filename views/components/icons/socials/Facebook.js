@@ -4,10 +4,10 @@ import React from 'react'
 import classNames from 'classnames'
 import type { Props } from '../types'
 
-export const Facebook = ({ className = "", hovered }: Props) => {
+export const Facebook = ({ className = '', hovered }: Props) => {
   const iconClassName = classNames(
     {
-      "icon icon_socials ": true,
+      'icon icon_socials ': true,
       icon_hovered: hovered,
     },
     className
