@@ -1,0 +1,211 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  min-width: 60px;
+  height: 34px;
+  color: var(--gs-1);
+  font-weight: 500;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  line-height: 20px;
+  text-decoration: none;
+  background-color: var(--main-color-1);
+  border: unset;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: all .15s linear;
+
+  &:not(:disabled):not(&_disabled):not(&_text):hover {
+    background-color: var(--main-color-0);
+  }
+
+  &:not(:disabled):not(&_disabled):not(&_text):active {
+    background-color: var(--main-color-3);
+  }
+
+  &:disabled {
+    color: var(--gs-9);
+    background-color: var(--gs-2);
+    border: unset;
+    cursor: not-allowed;
+  }
+
+  &__icon {
+    margin-right: 6px;
+  }
+
+  &_height_lg {
+    height: 40px;
+  }
+
+  &_xs {
+    width: 100px;
+  }
+
+  &_sm {
+    width: 120px;
+  }
+
+  &_md {
+    width: 150px;
+  }
+
+  &_lg {
+    width: 300px;
+  }
+
+  &_auto {
+    width: 100%;
+  }
+
+  &_outline {
+    color: var(--main-color-1);
+    background-color: var(--gs-1);
+    border: 1px solid var(--main-color-1);
+
+    &:not(:disabled):not(.btn_disabled):hover {
+      color: var(--gs-1);
+      background-color: var(--main-color-0);
+      border-color: var(--main-color-0);
+    }
+
+    &:not(:disabled):not(.btn_disabled):active {
+      color: var(--gs-1);
+      background-color: var(--main-color-3);
+      border-color: var(--main-color-3);
+    }
+  }
+
+  &_disabled {
+    color: var(--gs-9);
+    background-color: var(--gs-2);
+    border: unset;
+    cursor: not-allowed;
+  }
+
+  &_social {
+    height: 40px;
+    background-color: var(--gs-2);
+
+    &:not(:disabled):hover {
+      background-color: var(--gs-3);
+    }
+  }
+
+  &_text {
+    width: auto;
+    min-width: auto;
+    height: auto;
+    color: var(--gs-9);
+    background: transparent;
+
+    &:hover {
+      color: var(--main-color-1);
+    }
+
+    &:hover svg[fill] {
+      transition: all .15s linear;
+      fill: var(--main-color-1);
+    }
+
+    &:hover svg[stroke] {
+      transition: all .15s linear;
+      stroke: var(--main-color-1);
+    }
+  }
+}
+
+.pure-btn {
+  background-color: transparent;
+  border: unset;
+  outline: none;
+}
+
+.button-toogle {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden;
+  background-color: var(--gs-2);
+  border-radius: 5px;
+
+  &__real {
+    display: none;
+  }
+
+  &__custom {
+    height: 34px;
+  }
+
+  &__switch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 50%;
+    height: 100%;
+    background-color: var(--main-color-1);
+    transition: all .15s linear;
+  }
+
+  &__text {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    color: var(--gs-9);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .15s linear;
+    user-select: none;
+
+    &:first-child {
+      color: var(--gs-1);
+    }
+
+    &:last-child:hover {
+      color: var(--main-color-2);
+    }
+  }
+
+  &__real:checked ~ .button-toogle__custom .button-toogle__text:first-child {
+    color: var(--gs-9);
+  }
+
+  &__real:checked
+  ~ .button-toogle__custom
+  .button-toogle__text:first-child:hover {
+    color: var(--main-color-2);
+    transition: all .15s linear;
+  }
+
+  &__real:checked ~ .button-toogle__custom .button-toogle__text:last-child {
+    color: var(--gs-1);
+  }
+
+  &__real:checked ~ .button-toogle__switch {
+    left: 50%;
+  }
+
+  &_bg_white:not(&_disabled) {
+    background-color: var(--gs-1);
+  }
+
+  &_disabled {
+
+    & .button-toogle__switch {
+      background-color: transparent;
+    }
+
+    & .button-toogle__text,
+    & .button-toogle__text:hover {
+      color: var(--gs-9);
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.link {
+  color: #4c80ec;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  line-height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .15s linear;
+
+  &:hover {
+    color: var(--main-color-4);
+  }
+}

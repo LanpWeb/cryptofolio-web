@@ -1,14 +1,9 @@
 .icon-frame {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 16px;
   height: 16px;
-
-  &_sm {
-    width: 12px;
-    height: 12px;
-  }
 
   &_md {
     width: 20px;
@@ -16,12 +11,89 @@
   }
 
   &_lg {
-    width: 56px;
-    height: 56px;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.icon {
+  width: 100%;
+  transition: all .15s linear;
+
+  &[fill] {
+    fill: var(--gs-7);
   }
 
-  &_xl {
-    width: 100px;
-    height: 100px;
+  &[stroke] {
+    stroke: var(--gs-7);
+  }
+
+  &_hovered:hover[fill] {
+    cursor: pointer;
+    fill: var(--main-color-1);
+  }
+
+  &_hovered:hover[stroke] {
+    cursor: pointer;
+    stroke: var(--main-color-1);
+  }
+
+  &_active[fill] {
+    fill: var(--main-color-1);
+  }
+
+  &_active[stroke] {
+    stroke: var(--main-color-1);
+  }
+
+  &_socials {
+
+    &[fill] {
+      fill: var(--gs-6);
+    }
+
+    &[stroke] {
+      stroke: var(--gs-6);
+    }
+  }
+
+  &_secondary[fill] {
+    fill: var(--gs-7);
+  }
+
+  &_primary[fill] {
+    fill: var(--main-color-1);
+  }
+
+  &_error[fill] {
+    fill: var(--red-4);
+  }
+
+  &_success[fill] {
+    fill: var(--green-4);
+  }
+
+  &_warning[fill] {
+    fill: var(--yellow-4);
+  }
+
+  &_secondary[stroke] {
+    stroke: var(--gs-7);
+  }
+
+  &_primary[stroke] {
+    stroke: var(--main-color-1);
+  }
+
+  &_error[stroke] {
+    stroke: var(--red-4);
+  }
+
+  &_success[stroke] {
+    stroke: var(--green-4);
+  }
+
+  &_warning[stroke] {
+    stroke: var(--yellow-4);
   }
 }

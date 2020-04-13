@@ -4,7 +4,7 @@ export type Crypto = {
   id: number,
   slug: string,
   name: string,
-  symbol: string
+  symbol: string,
 }
 
 export type Props = {
@@ -12,5 +12,6 @@ export type Props = {
   progress: boolean,
   error: null | string,
   loaded: boolean,
-  getMapCrypto: () => void
-};
+  getMapCrypto: () => void,
+  shape: ?'bordered',
+}

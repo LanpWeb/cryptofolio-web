@@ -3,5 +3,7 @@
 export type Props = {
   auth: boolean,
   email: null | string,
-  signOut: () => void
-};
+  signOut: () => void,
+  loadWatchlist: () => void,
+  loadAllCoins: () => void,
+}
