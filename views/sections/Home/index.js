@@ -22,23 +22,23 @@ const Home = ({
 }: Props) => {
   useEffect(() => { getCryptoList(1, cryptoList.limit); }, [getCryptoList, cryptoList.limit]);
   const loadMore = useCallback(() => {
-    getCryptoList(cryptoList.start, cryptoList.limit);
-  }, [getCryptoList, cryptoList.start, cryptoList.limit]);
+    getCryptoList(cryptoList.start, cryptoList.limit)
+  }, [getCryptoList, cryptoList.start, cryptoList.limit])
 
   const watchlistButtonClick = useCallback(
     (coinId, action) => () => {
-      toggleWatchlist(coinId, action);
+      toggleWatchlist(coinId, action)
     },
     [toggleWatchlist]
-  );
+  )
 
-  const isInWatchlist = coinId => {
+  const isInWatchlist = (coinId) => {
     if (!auth) {
       return (
         <Link href="/sign-in">
           <span className="coin-card__btn"><Eye /></span>
         </Link>
-      );
+      )
     }
 
     if (watchlist?.data.includes(coinId)) {
@@ -51,8 +51,7 @@ const Home = ({
           <Eye active />
 
         </button>
-
-      );
+      )
     }
 
     return (
@@ -63,8 +62,8 @@ const Home = ({
       >
         <Eye />
       </button>
-    );
-  };
+    )
+  }
 
   return (
     <section className="home">
@@ -155,26 +154,26 @@ const Home = ({
       </div>
       <Footer />
     </section>
-  );
-};
+  )
+}
 
 export default connect(
   ({
     auth: {
-      jwt: { auth }
+      jwt: { auth },
     },
     watchlist,
     cryptoList,
-    cryptoGlobalStats
+    cryptoGlobalStats,
   }) => ({
     auth,
     watchlist,
     cryptoList,
-    cryptoGlobalStats
+    cryptoGlobalStats,
   }),
-  dispatch => ({
+  (dispatch) => ({
     getCryptoList: (start, limit) => dispatch(getCryptoList({ start, limit })),
     toggleWatchlist: (id, action) => dispatch(toggleWatchlist({ id, action })),
-    getWatchlist: () => dispatch(getWatchlist())
+    getWatchlist: () => dispatch(getWatchlist()),
   })
-)(Home);
+)(Home)

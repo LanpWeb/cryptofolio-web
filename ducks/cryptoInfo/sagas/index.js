@@ -1,11 +1,11 @@
 // @flow
 
-import { takeEvery } from "redux-saga/effects";
+import { takeEvery } from 'redux-saga/effects'
 
-import fetchCryptoInfoSaga from "ducks/cryptoInfo/sagas/fetchCryptoInfoSaga";
+import fetchCryptoInfoSaga from 'ducks/cryptoInfo/sagas/fetchCryptoInfoSaga'
 
-import { FETCH_CRYPTO_INFO_REQUEST } from "ducks/cryptoInfo/const";
+import { FETCH_CRYPTO_INFO_REQUEST } from 'ducks/cryptoInfo/const'
 
 export function* watchCryptoInfo(): mixed {
-  yield takeEvery(FETCH_CRYPTO_INFO_REQUEST, fetchCryptoInfoSaga);
+  yield takeEvery(FETCH_CRYPTO_INFO_REQUEST, fetchCryptoInfoSaga)
 }
