@@ -7,13 +7,13 @@
   background-color: var(--bg-color);
 
   &__form {
+    position: relative;
     flex-direction: column;
     width: 430px;
     height: 480px;
     padding: 40px 0 0;
     background-color: #fff;
     border-radius: 5px;
-    position: relative;
   }
 
   &__logo {
@@ -26,7 +26,7 @@
     color: var(--g-8);
     font-weight: 600;
     font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     line-height: 30px;
   }
 
@@ -46,13 +46,13 @@
   }
 
   &__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
 
     padding: 35px 0;
     border-top: 2px solid #f7f9fc;
-    position: absolute;
-    bottom: 0;
-    left: 0;
   }
 
   &__social {
@@ -81,17 +81,19 @@
   &__google {
     margin-right: 10px;
   }
+
   &__acc-info {
     margin-top: 50px;
-    font-family: 'Montserrat', sans-serif;
+    color: var(--gs-9);
     font-weight: 500;
     font-size: 12px;
-    color: var(--gs-9);
+    font-family: "Montserrat", sans-serif;
   }
+
   &__link {
+    margin-left: 5px;
     color: var(--main-color-1);
     cursor: pointer;
-    margin-left: 5px;
   }
 }
 

@@ -45,7 +45,8 @@ const SignIn = ({ progress, error, signIn }: Props) => {
   })
 
   const googleSignIn = (e) => {
-    e.preventDefault()
+    // eslint-disable-next-line no-unused-expressions
+    e?.preventDefault()
     const auth2 = window.gapi.auth2.getAuthInstance()
     auth2.signIn().then((googleUser) => {
       const profile = googleUser.getBasicProfile()
