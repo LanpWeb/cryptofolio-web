@@ -3,8 +3,9 @@
 export type Props = {|
   checked?: boolean,
   disabled?: boolean,
-  bg?: "white",
+  bg?: 'white',
   items?:Array<{ text: string}>,
-  handleChange?: any => void,
-  className?: string
-|};
+  className?: string,
+    
+  handleChange?: (any) => void,
+|}

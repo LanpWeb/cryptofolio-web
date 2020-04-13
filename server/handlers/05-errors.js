@@ -1,16 +1,15 @@
-exports.init = app => (
+exports.init = (app) =>
   app.use(async (ctx, next) => {
     try {
-      await next();
+      await next()
     } catch (e) {
       if (e.status) {
         // could use template methods to render error page
-        ctx.body = e.message;
-        ctx.status = e.status;
+        ctx.body = e.message
+        ctx.status = e.status
       } else {
-        ctx.body = e || "Error 500";
-        ctx.status = 500;
+        ctx.body = e || 'Error 500'
+        ctx.status = 500
       }
     }
   })
-);
