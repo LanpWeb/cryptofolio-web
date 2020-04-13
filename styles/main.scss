@@ -179,6 +179,8 @@ body {
 
 @import "./components/search";
 
+@import "./components/stats";
+
 @import "./components/modal";
 
 @import "./components/popover";
@@ -187,6 +189,8 @@ body {
 
 @import "./components/holdings";
 
+@import "./components/tabs";
+
 @import "./components/delete-tr-modal";
 
 @import "./components/header";
@@ -194,3 +198,5 @@ body {
 @import "./components/coin-card";
 
 @import "./components/footer";
+
+@import "./components/date-select";
