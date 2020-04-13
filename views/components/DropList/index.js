@@ -1,52 +1,47 @@
 // @flow
 
-import React from "react";
-import classNames from "classnames";
-import Link from "next/link";
-import type { Props } from "./types";
+import React from 'react'
+import classNames from 'classnames'
+import Link from 'next/link'
+import type { Props } from './types'
 
 const initialOptions = [
   {
-    name: "All coins",
+    name: 'All coins',
     id: 1,
-    handler: () => {}
+    handler: () => {},
   },
   {
-    name: "Bitcoin",
+    name: 'Bitcoin',
     id: 2,
-    handler: () => {}
+    handler: () => {},
   },
   {
-    name: "Etherium",
+    name: 'Etherium',
     id: 3,
-    handler: () => {}
+    handler: () => {},
   },
   {
-    name: "Litecoin",
+    name: 'Litecoin',
     id: 4,
-    handler: () => {}
-  }
-];
-const DropList = ({
-  options = initialOptions, className, active
-}: Props) => {
-  const droplistClassName = classNames({
-    droplist: true,
-    droplist_open: active
-  }, className);
+    handler: () => {},
+  },
+]
+const DropList = ({ options = initialOptions, className, active }: Props) => {
+  const droplistClassName = classNames(
+    {
+      droplist: true,
+      droplist_open: active,
+    },
+    className
+  )
 
   return (
     <div className={droplistClassName}>
-      {options.map(({
-        name, handler, id, route
-      }) => (
-
+      {options.map(({ name, handler, id, route }) =>
         route ? (
           <Link href={route}>
-            <div
-              className="droplist__option"
-              key={id}
-            >
+            <div className="droplist__option" key={id}>
               <p className="p3 droplist__text">{name}</p>
             </div>
           </Link>
@@ -59,10 +54,9 @@ const DropList = ({
             <p className="p3 droplist__text">{name}</p>
           </div>
         )
-
-      ))}
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default DropList;
+export default DropList

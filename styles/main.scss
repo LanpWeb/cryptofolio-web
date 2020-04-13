@@ -152,6 +152,8 @@ body {
 
 @import "./sections/portfolio";
 
+@import "./sections/settings";
+
 // // Components
 
 @import "./components/button";
@@ -181,5 +183,7 @@ body {
 @import "./components/delete-tr-modal";
 
 @import "./components/header";
+
+@import "./components/coin-card";
 
 @import "./components/footer";

@@ -1,25 +1,22 @@
 // @flow
-import { handleActions, combineActions } from "redux-actions";
+import { combineActions, handleActions } from 'redux-actions'
 
 import {
-  FETCH_TRANSACTIONS_START,
-  FETCH_TRANSACTIONS_SUCCESS,
-  FETCH_TRANSACTIONS_FAIL,
-
+  ADD_TRANSACTION_FAIL,
   ADD_TRANSACTION_START,
   ADD_TRANSACTION_SUCCESS,
-  ADD_TRANSACTION_FAIL,
-
-  EDIT_TRANSACTION_START,
-  EDIT_TRANSACTION_SUCCESS,
-  EDIT_TRANSACTION_FAIL,
-
+  DELETE_TRANSACTION_FAIL,
   DELETE_TRANSACTION_START,
   DELETE_TRANSACTION_SUCCESS,
-  DELETE_TRANSACTION_FAIL
-} from "./const";
+  EDIT_TRANSACTION_FAIL,
+  EDIT_TRANSACTION_START,
+  EDIT_TRANSACTION_SUCCESS,
+  FETCH_TRANSACTIONS_FAIL,
+  FETCH_TRANSACTIONS_START,
+  FETCH_TRANSACTIONS_SUCCESS,
+} from './const'
 
-import type { State } from "./types";
+import type { State } from './types'
 
 export const initialState: State = {
   data: [],
@@ -27,8 +24,8 @@ export const initialState: State = {
   limit: 9,
   loaded: false,
   progress: false,
-  error: null
-};
+  error: null,
+}
 
 const transactionsReducer = handleActions(
   {
@@ -40,7 +37,7 @@ const transactionsReducer = handleActions(
     )]: (state: State) => ({
       ...state,
       progress: true,
-      error: null
+      error: null,
     }),
 
     [FETCH_TRANSACTIONS_SUCCESS]: (state: State, action) => ({
@@ -49,7 +46,7 @@ const transactionsReducer = handleActions(
       data: [...state.data, ...action.payload],
       loaded: action.payload.length < state.limit,
       progress: false,
-      error: null
+      error: null,
     }),
 
     [combineActions(
@@ -59,7 +56,7 @@ const transactionsReducer = handleActions(
     )]: (state: State) => ({
       ...state,
       progress: false,
-      error: null
+      error: null,
     }),
 
     [combineActions(
@@ -70,11 +67,10 @@ const transactionsReducer = handleActions(
     )]: (state: State, action) => ({
       ...state,
       progress: false,
-      error: action.payload.error
+      error: action.payload.error,
     }),
-
   },
   initialState
-);
+)
 
-export default transactionsReducer;
+export default transactionsReducer
