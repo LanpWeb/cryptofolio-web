@@ -1,18 +1,18 @@
 // next.config.js
-const withSass = require("@zeit/next-sass");
-const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
+const withSass = require('@zeit/next-sass')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
 module.exports = withSass({
   sassLoaderOptions: {
-    sourceMap: true
+    sourceMap: true,
   },
   postcssLoaderOptions: {
-    sourceMap: true
+    sourceMap: true,
   },
   publicRuntimeConfig: {
-    env: process.env.NODE_ENV
+    env: process.env.NODE_ENV,
   },
-  webpack: config => {
+  webpack: (config) => {
     config.plugins.push(
       new SWPrecacheWebpackPlugin({
         verbose: true,
@@ -24,8 +24,8 @@ module.exports = withSass({
         //   }
         // ]
       })
-    );
+    )
 
-    return config;
-  }
-});
+    return config
+  },
+})

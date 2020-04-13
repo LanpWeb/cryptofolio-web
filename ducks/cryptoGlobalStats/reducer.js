@@ -1,46 +1,46 @@
 // @flow
-import { handleActions } from "redux-actions";
+import { handleActions } from 'redux-actions'
 
-import { SIGN_OUT_SUCCESS } from "ducks/auth/const";
+import { SIGN_OUT_SUCCESS } from 'ducks/auth/const'
 import {
+  CRYPTO_GLOBAL_STATS_FAIL,
   CRYPTO_GLOBAL_STATS_START,
   CRYPTO_GLOBAL_STATS_SUCCESS,
-  CRYPTO_GLOBAL_STATS_FAIL
-} from "ducks/cryptoGlobalStats/const";
+} from 'ducks/cryptoGlobalStats/const'
 
-import type { State } from "ducks/cryptoGlobalStats/types";
+import type { State } from 'ducks/cryptoGlobalStats/types'
 
 export const initialState: State = {
   data: null,
   progress: false,
   error: null,
-  loaded: false
-};
+  loaded: false,
+}
 
 const cryptoGlobalStatsReducer = handleActions(
   {
     [CRYPTO_GLOBAL_STATS_START]: (state: State) => ({
       ...state,
       progress: true,
-      error: null
+      error: null,
     }),
 
     [CRYPTO_GLOBAL_STATS_SUCCESS]: (state: State, action) => ({
       data: action.payload,
       progress: false,
       error: null,
-      loaded: true
+      loaded: true,
     }),
 
     [CRYPTO_GLOBAL_STATS_FAIL]: (state: State, action) => ({
       ...state,
       progress: false,
-      error: action.payload.error
+      error: action.payload.error,
     }),
 
     [SIGN_OUT_SUCCESS]: () => initialState,
   },
   initialState
-);
+)
 
-export default cryptoGlobalStatsReducer;
+export default cryptoGlobalStatsReducer
