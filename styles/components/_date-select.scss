@@ -1,0 +1,14 @@
+.date-select {
+
+  &__input {
+    width: 120px;
+    padding: 5px 26px;
+    color: var(--gs-8);
+    line-height: 22;
+  }
+
+  &__separator {
+    margin: 0 9px;
+    color: var(--gs-9);
+  }
+}
