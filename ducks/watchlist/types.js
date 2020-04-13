@@ -12,9 +12,9 @@ export type Crypto = {
       market_cap: number,
       price: number,
       volume_24h: number,
-      percent_change_24h: number
-    }
-  }
+      percent_change_24h: number,
+    },
+  },
 }
 
 export type State = {
@@ -24,12 +24,12 @@ export type State = {
   toggledId: number,
   loaded: boolean,
   progress: boolean,
-  error: null | string
-};
+  error: null | string,
+}
 
 export type ToggleWatchlistPayload = {
   payload: {
     crypto: Crypto,
-    action: "ADD" | "REMOVE"
-  }
+    action: 'ADD' | 'REMOVE',
+  },
 }

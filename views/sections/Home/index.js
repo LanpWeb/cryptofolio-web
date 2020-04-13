@@ -1,16 +1,16 @@
 // @flow
 
-import React, { useCallback } from "react";
-import Link from "next/link";
-import { connect } from "react-redux";
-import { toggleWatchlist } from "ducks/watchlist/actions";
-import { getCryptoList } from "ducks/cryptoList/actions";
-import Header from "components/Header";
-import { Eye } from "components/icons/Eye";
-import CoinCard from "components/CoinCard";
-import Button from "components/Button";
-import Footer from "components/Footer";
-import type { Props } from "./types";
+import React, { useCallback } from 'react'
+import Link from 'next/link'
+import { connect } from 'react-redux'
+import { toggleWatchlist } from 'ducks/watchlist/actions'
+import { getCryptoList } from 'ducks/cryptoList/actions'
+import Header from 'components/Header'
+import { Eye } from 'components/icons/Eye'
+import CoinCard from 'components/CoinCard'
+import Button from 'components/Button'
+import Footer from 'components/Footer'
+import type { Props } from './types'
 
 const Home = ({
   auth,
@@ -21,24 +21,26 @@ const Home = ({
   toggleWatchlist,
 }: Props) => {
   const loadMore = useCallback(() => {
-    getCryptoList(cryptoList.start, cryptoList.limit);
-  }, [getCryptoList, cryptoList.start, cryptoList.limit]);
+    getCryptoList(cryptoList.start, cryptoList.limit)
+  }, [getCryptoList, cryptoList.start, cryptoList.limit])
 
   const watchlistButtonClick = useCallback(
     (crypto) => () => {
-      const action = watchlist?.ids.includes(crypto.id) ? "REMOVE" : "ADD";
-      toggleWatchlist(crypto, action);
+      const action = watchlist?.ids.includes(crypto.id) ? 'REMOVE' : 'ADD'
+      toggleWatchlist(crypto, action)
     },
     [watchlist, toggleWatchlist]
-  );
+  )
 
-  const isInWatchlist = crypto => {
+  const isInWatchlist = (crypto) => {
     if (!auth) {
       return (
         <Link href="/sign-in">
-          <span className="coin-card__btn"><Eye /></span>
+          <span className="coin-card__btn">
+            <Eye />
+          </span>
         </Link>
-      );
+      )
     }
 
     return (
@@ -49,8 +51,8 @@ const Home = ({
       >
         <Eye active={watchlist?.ids.includes(crypto.id)} />
       </button>
-    );
-  };
+    )
+  }
 
   return (
     <section className="home">
@@ -62,34 +64,55 @@ const Home = ({
               <p className="p4 home__cap">
                 <span className="home__text home__text_acent">Market Cap:</span>
                 <span className="home__text">
-                  $
-                  {cryptoGlobalStats.data?.marketCap.toLocaleString()}
+                  ${cryptoGlobalStats.data?.marketCap.toLocaleString()}
                 </span>
               </p>
               <p className="p4 home__volume">
                 <span className="home__text home__text_acent">24h Vol:</span>
                 <span className="home__text">
-                  $
-                  {cryptoGlobalStats.data?.vol24h.toLocaleString()}
+                  ${cryptoGlobalStats.data?.vol24h.toLocaleString()}
                 </span>
               </p>
               <p className="p4 home__dominance">
-                <span className="home__text home__text_acent">BTC Dominance:</span>
+                <span className="home__text home__text_acent">
+                  BTC Dominance:
+                </span>
                 <span className="home__text">
-                  {cryptoGlobalStats.data?.btcDominance}
-                  %
+                  {cryptoGlobalStats.data?.btcDominance}%
                 </span>
               </p>
               {cryptoGlobalStats.error && (
                 <span className="error">{cryptoGlobalStats.error}</span>
               )}
             </div>
-            <Button size="md" icon={<svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4v8M4 8h8" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>}>Add transaction</Button>
+            <Button
+              size="md"
+              icon={
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8 4v8M4 8h8"
+                    stroke="#fff"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              }
+            >
+              Add transaction
+            </Button>
           </div>
           <div className="home__table">
             <div className="home__table-header aic jcsb">
               <div className="table-item table-item_lg">
-                <span className="p3 home__text home__text_number fw-medium">#</span>
+                <span className="p3 home__text home__text_number fw-medium">
+                  #
+                </span>
                 <span className="p3 fw-medium home__text">Coin name</span>
               </div>
               <span className="table-item fw-medium p3 home__text">
@@ -112,7 +135,7 @@ const Home = ({
               </span>
               <span className="home__empty" />
             </div>
-            {cryptoList.data.map(crypto => (
+            {cryptoList.data.map((crypto) => (
               <CoinCard
                 order={crypto.cmc_rank}
                 id={crypto.id}
@@ -129,37 +152,34 @@ const Home = ({
             ))}
           </div>
           {!cryptoList.loaded && (
-            <Button
-              handleClick={loadMore}
-              size="sm"
-            >
-              {cryptoList.progress ? "Loading..." : "Load More"}
+            <Button handleClick={loadMore} size="sm">
+              {cryptoList.progress ? 'Loading...' : 'Load More'}
             </Button>
           )}
         </div>
-
       </div>
       <Footer />
     </section>
-  );
-};
+  )
+}
 
 export default connect(
   ({
     auth: {
-      jwt: { auth }
+      jwt: { auth },
     },
     watchlist,
     cryptoList,
-    cryptoGlobalStats
+    cryptoGlobalStats,
   }) => ({
     auth,
     watchlist,
     cryptoList,
-    cryptoGlobalStats
+    cryptoGlobalStats,
   }),
-  dispatch => ({
+  (dispatch) => ({
     getCryptoList: (start, limit) => dispatch(getCryptoList({ start, limit })),
-    toggleWatchlist: (crypto, action) => dispatch(toggleWatchlist({ crypto, action })),
+    toggleWatchlist: (crypto, action) =>
+      dispatch(toggleWatchlist({ crypto, action })),
   })
-)(Home);
+)(Home)

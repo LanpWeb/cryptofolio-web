@@ -1,16 +1,16 @@
 // @flow
 
-import React from "react";
-import classNames from "classnames";
-import type { Props } from "./types";
+import React from 'react'
+import classNames from 'classnames'
+import type { Props } from './types'
 
-export const Refresh = ({ className = "" }: Props) => {
+export const Refresh = ({ className = '' }: Props) => {
   const iconClassName = classNames(
     {
-      "icon icon_hovered": true
+      'icon icon_hovered': true,
     },
     className
-  );
+  )
   return (
     <svg
       viewBox="0 0 16 16"
@@ -35,5 +35,5 @@ export const Refresh = ({ className = "" }: Props) => {
         </clipPath>
       </defs>
     </svg>
-  );
-};
+  )
+}

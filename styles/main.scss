@@ -147,6 +147,18 @@ body {
 
 @import "./base/icons";
 
+// // Sections
+
+@import "./sections/home";
+
+@import "./sections/signIn";
+
+@import "./sections/signUp";
+
+@import "./sections/portfolio";
+
+@import "./sections/settings";
+
 // // Components
 
 @import "./components/button";
@@ -171,6 +183,10 @@ body {
 
 @import "./components/popover";
 
+@import "./components/transactions";
+
+@import "./components/holdings";
+
 @import "./components/delete-tr-modal";
 
 @import "./components/header";
@@ -178,13 +194,3 @@ body {
 @import "./components/coin-card";
 
 @import "./components/footer";
-
-// // Sections
-
-@import "./sections/home";
-
-@import "./sections/signIn";
-
-@import "./sections/signUp";
-
-@import "./sections/portfolio";

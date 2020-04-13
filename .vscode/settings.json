@@ -1,8 +1,8 @@
 {
   // Makes ESlint extension format code on save
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": false
+    "source.fixAll.eslint": true
   },
 
   // Disable VSCode built-in validation

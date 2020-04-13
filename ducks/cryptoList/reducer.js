@@ -1,13 +1,13 @@
 // @flow
-import { handleActions } from "redux-actions";
+import { handleActions } from 'redux-actions'
 
 import {
+  FETCH_CRYPTO_LIST_FAIL,
   FETCH_CRYPTO_LIST_START,
   FETCH_CRYPTO_LIST_SUCCESS,
-  FETCH_CRYPTO_LIST_FAIL,
-} from "ducks/cryptoList/const";
+} from 'ducks/cryptoList/const'
 
-import type { State } from "ducks/cryptoList/types";
+import type { State } from 'ducks/cryptoList/types'
 
 export const initialState: State = {
   data: [],
@@ -15,15 +15,15 @@ export const initialState: State = {
   limit: 10,
   loaded: false,
   progress: false,
-  error: null
-};
+  error: null,
+}
 
 const cryptoListReducer = handleActions(
   {
     [FETCH_CRYPTO_LIST_START]: (state: State) => ({
       ...state,
       progress: true,
-      error: null
+      error: null,
     }),
 
     [FETCH_CRYPTO_LIST_SUCCESS]: (state: State, action) => ({
@@ -32,17 +32,16 @@ const cryptoListReducer = handleActions(
       data: [...state.data, ...action.payload],
       loaded: action.payload.length < state.limit,
       progress: false,
-      error: null
+      error: null,
     }),
 
     [FETCH_CRYPTO_LIST_FAIL]: (state: State, action) => ({
       ...state,
       progress: false,
-      error: action.payload.error
+      error: action.payload.error,
     }),
-
   },
   initialState
-);
+)
 
-export default cryptoListReducer;
+export default cryptoListReducer

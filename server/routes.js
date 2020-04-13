@@ -1,5 +1,5 @@
 // add all new routes here
-const routes = require("next-routes");
+const routes = require('next-routes')
 
 // Name   Page      Pattern
 // module.exports = routes()                           // ----   ----      -----
@@ -9,6 +9,4 @@ const routes = require("next-routes");
 // .add('/:noname/:lang(en|es)/:wow+', 'complex')      // (none) complex   /:noname/:lang(en|es)/:wow+
 // .add({name: 'beta', pattern: '/v3', page: 'v3'})    // beta   v3        /v3
 
-module.exports = routes()
-  .add("signIn", "/sign-in")
-  .add("signUp", "/sign-up");
+module.exports = routes().add('signIn', '/sign-in').add('signUp', '/sign-up')

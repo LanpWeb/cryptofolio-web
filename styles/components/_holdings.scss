@@ -1,0 +1,86 @@
+.holdings {
+  width: 100%;
+}
+
+.holding-card {
+  width: 100%;
+  padding: 25px 35px 25px 20px;
+  background-color: var(--gs-1);
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--ac-2);
+  }
+
+  &:last-child {
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+
+  &__item {
+    width: 10%;
+    white-space: nowrap;
+    text-align: right;
+
+    &_lg {
+      width: 30%;
+    }
+  }
+
+  &__coin {
+    margin-left: 30px;
+  }
+
+  &__logo {
+    width: 16px;
+    height: 16px;
+    margin-right: 12px;
+    background-color: transparent;
+  }
+
+  &__text {
+    color: var(--gs-9);
+
+    &_acent {
+      color: var(--g-8);
+    }
+
+    &_success {
+      color: var(--green);
+    }
+
+    &_error {
+      color: var(--red);
+    }
+  }
+
+  &__triangle {
+    margin-left: 10px;
+  }
+}
+
+.holding-header {
+  width: 100%;
+  padding: 7px 35px 7px 20px;
+  background-color: var(--gs-1);
+  border-bottom: 1px solid var(--ac-2);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+
+  &__item {
+    width: 10%;
+    white-space: nowrap;
+    text-align: right;
+
+    &_lg {
+      width: 30%;
+    }
+  }
+
+  &__text {
+    color: var(--gs-9);
+  }
+
+  &__order {
+    margin-right: 30px;
+  }
+}
