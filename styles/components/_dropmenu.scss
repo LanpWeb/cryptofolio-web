@@ -102,7 +102,11 @@
   }
 
   &__text {
+    max-width: calc(100% - 5px);
+    overflow: hidden;
     color: #3c3c3c;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     transition: all .2s linear;
   }
 

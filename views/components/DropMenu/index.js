@@ -8,26 +8,50 @@ const initialOptions = [
   {
     name: 'All coins',
     id: 1,
-    handler:() => {}
+    handler: () => {},
   },
   {
     name: 'Bitcoin',
     id: 2,
-    handler:() => {}
+    handler: () => {},
   },
   {
     name: 'Etherium',
     id: 3,
-    handler:() =>{}
+    handler: () => {},
   },
   {
     name: 'Litecoin',
     id: 4,
-    handler:() =>{}
+    handler: () => {},
   },
-  
+  {
+    name: 'Etherium',
+    id: 3,
+    handler: () => {},
+  },
+  {
+    name: 'Litecoin',
+    id: 4,
+    handler: () => {},
+  },
+  {
+    name: 'Etherium',
+    id: 3,
+    handler: () => {},
+  },
+  {
+    name: 'Litecoin',
+    id: 4,
+    handler: () => {},
+  },
 ]
-const DropMenu = ({ options = initialOptions, className, color, disabled }: Props) => {
+const DropMenu = ({
+  options = initialOptions,
+  className,
+  color,
+  disabled,
+}: Props) => {
   const [isOpened, openDrop] = useState(false)
   const [selectedOption, setSelectedOption] = useState(options[0])
 
@@ -39,19 +63,17 @@ const DropMenu = ({ options = initialOptions, className, color, disabled }: Prop
     className
   )
 
-  const titleClassName = classNames(
-    {
-      "p3 dropmenu__title": true, 
-      dropmenu__title_grey: color === "grey", 
-      dropmenu__title_disabled: disabled
-    })
-  
-  const arrowClassName = classNames(
-    {
-      "dropmenu__arrow": true, 
-      dropmenu__arrow_grey: color === "grey", 
-      dropmenu__arrow_disabled: disabled
-    })
+  const titleClassName = classNames({
+    'p3 dropmenu__title': true,
+    dropmenu__title_grey: color === 'grey',
+    dropmenu__title_disabled: disabled,
+  })
+
+  const arrowClassName = classNames({
+    dropmenu__arrow: true,
+    dropmenu__arrow_grey: color === 'grey',
+    dropmenu__arrow_disabled: disabled,
+  })
 
   return (
     <div
@@ -67,7 +89,11 @@ const DropMenu = ({ options = initialOptions, className, color, disabled }: Prop
               dropmenu__option: true,
               dropmenu__option_active: selectedOption.id === option.id,
             })}
-            onClick={() => {setSelectedOption(option); option.handler?.()}}
+            onClick={() => {
+              setSelectedOption(option)
+              // eslint-disable-next-line no-unused-expressions
+              option.handler?.()
+            }}
             key={option.id}
           >
             <p className="p3 dropmenu__text">{option.name}</p>
