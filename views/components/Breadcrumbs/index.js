@@ -27,16 +27,22 @@ const Breadcrumbs = ({ router, className, items = initialItems }: Props) => {
     <ul className={brcrClassName}>
       {items.map(({ title, route }) => (
         <li className="breadcrumbs__item" key={title}>
-          <Link href={route}>
-            <span
-              className={classNames({
-                'breadcrumbs__link p4': true,
-                breadcrumbs__link_active: router.asPath === route,
-              })}
-            >
+          {route ? (
+            <Link href={route}>
+              <span
+                className={classNames({
+                  'breadcrumbs__link p4': true,
+                  breadcrumbs__link_active: router.asPath !== route,
+                })}
+              >
+                {title}
+              </span>
+            </Link>
+          ) : (
+            <span className="breadcrumbs__link breadcrumbs__link_capitalize p4">
               {title}
             </span>
-          </Link>
+          )}
         </li>
       ))}
     </ul>
