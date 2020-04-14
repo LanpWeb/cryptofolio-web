@@ -14,8 +14,8 @@ import DateSelect from 'components/DateSelect'
 import ButtonToogle from 'components/ButtonToogle'
 import HoldingHeader from 'components/HoldingHeader'
 import TransactionHeader from 'components/TransactionHeader'
-import HoldingCard from '../../components/HoldingCard'
-import TransactionCard from '../../components/TransactionCard'
+import HoldingCard from 'components/HoldingCard'
+import TransactionCard from 'components/TransactionCard'
 import type { Props } from './types'
 
 const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
@@ -76,7 +76,7 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
                   <Tabs className="portfolio__tabs" disabled={noData} />
                   <DateSelect disabled={noData} />
                 </div>
-                <DropMenu />
+                <DropMenu disabled={noData} />
               </div>
               <div className="portfolio__graf centered">
                 {noData && (
@@ -87,13 +87,66 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
               </div>
             </div>
           </div>
-          <ButtonToogle
-            bg="white"
-            items={[{ text: 'Holdings' }, { text: 'Transactions' }]}
-            checked={isTransactions}
-            handleChange={toogleHandler}
-            disabled={noData}
-          />
+          <div className="aic jcsb">
+            <ButtonToogle
+              bg="white"
+              items={[{ text: 'Holdings' }, { text: 'Transactions' }]}
+              checked={isTransactions}
+              handleChange={toogleHandler}
+              disabled={noData}
+            />
+            <DropMenu
+              color="grey"
+              options={
+                isTransactions
+                  ? [
+                      {
+                        name: 'All types',
+                        id: 1,
+                        handler: () => {},
+                      },
+                      {
+                        name: 'Buy',
+                        id: 2,
+                        handler: () => {},
+                      },
+                      {
+                        name: 'Sell',
+                        id: 3,
+                        handler: () => {},
+                      },
+                    ]
+                  : [
+                      {
+                        name: '24h change',
+                        id: 1,
+                        handler: () => {},
+                      },
+                      {
+                        name: '7d change',
+                        id: 2,
+                        handler: () => {},
+                      },
+                      {
+                        name: '1m change',
+                        id: 3,
+                        handler: () => {},
+                      },
+                      {
+                        name: '3m change',
+                        id: 4,
+                        handler: () => {},
+                      },
+                      {
+                        name: '1y change',
+                        id: 5,
+                        handler: () => {},
+                      },
+                    ]
+              }
+              disabled={noData}
+            />
+          </div>
           {!isTransactions ? (
             <div className="portfolio__holdings">
               <HoldingHeader />
