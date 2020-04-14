@@ -9,4 +9,4 @@ const routes = require('next-routes')
 // .add('/:noname/:lang(en|es)/:wow+', 'complex')      // (none) complex   /:noname/:lang(en|es)/:wow+
 // .add({name: 'beta', pattern: '/v3', page: 'v3'})    // beta   v3        /v3
 
-module.exports = routes().add('signIn', '/sign-in').add('signUp', '/sign-up')
+module.exports = routes().add('signIn', '/sign-in').add('signUp', '/sign-up').add('watchlist', '/watchlist').add('settings', '/settings').add('portfolio', '/portfolio')
