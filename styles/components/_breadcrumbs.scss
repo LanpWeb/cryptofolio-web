@@ -12,6 +12,10 @@
       color: var(--main-color-1);
       text-decoration: underline;
     }
+
+    &_capitalize {
+      text-transform: capitalize;
+    }
   }
 
   &__item {
