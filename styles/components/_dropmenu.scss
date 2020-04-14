@@ -10,6 +10,14 @@
     padding-right: 17px;
     color: var(--main-color-1);
     user-select: none;
+
+    &_grey {
+      color: var(--gs-8);
+    }
+
+    &_disabled {
+      color: var(--gs-7);
+    }
   }
 
   &__arrow {
@@ -41,6 +49,16 @@
       right: 0;
       transform: translateY(-50%) rotate(-45deg);
     }
+
+    &_grey.dropmenu__arrow::before,
+    &_grey.dropmenu__arrow::after {
+      background-color: var(--gs-8);
+    }
+
+    &_disabled.dropmenu__arrow::before,
+    &_disabled.dropmenu__arrow::after {
+      background-color: var(--gs-7);
+    }
   }
 
   &__content {
@@ -50,12 +68,17 @@
     width: calc(100% + 20px);
     min-width: 120px;
     height: 0;
+    max-height: 180px;
     overflow: hidden;
     background-color: var(--gs-1);
     border-radius: 5px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, .05),
       0px 3px 5px rgba(173, 170, 206, .15);
     transform: translate(50%, 100%);
+
+    &:hover {
+      overflow: auto;
+    }
   }
 
   &__option {
