@@ -2,9 +2,10 @@
 
 export type Props = {
   caption?: string,
-  text?: string,
+  textBtn?: string,
   className?: string,
-  active: boolean,
-  closeModalHandler: () => void,
-  submitModalHandler: () => void,
+  active?: boolean,
+  edit?: boolean,
+  closeModalHandler?: () => void,
+  submitModalHandler?: () => void,
 }

@@ -10,7 +10,7 @@ export type Crypto = {
 export type Props = {
   data: Array<Crypto>,
   progress: boolean,
-  withSelect?: boolean,
+  selectable?: boolean,
   error: null | string,
   loaded: boolean,
   getMapCrypto: () => void,

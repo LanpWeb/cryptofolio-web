@@ -10,10 +10,11 @@ import Input from 'components/Input'
 
 import type { Props } from './types'
 
-const TransactionMofal = ({
+const TransactionModal = ({
   caption = 'Add transaction',
-  active = true,
+  active = false,
   textBtn = 'Add',
+  edit = false,
   className,
   closeModalHandler = () => {},
   submitModalHandler = () => {},
@@ -41,7 +42,7 @@ const TransactionMofal = ({
         <label className="input-wrap input-wrap_auto transaction-modal__field">
           <span className="p4 input__label">Coin name</span>
           <div className="input-wrap__inner">
-            <SearchBar shape="bordered" />
+            <SearchBar shape="bordered" selectable />
           </div>
         </label>
         <Input
@@ -63,7 +64,7 @@ const TransactionMofal = ({
           <div className="input-wrap__inner">
             <input
               type="text"
-              value={date.toLocaleString()}
+              value={edit ? null : date.toLocaleString()}
               className="input input_height_md"
               placeholder="Enter transaction date"
             />
@@ -90,4 +91,4 @@ const TransactionMofal = ({
   )
 }
 
-export default TransactionMofal
+export default TransactionModal

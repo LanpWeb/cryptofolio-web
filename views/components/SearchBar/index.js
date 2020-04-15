@@ -16,7 +16,7 @@ const SearchBar = ({
   loaded,
   getMapCrypto,
   shape,
-  withSelect = false,
+  selectable = false,
 }: Props) => {
   const [value, setValue] = useState('')
   const [suggestions, setSuggestions] = useState([])
@@ -37,10 +37,10 @@ const SearchBar = ({
 
   const addCoin = useCallback(() => setValue('sdjhsdj'), [setValue])
   const getSuggestionValue = (suggestion) =>
-    withSelect ? `${suggestion.name} (${suggestion.symbol})` : ''
+    selectable ? `${suggestion.name} (${suggestion.symbol})` : ''
 
   const renderSuggestion = (suggestion) =>
-    withSelect ? (
+    selectable ? (
       <span
         className="aic p3 fw-medium search__link"
         onClick={() => setLogoId(suggestion.id)}
