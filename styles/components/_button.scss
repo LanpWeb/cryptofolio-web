@@ -193,7 +193,7 @@
     left: 50%;
   }
 
-  &_bg_white:not(&_disabled) {
+  &_bg_white {
     background-color: var(--gs-1);
   }
 
