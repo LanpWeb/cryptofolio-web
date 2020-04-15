@@ -1,0 +1,95 @@
+.coin-page {
+  background-color: var(--gs-2);
+  &__inner {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 115px;
+  }
+  &__delimetr {
+    border-bottom: 1px solid var(--gs-2);
+  }
+  &__header {
+    display: flex;
+    height: 70px;
+    padding: 0 20px;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 22px;
+    margin-right: 15px;
+    align-self: center;
+  }
+  &__title {
+    color: var(--g-8);
+    &_mb_20 {
+      margin-bottom: 20px;
+    }
+  }
+  &__price {
+    margin-left: 20px;
+    color: var(--g-8);
+  }
+  &__about {
+    padding: 30px 30px 55px;
+  }
+  &__text {
+    line-height: 22px;
+    color: #9fa6b4;
+  }
+  &__footer {
+    padding: 0 30px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  &__link {
+    text-decoration: none;
+    color: var(--gs-8);
+    transition: all 0.15s ease;
+    display: flex;
+    &:not(:last-child) {
+      margin-right: 60px;
+    }
+    &:hover {
+      color: #4c80ec;
+    }
+  }
+  &__footer-icon {
+    width: 16px;
+    margin-right: 8px;
+  }
+}
+.coin-statistic {
+  padding: 20px 30px 33px;
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    max-height: 250px;
+    flex-wrap: wrap;
+  }
+  &__card {
+    height: 50px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(50% - 10px);
+    border-radius: 5px;
+    &_bg_gray {
+      background-color: rgba(76, 128, 236, 0.04);
+    }
+  }
+  &__name,
+  &__value {
+    color: var(--gs-9);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+  }
+  &__value {
+    color: var(--gs-8);
+    font-weight: normal;
+  }
+}
