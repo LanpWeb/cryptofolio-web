@@ -46,6 +46,7 @@ const initialOptions = [
     handler: () => {},
   },
 ]
+
 const DropMenu = ({
   options = initialOptions,
   className,
@@ -63,14 +64,12 @@ const DropMenu = ({
     className
   )
 
-  const titleClassName = classNames({
-    'p3 dropmenu__title': true,
+  const titleClassName = classNames('p3 dropmenu__title', {
     dropmenu__title_grey: color === 'grey',
     dropmenu__title_disabled: disabled,
   })
 
-  const arrowClassName = classNames({
-    dropmenu__arrow: true,
+  const arrowClassName = classNames('dropmenu__arrow', {
     dropmenu__arrow_grey: color === 'grey',
     dropmenu__arrow_disabled: disabled,
   })
