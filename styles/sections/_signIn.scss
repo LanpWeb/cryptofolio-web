@@ -11,7 +11,7 @@
     flex-direction: column;
     width: 430px;
     height: 480px;
-    padding: 40px 0 0;
+    padding: 40px 55px 0;
     background-color: #fff;
     border-radius: 5px;
   }
@@ -28,6 +28,10 @@
     font-size: 20px;
     font-family: "Montserrat", sans-serif;
     line-height: 30px;
+  }
+
+  &__forgot {
+    color: var(--main-color-1);
   }
 
   &__email {
@@ -57,11 +61,6 @@
 
   &__social {
     width: 155px;
-    color: var(--gs-9);
-
-    &:hover {
-      color: #fff;
-    }
   }
 
   &__social + &__social {

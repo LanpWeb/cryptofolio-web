@@ -147,18 +147,6 @@ body {
 
 @import "./base/icons";
 
-@import "./sections/portfolio";
-
-@import "./sections/settings";
-
-// // Sections
-
-@import "./sections/home";
-
-@import "./sections/signIn";
-
-@import "./sections/signUp";
-
 // // Components
 
 @import "./components/button";
@@ -201,3 +189,14 @@ body {
 
 @import "./components/date-select";
 
+// // Sections
+
+@import "./sections/home";
+
+@import "./sections/signIn";
+
+@import "./sections/signUp";
+
+@import "./sections/portfolio";
+
+@import "./sections/settings";
