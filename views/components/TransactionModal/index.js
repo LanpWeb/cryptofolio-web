@@ -25,8 +25,8 @@ const TransactionModal = ({
     setSelling(!isSelling)
   }
   const modalClassName = classNames(
+    'modal transaction-modal',
     {
-      'modal transaction-modal': true,
       modal_active: active,
     },
     className
