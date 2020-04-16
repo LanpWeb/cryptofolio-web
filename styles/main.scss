@@ -1,19 +1,19 @@
-@import 'base/reset';
+@import "base/reset";
 
-@import 'libs/bourbon/app/assets/stylesheets/bourbon';
+@import "libs/bourbon/app/assets/stylesheets/bourbon";
 
-@import 'base/fonts';
+@import "base/fonts";
 
-@import 'base/text';
+@import "base/text";
 
-@import 'base/colours';
+@import "base/colours";
 
 // Bootstrap 4 Grid only
 //
 // Includes relevant variables and mixins for the regular (non-flexbox) grid
 // system, as well as the generated predefined classes (e.g., `.col-4-sm`).
 
-@import '~bootstrap/scss/bootstrap-grid';
+@import "~bootstrap/scss/bootstrap-grid";
 
 .col-lg,
 .col-lg-1,
@@ -88,7 +88,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background: #fff;
 }
 
@@ -145,60 +145,60 @@ body {
 
 // Base
 
-@import './base/icons';
+@import "./base/icons";
 
 // // Sections
 
-@import './sections/home';
+@import "./sections/home";
 
-@import './sections/signIn';
+@import "./sections/signIn";
 
-@import './sections/signUp';
+@import "./sections/signUp";
 
-@import './sections/portfolio';
+@import "./sections/portfolio";
 
-@import './sections/settings';
-
-@import './sections/coin';
+@import "./sections/settings";
 
 // // Components
 
-@import './components/button';
+@import "./components/button";
 
-@import './components/link';
+@import "./components/link";
 
-@import './components/input';
+@import "./components/input";
 
-@import './components/select';
+@import "./components/select";
 
-@import './components/breadcrumbs';
+@import "./components/breadcrumbs";
 
-@import './components/dropmenu';
+@import "./components/dropmenu";
 
-@import './components/droplist';
+@import "./components/droplist";
 
-@import './components/toast';
+@import "./components/toast";
 
-@import './components/search';
+@import "./components/search";
 
-@import './components/stats';
+@import "./components/stats";
 
-@import './components/modal';
+@import "./components/modal";
 
-@import './components/popover';
+@import "./components/popover";
 
-@import './components/transactions';
+@import "./components/transactions";
 
-@import './components/holdings';
+@import "./components/holdings";
 
-@import './components/tabs';
+@import "./components/tabs";
 
-@import './components/delete-tr-modal';
+@import "./components/delete-tr-modal";
 
-@import './components/header';
+@import "./components/transaction-modal";
 
-@import './components/coin-card';
+@import "./components/header";
 
-@import './components/footer';
+@import "./components/coin-card";
 
-@import './components/date-select';
+@import "./components/footer";
+
+@import "./components/date-select";

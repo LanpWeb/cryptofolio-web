@@ -10,7 +10,7 @@
   "typescript.validate.enable": false,
 
   // Disabling Prettier formatting with VSCode extension because it'll be handled by ESlint and it's built-in Prettier plugin
-  "prettier.disableLanguages": ["javascript", "javascriptreact"],
+  "prettier.disableLanguages": ["javascript", "javascriptreact", "scss"],
 
   // Eslint-related rules
   "eslint.enable": true,
