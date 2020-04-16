@@ -36,7 +36,7 @@ const Chart = ({ data }: Props) => {
           <CartesianGrid vertical={false} stroke="#F2F7FD" />
           <XAxis dataKey="date" />
           <YAxis />
-          <Tooltip />
+          <Tooltip cursor={{ stroke: '#B8C8E8', strokeDasharray: '2 10' }} />
           <Area
             type="monotone"
             dataKey="value"
@@ -44,6 +44,12 @@ const Chart = ({ data }: Props) => {
             strokeWidth={1.5}
             fillOpacity={1}
             fill="url(#areaFill)"
+            activeDot={{
+              r: 4,
+              stroke: '#438AF1',
+              strokeWidth: 11,
+              strokeOpacity: '.15',
+            }}
           />
         </AreaChart>
       </ResponsiveContainer>
