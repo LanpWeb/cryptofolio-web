@@ -10,6 +10,7 @@ const transactionSchema = new mongoose.Schema({
   coin: {
     id: Number,
     name: String,
+    symbol: String,
   },
   amount: Number,
   price: Number,

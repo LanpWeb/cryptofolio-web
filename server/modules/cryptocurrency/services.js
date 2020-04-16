@@ -1,5 +1,7 @@
 const rp = require('request-promise')
 
+const { DateTime } = require('luxon')
+
 const config = require('../../config/default')
 
 exports.getQuotes = async (coinIds) => {
@@ -133,11 +135,12 @@ exports.getInfo = async (slug) => {
   }
 }
 
-exports.getHistoricQuotes = async (coinId) => {
-  const timeEnd = 1567123200
-  const timeStart = 1566086400
-  const interval = '1h'
-
+exports.getHistoricQuotes = async (
+  coinId,
+  timeStart = 1566086400,
+  timeEnd = 1567123200,
+  interval = '1h'
+) => {
   // switch (period) {
   //   case "year":
   //     interval = "30d";
@@ -215,6 +218,33 @@ exports.getHistoricQuote = async (coinId, date) => {
     return res.data
   } catch (err) {
     throw new Error(err.response.body.status.error_message)
+  }
+}
+
+exports.getHistoricData = async (ids, startTimestamp, endTimestamp) => {
+  const start = DateTime.fromSeconds(startTimestamp)
+
+  const requestOptionsInfo = {
+    method: 'GET',
+    uri: `https://api.nomics.com/v1/currencies/sparkline`,
+    qs: {
+      key: 'cab6abe9a3c6350256a606a80377d552',
+      ids,
+      start: start.toISO(),
+      // end,
+    },
+    json: true,
+    gzip: true,
+  }
+
+  try {
+    const res = await rp(requestOptionsInfo)
+    console.log(res)
+
+    return res
+  } catch (err) {
+    console.log(err)
+    throw new Error(err.response.body)
   }
 }
 

@@ -16,6 +16,8 @@ import HoldingHeader from 'components/HoldingHeader'
 import TransactionHeader from 'components/TransactionHeader'
 import HoldingCard from 'components/HoldingCard'
 import TransactionCard from 'components/TransactionCard'
+import Chart from 'components/Chart'
+
 import type { Props } from './types'
 
 const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
@@ -79,7 +81,9 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
                 <DropMenu disabled={noData} />
               </div>
               <div className="portfolio__graf centered">
-                {noData && (
+                {!noData && !!portfolio.data && portfolio.data.chartData ? (
+                  <Chart data={portfolio.data.chartData} />
+                ) : (
                   <span className="c2 fw-medium portfolio__text">
                     No data yet
                   </span>
