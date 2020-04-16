@@ -4,7 +4,7 @@ import React from 'react'
 import classNames from 'classnames'
 import type { Props } from './types'
 
-export const Site = ({ className = '', intent = '' }: Props) => {
+export const Site = ({ className = '' }: Props) => {
   const iconClassName = classNames({}, className)
   return (
     <svg

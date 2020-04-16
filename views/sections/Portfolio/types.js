@@ -6,5 +6,5 @@ import type { State as TransactionsState } from 'ducks/transactions/types'
 export type Props = {
   portfolio: PortfolioState,
   transactions: TransactionsState,
-  getTransactions: (start: number, limit: number) => void,
+  noData?: boolean,
 }

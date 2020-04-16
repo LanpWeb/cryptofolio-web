@@ -6,10 +6,13 @@ import { connect } from 'react-redux'
 
 import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
+import classnames from 'classnames'
 
 import { toggleWatchlist } from 'ducks/watchlist/actions'
 
 import Header from 'components/Header'
+import Breadcrumbs from 'components/Breadcrumbs'
+import Button from 'components/Button'
 import Footer from 'components/Footer'
 import { Site } from 'components/icons/Site'
 import { File } from 'components/icons/File'
@@ -59,6 +62,14 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
       </button>
     )
   }
+
+  const percentClasses = classnames({
+    'coin-page__percent-change p2': true,
+    'coin-page__percent-change_positive':
+      Number(cryptoInfo.data?.quote.USD.percent_change_24h.toFixed(2)) > 0,
+    'coin-page__percent-change_negative':
+      Number(cryptoInfo.data?.quote.USD.percent_change_24h.toFixed(2)) < 0,
+  })
 
   const highchartsOptions = {
     title: {
@@ -201,8 +212,42 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
   return (
     <section className="coin-page">
       <Header />
-      {console.log(cryptoInfo.data)}
+
       <div className="container">
+        <div className="aic jcsb coin-page__functions">
+          <Breadcrumbs
+            items={[
+              {
+                title: 'All coins',
+                route: '/',
+              },
+              {
+                title: cryptoInfo.data?.name,
+              },
+            ]}
+          />
+          <Button
+            size="md"
+            icon={
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 4v8M4 8h8"
+                  stroke="#fff"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            }
+          >
+            Add transaction
+          </Button>
+        </div>
         <div className="coin-page__inner">
           <div className="coin-page__header coin-page__delimetr">
             <img
@@ -213,6 +258,32 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
             <h1 className="coin-page__title h3">{`${cryptoInfo.data?.name} (${cryptoInfo.data?.symbol})`}</h1>
             <span className="coin-page__price p2">
               {`$${cryptoInfo.data?.quote.USD.price.toLocaleString()}`}
+            </span>
+            <span className={percentClasses}>
+              {cryptoInfo.data?.quote.USD.percent_change_24h.toFixed(2)}%
+              <span className="coin-card__triangle centered">
+                {Number(
+                  cryptoInfo.data?.quote.USD.percent_change_24h.toFixed(2)
+                ) > 0 ? (
+                  <svg
+                    width="8"
+                    height="7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M4 1L.536 5.5h6.928L4 1z" fill="#4FC971" />
+                  </svg>
+                ) : (
+                  <svg
+                    width="8"
+                    height="7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M4 6l3.464-4.5H.536L4 6z" fill="#EC6E47" />
+                  </svg>
+                )}
+              </span>
             </span>
           </div>
           <div className="coin-page__chart">

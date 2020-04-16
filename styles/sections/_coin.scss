@@ -14,7 +14,19 @@
     padding: 0 20px;
     align-items: center;
   }
-
+  &__percent-change {
+    display: flex;
+    margin-left: 10px;
+    &_positive {
+      color: var(--green);
+    }
+    &_negative {
+      color: var(--red);
+    }
+  }
+  &__functions {
+    height: 75px;
+  }
   &__logo {
     width: 22px;
     margin-right: 15px;
