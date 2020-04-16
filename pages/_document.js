@@ -10,7 +10,9 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html lang="en">
-        <Head />
+        <Head>
+          <script src="https://apis.google.com/js/platform.js" async defer />
+        </Head>
         <body>
           <Main />
           <NextScript />

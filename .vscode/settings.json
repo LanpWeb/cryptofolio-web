@@ -8,9 +8,12 @@
   // Disable VSCode built-in validation
   "javascript.validate.enable": false,
   "typescript.validate.enable": false,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
 
   // Disabling Prettier formatting with VSCode extension because it'll be handled by ESlint and it's built-in Prettier plugin
-  "prettier.disableLanguages": ["javascript", "javascriptreact"],
+  "prettier.disableLanguages": ["javascript", "javascriptreact", "scss"],
 
   // Eslint-related rules
   "eslint.enable": true,
