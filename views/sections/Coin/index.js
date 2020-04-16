@@ -14,6 +14,7 @@ import Header from 'components/Header'
 import Breadcrumbs from 'components/Breadcrumbs'
 import Button from 'components/Button'
 import Footer from 'components/Footer'
+import { Eye } from 'components/icons/Eye'
 import { Site } from 'components/icons/Site'
 import { File } from 'components/icons/File'
 import { DoubleChevron } from 'components/icons/DoubleChevron'
@@ -31,6 +32,30 @@ if (typeof Highcharts === 'object') {
     },
   })
 }
+const IsInWatchlist = ({ crypto, auth, handleClick, watchlist }) => {
+  if (!crypto?.id) return null
+  if (!auth) {
+    return (
+      <Link href="/sign-in">
+        <span shape="text" className="btn btn_text coin-page__watchlist">
+          <Eye className="coin-page__watchlist-icon" />
+          Add to watchlist
+        </span>
+      </Link>
+    )
+  }
+
+  return (
+    <Button
+      shape="text"
+      handleClick={handleClick}
+      className="coin-page__watchlist"
+    >
+      <Eye className="coin-page__watchlist-icon" />
+      Add to watchlist
+    </Button>
+  )
+}
 
 const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
   const watchlistButtonClick = useCallback(
@@ -42,26 +67,6 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
     },
     [watchlist, toggleWatchlist]
   )
-
-  const isInWatchlist = (crypto) => {
-    if (!crypto?.id) return null
-    if (!auth) {
-      return (
-        <Link href="/sign-in">
-          <a>Add</a>
-        </Link>
-      )
-    }
-
-    return (
-      <button
-        onClick={watchlistButtonClick(crypto)}
-        disabled={watchlist?.toggledId === crypto?.id && watchlist?.progress}
-      >
-        {watchlist?.ids.includes(crypto?.id) ? 'Remove' : 'Add'}
-      </button>
-    )
-  }
 
   const percentClasses = classnames({
     'coin-page__percent-change p2': true,
@@ -226,27 +231,35 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
               },
             ]}
           />
-          <Button
-            size="md"
-            icon={
-              <svg
-                width="16"
-                height="16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 4v8M4 8h8"
-                  stroke="#fff"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            }
-          >
-            Add transaction
-          </Button>
+          <div className="aic">
+            <IsInWatchlist
+              crypto={cryptoInfo.data}
+              auth={auth}
+              handleClick={watchlistButtonClick(cryptoInfo.data)}
+              watchlist={watchlist}
+            />
+            <Button
+              size="md"
+              icon={
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8 4v8M4 8h8"
+                    stroke="#fff"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              }
+            >
+              Add transaction
+            </Button>
+          </div>
         </div>
         <div className="coin-page__inner">
           <div className="coin-page__header coin-page__delimetr">
@@ -358,8 +371,6 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
         </div>
 
         {cryptoInfo.progress && <p>Loading...</p>}
-
-        {isInWatchlist(cryptoInfo.data)}
       </div>
       <Footer />
     </section>
