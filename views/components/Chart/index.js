@@ -27,11 +27,19 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null
 }
 const Chart = ({ data }: Props) => {
+import { DateTime } from 'luxon'
+
+import type { Props } from './types'
+
+const Chart = ({ data, dateFormat = 'd LLL' }: Props) => {
   return (
     <div className="chart">
       <ResponsiveContainer>
         <AreaChart
-          data={data}
+          data={data.map((el) => ({
+            ...el,
+            date: DateTime.fromISO(el.date).toFormat(dateFormat),
+          }))}
           margin={{
             top: 10,
             right: 0,
