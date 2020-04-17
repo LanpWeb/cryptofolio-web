@@ -48,7 +48,7 @@ const Chart = ({ data, dateFormat = 'd LLL' }: Props) => {
             top: 10,
             right: 0,
             left: 0,
-            bottom: 20,
+            bottom: 0,
           }}
         >
           <defs>
