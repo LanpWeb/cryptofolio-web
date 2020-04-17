@@ -147,18 +147,6 @@ body {
 
 @import "./base/icons";
 
-// // Sections
-
-@import "./sections/home";
-
-@import "./sections/signIn";
-
-@import "./sections/signUp";
-
-@import "./sections/portfolio";
-
-@import "./sections/settings";
-
 // // Components
 
 @import "./components/button";
@@ -185,11 +173,11 @@ body {
 
 @import "./components/popover";
 
-@import "./components/transactions";
+@import "./components/tabs";
 
 @import "./components/holdings";
 
-@import "./components/tabs";
+@import "./components/transactions";
 
 @import "./components/delete-tr-modal";
 
@@ -202,3 +190,15 @@ body {
 @import "./components/footer";
 
 @import "./components/date-select";
+
+// // Sections
+
+@import "./sections/home";
+
+@import "./sections/signIn";
+
+@import "./sections/signUp";
+
+@import "./sections/portfolio";
+
+@import "./sections/settings";

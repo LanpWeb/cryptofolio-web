@@ -88,9 +88,14 @@
 
   &_social {
     height: 40px;
+    color: var(--gs-9);
     background-color: var(--gs-2);
 
-    &:not(:disabled):hover {
+    &:not(:disabled):not(.btn_disabled):not(.btn_text):hover {
+      background-color: var(--gs-3);
+    }
+  
+    &:not(:disabled):not(.btn_disabled):not(.btn_text):active {
       background-color: var(--gs-3);
     }
   }
@@ -193,7 +198,7 @@
     left: 50%;
   }
 
-  &_bg_white:not(&_disabled) {
+  &_bg_white {
     background-color: var(--gs-1);
   }
 
