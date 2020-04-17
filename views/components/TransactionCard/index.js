@@ -11,7 +11,7 @@ const TransactionCard = ({
   order = 1,
   id = 1,
   name = 'BTC',
-  type = 'Sell',
+  type,
   date = '10.01.20',
   time = '22:08',
   price = '9,440.23',
@@ -20,10 +20,9 @@ const TransactionCard = ({
   editHandler = () => {},
   deleteHandler = () => {},
 }: Props) => {
-  const typeClassName = classNames({
-    'transaction-card__type': true,
-    'transaction-card__type_buy': type === 'Buy',
-    'transaction-card__type_sell': type === 'Sell',
+  const typeClassName = classNames('transaction-card__type', {
+    'transaction-card__type_buy': type === 'purchase',
+    'transaction-card__type_sell': type === 'sale',
   })
 
   return (

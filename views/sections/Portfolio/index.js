@@ -207,6 +207,7 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
                 <TransactionCard
                   order={index + 1}
                   id={transaction.coin.id}
+                  type={transaction.type}
                   name={transaction.coin.name}
                   price={transaction.price.toLocaleString()}
                   amount={transaction.amount.toLocaleString()}
