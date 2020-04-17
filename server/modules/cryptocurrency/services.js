@@ -239,7 +239,6 @@ exports.getHistoricData = async (ids, startTimestamp, endTimestamp) => {
 
   try {
     const res = await rp(requestOptionsInfo)
-    console.log(res)
 
     return res
   } catch (err) {
