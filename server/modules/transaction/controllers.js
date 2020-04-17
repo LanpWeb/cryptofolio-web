@@ -125,21 +125,30 @@ exports.getPortfolio = async (ctx) => {
 
     const startDate = Math.min(...dates)
 
-    const coinsChartData = await CryptocurrencyService.getHistoricData(
+    const coinsPriceData = await CryptocurrencyService.getHistoricData(
       coinsSymbols.join(),
       startDate
     )
 
-    const { timestamps } = coinsChartData[0]
+    const { timestamps } = coinsPriceData[0]
 
-    const chartData = timestamps.map((el) => ({ date: el }))
+    const chartData = timestamps.map((el, index) => ({
+      date: el,
+      assetsAmount: Object.fromEntries(coins.map(({ symbol }) => [symbol, 0])),
+      assetsPrice: Object.fromEntries(
+        coins.map(({ symbol }) => [
+          symbol,
+          +coinsPriceData.find(({ currency }) => currency === symbol).prices[
+            index
+          ],
+        ])
+      ),
+    }))
 
     const transactions = await TransactionService.getTransactions(id)
 
     await asyncForEach(timestamps, async (ts, index) => {
       const tsDate = DateTime.fromISO(ts)
-
-      let value = 0
 
       transactions
         .filter(({ date }) => {
@@ -147,19 +156,13 @@ exports.getPortfolio = async (ctx) => {
 
           return tsDate >= transactionDate
         })
-        .forEach(({ type, amount, coin: { symbol } }) => {
-          if (type === 'purchase') {
-            const coinData = coinsChartData.find(
-              ({ currency }) => currency === symbol
-            )
-
-            if (coinData) {
-              value += +coinData.prices[index] * amount
-            }
-          }
+        .forEach(({ amount, coin: { symbol } }) => {
+          // if (type === 'purchase') {
+          chartData[index].assetsAmount[symbol] += amount
+          // } else if (type === 'sale') {
+          //   chartData[index].assetsAmount[symbol] -= amount
+          // }
         })
-
-      chartData[index].value = value
     })
 
     result.chartData = chartData
