@@ -2,3 +2,24 @@
   width: 100%;
   height: 250px;
 }
+
+.chart-popover {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  min-height: 70px;
+  padding: 12px 15px;
+  text-align: left;
+  background-color: var(--gs-1);
+  border-radius: 5px;
+  box-shadow: 3px 4px 40px rgba(5, 41, 92, .1);
+
+  &__text {
+    margin-bottom: 4px;
+    color: var(--gs-7);
+  }
+
+  &__cash {
+    color: var(--g-8);
+  }
+}

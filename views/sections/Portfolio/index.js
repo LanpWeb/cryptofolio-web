@@ -84,9 +84,11 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
                 {!noData && !!portfolio.data && portfolio.data.chartData ? (
                   <Chart data={portfolio.data.chartData} />
                 ) : (
-                  <span className="c2 fw-medium portfolio__text">
-                    No data yet
-                  </span>
+                  <div className="chart centered">
+                    <span className="c2 fw-medium portfolio__text">
+                      No data yet
+                    </span>
+                  </div>
                 )}
               </div>
             </div>

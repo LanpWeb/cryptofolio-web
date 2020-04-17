@@ -10,28 +10,25 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import Popover from 'components/Popover'
-
-import type { Props } from './types'
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active) {
-    return (
-      <div className="popover popover_active popover_left">
-        <div className="popover__triangle" />
-        sssddssd
-      </div>
-    )
-  }
-
-  return null
-}
-const Chart = ({ data }: Props) => {
 import { DateTime } from 'luxon'
-
-import type { Props } from './types'
+import type { Props, TooltipProps } from './types'
 
 const Chart = ({ data, dateFormat = 'd LLL' }: Props) => {
+  const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
+    if (active) {
+      return (
+        <div className="chart-popover">
+          <span className="p4 chart-popover__text">{label}</span>
+          <span className="c1 fw-semi-bold chart-popover__cash">
+            ${payload?.[0].value.toFixed(2)}
+          </span>
+        </div>
+      )
+    }
+    console.log(payload)
+    return null
+  }
+
   return (
     <div className="chart">
       <ResponsiveContainer>
@@ -67,13 +64,16 @@ const Chart = ({ data, dateFormat = 'd LLL' }: Props) => {
           <XAxis
             dataKey="date"
             tickSize={7}
-            interval={7}
-            tickCount={7}
+            tickCount={2}
+            interval="preserveStartEnd"
             tickMargin={25}
+            width={1}
             stroke="#A6AEBD"
+            // padding={{ left: 30 }}
           />
           <Tooltip
             cursor={{ stroke: '#B8C8E8', strokeDasharray: '2 10' }}
+            offset={10}
             content={<CustomTooltip />}
           />
           <Area

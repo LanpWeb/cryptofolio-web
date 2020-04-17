@@ -221,6 +221,7 @@ exports.getHistoricQuote = async (coinId, date) => {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 exports.getHistoricData = async (ids, startTimestamp, endTimestamp) => {
   const start = DateTime.fromSeconds(startTimestamp)
 

@@ -7,8 +7,8 @@ import type { Props } from './types'
 const Popover = ({ content, active, className, size, position }: Props) => {
   const popoverClassName = classNames(
     {
-      'popover popover_active popover_right': true,
-      // popover_active: active,
+      popover: true,
+      popover_active: active,
       popover_md: size === 'md',
       popover_lg: size === 'lg',
       popover_right: position === 'right',
