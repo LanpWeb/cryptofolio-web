@@ -10,15 +10,19 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import { DateTime } from 'luxon'
 
 import type { Props } from './types'
 
-const Chart = ({ data }: Props) => {
+const Chart = ({ data, dateFormat = 'd LLL' }: Props) => {
   return (
     <div className="chart">
       <ResponsiveContainer>
         <AreaChart
-          data={data}
+          data={data.map((el) => ({
+            ...el,
+            date: DateTime.fromISO(el.date).toFormat(dateFormat),
+          }))}
           margin={{
             top: 10,
             right: 30,
