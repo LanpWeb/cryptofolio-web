@@ -1,5 +1,5 @@
 .popover {
-  position: absolute;
+  // position: absolute;
   display: none;
   flex-direction: column;
   width: 160px;
@@ -50,7 +50,7 @@
     display: flex;
   }
 
-  user &__triangle {
+  &__triangle {
     position: absolute;
     width: 0;
     height: 0;

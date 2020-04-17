@@ -10,9 +10,22 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import Popover from 'components/Popover'
 
 import type { Props } from './types'
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active) {
+    return (
+      <div className="popover popover_active popover_left">
+        <div className="popover__triangle" />
+        sssddssd
+      </div>
+    )
+  }
+
+  return null
+}
 const Chart = ({ data }: Props) => {
   return (
     <div className="chart">
@@ -21,9 +34,9 @@ const Chart = ({ data }: Props) => {
           data={data}
           margin={{
             top: 10,
-            right: 30,
+            right: 0,
             left: 0,
-            bottom: 0,
+            bottom: 20,
           }}
         >
           <defs>
@@ -34,9 +47,27 @@ const Chart = ({ data }: Props) => {
           </defs>
 
           <CartesianGrid vertical={false} stroke="#F2F7FD" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip cursor={{ stroke: '#B8C8E8', strokeDasharray: '2 10' }} />
+
+          <YAxis
+            orientation="right"
+            tickSize={0}
+            tickMargin={15}
+            stroke="#A6AEBD"
+            height={0}
+            strokeWidth={0}
+          />
+          <XAxis
+            dataKey="date"
+            tickSize={7}
+            interval={7}
+            tickCount={7}
+            tickMargin={25}
+            stroke="#A6AEBD"
+          />
+          <Tooltip
+            cursor={{ stroke: '#B8C8E8', strokeDasharray: '2 10' }}
+            content={<CustomTooltip />}
+          />
           <Area
             type="monotone"
             dataKey="value"
