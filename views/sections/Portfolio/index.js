@@ -23,7 +23,7 @@ import type { Props } from './types'
 const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
   const [isTransactions, setTransactions] = useState(false)
 
-  const [chartIntervalFilter] = useState(false)
+  const [chartIntervalFilter, setChartIntervalFilter] = useState(false)
 
   const toogleHandler = () => {
     setTransactions(!isTransactions)
@@ -40,6 +40,12 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
             },
             0
           ),
+        }))
+      }
+      if (!!filter && !!chartData[0].assetsPrice[filter]) {
+        return chartData.map(({ date, assetsAmount, assetsPrice }) => ({
+          date,
+          value: assetsPrice[filter] * assetsAmount[filter],
         }))
       }
     }
@@ -103,7 +109,27 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
                   <Tabs className="portfolio__tabs" disabled={noData} />
                   <DateSelect disabled={noData} />
                 </div>
-                <DropMenu disabled={noData} />
+                <DropMenu
+                  disabled={noData}
+                  options={
+                    portfolio.data
+                      ? [
+                          {
+                            name: 'All coins',
+                            id: 'all',
+                            handler: () => setChartIntervalFilter(false),
+                          },
+                          ...Object.keys(
+                            portfolio.data.chartData[0].assetsAmount
+                          ).map((el) => ({
+                            name: el,
+                            id: el,
+                            handler: () => setChartIntervalFilter(el),
+                          })),
+                        ]
+                      : []
+                  }
+                />
               </div>
               <div className="portfolio__graf centered">
                 {!noData && !!chartData ? (

@@ -13,6 +13,14 @@ import {
 import { DateTime } from 'luxon'
 import type { Props, TooltipProps } from './types'
 
+const CustomTick = ({ payload, x, y }) => {
+  return (
+    <text x={x} y={y} fill="#9FA6B4" textAnchor="middle" dy={-6}>
+      {payload.value}
+    </text>
+  )
+}
+
 const Chart = ({ data, dateFormat = 'd LLL' }: Props) => {
   const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
     if (active) {
@@ -25,7 +33,6 @@ const Chart = ({ data, dateFormat = 'd LLL' }: Props) => {
         </div>
       )
     }
-    console.log(payload)
     return null
   }
 
@@ -57,20 +64,23 @@ const Chart = ({ data, dateFormat = 'd LLL' }: Props) => {
             orientation="right"
             tickSize={0}
             tickMargin={15}
-            stroke="#A6AEBD"
-            height={0}
             strokeWidth={0}
+            unit="$"
+            stroke="#A6AEBD"
           />
+
           <XAxis
             dataKey="date"
             tickSize={7}
             tickCount={2}
-            interval="preserveStartEnd"
             tickMargin={25}
+            minTickGap={50}
             width={1}
-            stroke="#A6AEBD"
-            // padding={{ left: 30 }}
+            stroke="#E8EDF3"
+            tick={<CustomTick />}
+            interval="preserveStartEnd"
           />
+
           <Tooltip
             cursor={{ stroke: '#B8C8E8', strokeDasharray: '2 10' }}
             offset={10}
