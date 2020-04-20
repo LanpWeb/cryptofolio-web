@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { connect } from 'react-redux'
 import { toggleWatchlist } from 'ducks/watchlist/actions'
 import Header from 'components/Header'
+import MarketInfo from 'components/MarketInfo'
 import { Eye } from 'components/icons/Eye'
 import TableHeader from 'components/TableHeader'
 import CoinCard from 'components/CoinCard'
@@ -32,33 +33,11 @@ const Watchlist = ({
         {watchlist.data.length > 0 ? (
           <div className="home__inner aic">
             <div className="aic jcsb home__info">
-              <div className="home__market-info aic">
-                <p className="p4 home__cap">
-                  <span className="home__text home__text_acent">
-                    Market Cap:
-                  </span>
-                  <span className="home__text">
-                    ${cryptoGlobalStats.data?.marketCap.toLocaleString()}
-                  </span>
-                </p>
-                <p className="p4 home__volume">
-                  <span className="home__text home__text_acent">24h Vol:</span>
-                  <span className="home__text">
-                    ${cryptoGlobalStats.data?.vol24h.toLocaleString()}
-                  </span>
-                </p>
-                <p className="p4 home__dominance">
-                  <span className="home__text home__text_acent">
-                    BTC Dominance:
-                  </span>
-                  <span className="home__text">
-                    {cryptoGlobalStats.data?.btcDominance}%
-                  </span>
-                </p>
-                {cryptoGlobalStats.error && (
-                  <span className="error">{cryptoGlobalStats.error}</span>
-                )}
-              </div>
+              <MarketInfo
+                marketCap={cryptoGlobalStats.data?.marketCap.toLocaleString()}
+                volume={cryptoGlobalStats.data?.vol24h.toLocaleString()}
+                dominance={cryptoGlobalStats.data?.btcDominance}
+              />
               <Button
                 size="md"
                 icon={
