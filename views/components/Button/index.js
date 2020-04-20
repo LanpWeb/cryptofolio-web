@@ -6,7 +6,7 @@ import type { Props } from './types'
 
 const Button = ({
   size,
-  type,
+  type = 'button',
   height,
   shape,
   children,
