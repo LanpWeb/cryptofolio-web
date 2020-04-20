@@ -147,18 +147,6 @@ body {
 
 @import "./base/icons";
 
-// // Sections
-
-@import "./sections/home";
-
-@import "./sections/signIn";
-
-@import "./sections/signUp";
-
-@import "./sections/portfolio";
-
-@import "./sections/settings";
-
 // // Components
 
 @import "./components/button";
@@ -193,6 +181,8 @@ body {
 
 @import "./components/delete-tr-modal";
 
+@import "./components/transaction-modal";
+
 @import "./components/header";
 
 @import "./components/coin-card";
@@ -200,3 +190,15 @@ body {
 @import "./components/footer";
 
 @import "./components/date-select";
+
+// // Sections
+
+@import "./sections/home";
+
+@import "./sections/signIn";
+
+@import "./sections/signUp";
+
+@import "./sections/portfolio";
+
+@import "./sections/settings";

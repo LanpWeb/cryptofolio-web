@@ -6,6 +6,7 @@ import type { Props } from './types'
 
 const Button = ({
   size,
+  type = 'button',
   height,
   shape,
   children,
@@ -26,7 +27,12 @@ const Button = ({
     btn_text: shape === 'text',
   })
   return (
-    <button className={btnClassName} onClick={handleClick} disabled={disabled}>
+    <button
+      className={btnClassName}
+      onClick={handleClick}
+      disabled={disabled}
+      type={type}
+    >
       {icon && <span className="icon-frame btn__icon">{icon}</span>}
       {children}
     </button>
