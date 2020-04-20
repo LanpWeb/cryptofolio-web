@@ -7,6 +7,7 @@ import { toggleWatchlist } from 'ducks/watchlist/actions'
 import { getCryptoList } from 'ducks/cryptoList/actions'
 import Header from 'components/Header'
 import { Eye } from 'components/icons/Eye'
+import TableHeader from 'components/TableHeader'
 import CoinCard from 'components/CoinCard'
 import Button from 'components/Button'
 import TransactionModal from 'components/TransactionModal'
@@ -157,35 +158,7 @@ const Home = ({
             )}
           </div>
           <div className="home__table">
-            <div className="home__table-header aic jcsb">
-              <div className="table-item table-item_lg">
-                <span className="p3 home__text home__text_number home__text_table-header fw-medium">
-                  #
-                </span>
-                <span className="p3 fw-medium home__text home__text_table-header">
-                  Coin name
-                </span>
-              </div>
-              <span className="table-item fw-medium p3 home__text home__text_table-header">
-                Market cap
-              </span>
-              <span className="table-item table-item_sm fw-medium p3 home__text home__text_table-header">
-                Price
-              </span>
-              <span className="table-item fw-medium p3 home__text home__text_table-header">
-                Volume (24h)
-              </span>
-              <span className="table-item fw-medium p3 home__text home__text_table-header">
-                Circulating supply
-              </span>
-              <span className="table-item table-item_sm fw-medium p3 home__text home__text_table-header">
-                Change (24h)
-              </span>
-              <span className="table-item fw-medium p3 home__text home__text_ta_center home__text_table-header">
-                Price graph (7d)
-              </span>
-              <span className="home__empty" />
-            </div>
+            <TableHeader />
             {cryptoList.data.map((crypto) => (
               <CoinCard
                 order={crypto.cmc_rank}
