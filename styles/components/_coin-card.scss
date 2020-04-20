@@ -28,7 +28,7 @@
   transition: all .15s linear;
 
   &:hover {
-    background-color: var(--ac-2);
+    background: linear-gradient(0deg, #f4f9ff, #f4f9ff), #f8fbff;
   }
 
   &__text {

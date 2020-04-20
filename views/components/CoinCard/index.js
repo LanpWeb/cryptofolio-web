@@ -25,8 +25,6 @@ const CoinCard = ({
 }: Props) => (
   <div className="coin-card aic jcsb">
     <div className="table-item table-item_lg aic">
-      {console.log(percentChange)}
-
       <span className="p3 coin-card__text">{order}</span>
       <div className="coin-card__coin aic">
         <img
