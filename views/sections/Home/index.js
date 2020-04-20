@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import { toggleWatchlist } from 'ducks/watchlist/actions'
@@ -10,6 +10,7 @@ import { Eye } from 'components/icons/Eye'
 import TableHeader from 'components/TableHeader'
 import CoinCard from 'components/CoinCard'
 import Button from 'components/Button'
+import TransactionModal from 'components/TransactionModal'
 import Footer from 'components/Footer'
 import type { Props } from './types'
 
@@ -20,7 +21,25 @@ const Home = ({
   cryptoGlobalStats,
   getCryptoList,
   toggleWatchlist,
+  addTransaction = () => {},
 }: Props) => {
+  const [isTransactionModalVisible, setIsTransactionModalVisible] = useState(
+    false
+  )
+
+  const openTransactionModalHandler = useCallback(() => {
+    setIsTransactionModalVisible(true)
+  }, [setIsTransactionModalVisible])
+
+  const closeTransactionModalHandler = useCallback(() => {
+    setIsTransactionModalVisible(false)
+  }, [setIsTransactionModalVisible])
+
+  const addTransactionHandler = useCallback(() => {
+    setIsTransactionModalVisible(false)
+    addTransaction()
+  }, [setIsTransactionModalVisible, addTransaction])
+
   const loadMore = useCallback(() => {
     getCryptoList(cryptoList.start, cryptoList.limit)
   }, [getCryptoList, cryptoList.start, cryptoList.limit])
@@ -58,6 +77,11 @@ const Home = ({
   return (
     <section className="home">
       <Header />
+      <TransactionModal
+        active={isTransactionModalVisible}
+        closeModalHandler={closeTransactionModalHandler}
+        submitModalHandler={addTransactionHandler}
+      />
       <div className="container">
         <div className="home__inner aic">
           <div className="aic jcsb home__info">
@@ -86,27 +110,52 @@ const Home = ({
                 <span className="error">{cryptoGlobalStats.error}</span>
               )}
             </div>
-            <Button
-              size="md"
-              icon={
-                <svg
-                  width="16"
-                  height="16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 4v8M4 8h8"
-                    stroke="#fff"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              }
-            >
-              Add transaction
-            </Button>
+            {auth ? (
+              <Button
+                size="md"
+                icon={
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 4v8M4 8h8"
+                      stroke="#fff"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                }
+                handleClick={openTransactionModalHandler}
+              >
+                Add transaction
+              </Button>
+            ) : (
+              <Link href="/sign-in">
+                <span className="btn btn_md">
+                  <span className="icon-frame btn__icon">
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 4v8M4 8h8"
+                        stroke="#fff"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  Add transaction
+                </span>
+              </Link>
+            )}
           </div>
           <div className="home__table">
             <TableHeader />

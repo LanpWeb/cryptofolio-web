@@ -1,0 +1,28 @@
+.transaction-modal {
+
+  &__container {
+    padding: 15px 25px 30px 25px;
+  }
+
+  &__caption {
+    margin-bottom: 20px;
+    color: #0b1c40;
+  }
+
+  &__field {
+    margin-top: 21px;
+  }
+
+  &__btn-group {
+    margin-top: 30px;
+  }
+
+  &__btn:not(:last-child) {
+    margin-right: 25px;
+  }
+
+  & .react-autosuggest__container,
+  & .search__input {
+    width: 100%;
+  }
+}
