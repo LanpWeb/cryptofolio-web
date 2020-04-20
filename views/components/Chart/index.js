@@ -11,12 +11,12 @@ import {
   YAxis,
 } from 'recharts'
 import { DateTime } from 'luxon'
-import type { Props, TooltipProps } from './types'
+import type { Props, TickProps, TooltipProps } from './types'
 
-const CustomTick = ({ payload, x, y }) => {
+const CustomTick = ({ payload, x, y }: TickProps) => {
   return (
     <text x={x} y={y} fill="#9FA6B4" textAnchor="middle" dy={-6}>
-      {payload.value}
+      {!!payload && payload.value}
     </text>
   )
 }

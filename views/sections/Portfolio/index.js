@@ -36,7 +36,7 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
           date,
           value: Object.entries(assetsAmount).reduce(
             (acc, [symbol, amount]) => {
-              return acc + assetsPrice[symbol] * amount
+              return acc + assetsPrice[symbol] * +amount
             },
             0
           ),
