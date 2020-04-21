@@ -39,7 +39,7 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
     if (!crypto?.id) return null
     if (!auth) {
       return (
-        <Link href="/sign-in">
+        <Link href="/signIn" as="/sign-in">
           <a>Add</a>
         </Link>
       )

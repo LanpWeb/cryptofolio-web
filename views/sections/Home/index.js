@@ -56,7 +56,7 @@ const Home = ({
   const isInWatchlist = (crypto) => {
     if (!auth) {
       return (
-        <Link href="/sign-in">
+        <Link href="/signIn" as="/sign-in">
           <span className="coin-card__btn">
             <Eye />
           </span>
@@ -115,7 +115,7 @@ const Home = ({
                 Add transaction
               </Button>
             ) : (
-              <Link href="/sign-in">
+              <Link href="/signIn" as="/sign-in">
                 <span className="btn btn_md">
                   <span className="icon-frame btn__icon">
                     <svg
