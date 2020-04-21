@@ -22,6 +22,11 @@ const SearchBar = ({
   const [suggestions, setSuggestions] = useState([])
   const [logoId, setLogoId] = useState(null)
 
+  const deleteValue = useCallback(() => {
+    setValue('')
+    setLogoId(null)
+  }, [setValue, setLogoId])
+
   const getSuggestions = (value, data) => {
     const inputValue = value.trim().toLowerCase()
     const inputLength = inputValue.length
@@ -35,7 +40,6 @@ const SearchBar = ({
         )
   }
 
-  const addCoin = useCallback(() => setValue('sdjhsdj'), [setValue])
   const getSuggestionValue = (suggestion) =>
     selectable ? `${suggestion.name} (${suggestion.symbol})` : ''
 
@@ -69,15 +73,15 @@ const SearchBar = ({
     const searchBarClassName = classNames({
       search__input: true,
       search__input_bordered: inputProps.shape === 'bordered',
-      ' search__input_logo-search': inputProps.logoId && inputProps.value,
+      ' search__input_logo-search': logoId && inputProps.value,
     })
 
     return (
       <div className="search__inner">
         <input {...inputProps} className={searchBarClassName} />
-        {inputProps.logoId && inputProps.value ? (
+        {logoId && inputProps.value ? (
           <img
-            src={`https://s2.coinmarketcap.com/static/img/coins/32x32/${inputProps.logoId}.png`}
+            src={`https://s2.coinmarketcap.com/static/img/coins/32x32/${logoId}.png`}
             alt="logo"
             className="search__coin-logo"
           />
@@ -85,7 +89,7 @@ const SearchBar = ({
         {inputProps.value.length > 0 ? (
           <button
             className="pure-btn search__btn"
-            onClick={inputProps.deleteValue}
+            onClick={() => deleteValue()}
           >
             <Close />
           </button>
@@ -112,11 +116,6 @@ const SearchBar = ({
     getMapCrypto,
   ])
 
-  const deleteValue = useCallback(() => {
-    setValue('')
-    setLogoId(null)
-  }, [setValue, setLogoId])
-
   const onSuggestionsFetchRequested = useCallback(
     ({ value }: any) => {
       if (progress) return
@@ -131,10 +130,7 @@ const SearchBar = ({
     value,
     onChange,
     onClick,
-    deleteValue,
     shape,
-    addCoin,
-    logoId,
   }
   return (
     <Autosuggest
