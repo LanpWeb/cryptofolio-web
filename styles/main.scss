@@ -173,11 +173,11 @@ body {
 
 @import "./components/popover";
 
-@import "./components/tabs";
+@import "./components/transactions";
 
 @import "./components/holdings";
 
-@import "./components/transactions";
+@import "./components/tabs";
 
 @import "./components/delete-tr-modal";
 
@@ -202,3 +202,5 @@ body {
 @import "./sections/portfolio";
 
 @import "./sections/settings";
+
+@import "./sections/coin";
