@@ -63,6 +63,7 @@ const TransactionModal = ({
           <span className="p4 input__label">Transaction date</span>
           <div className="input-wrap__inner">
             <input
+              readOnly
               type="text"
               value={edit ? null : date.toLocaleString()}
               className="input input_height_md"
