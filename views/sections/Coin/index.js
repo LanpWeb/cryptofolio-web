@@ -32,30 +32,6 @@ if (typeof Highcharts === 'object') {
     },
   })
 }
-const IsInWatchlist = ({ crypto, auth, handleClick, watchlist }) => {
-  if (!crypto?.id) return null
-  if (!auth) {
-    return (
-      <Link href="/sign-in">
-        <span shape="text" className="btn btn_text coin-page__watchlist">
-          <Eye className="coin-page__watchlist-icon" />
-          Add to watchlist
-        </span>
-      </Link>
-    )
-  }
-
-  return (
-    <Button
-      shape="text"
-      handleClick={handleClick}
-      className="coin-page__watchlist"
-    >
-      <Eye className="coin-page__watchlist-icon" />
-      Add to watchlist
-    </Button>
-  )
-}
 
 const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
   const watchlistButtonClick = useCallback(
@@ -68,6 +44,34 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
     [watchlist, toggleWatchlist]
   )
 
+  const isInWatchlist = (crypto) => {
+    if (!crypto?.id) return null
+    if (!auth) {
+      return (
+        <Link href="/signUp" as="/sign-up">
+          <span shape="text" className="btn btn_text coin-page__watchlist">
+            <Eye className="coin-page__watchlist-icon" />
+            Add to watchlist
+          </span>
+        </Link>
+      )
+    }
+
+    return (
+      <Button
+        shape="text"
+        handleClick={watchlistButtonClick(crypto)}
+        className="coin-page__watchlist"
+      >
+        <Eye
+          className="coin-page__watchlist-icon"
+          active={watchlist?.ids.includes(crypto?.id)}
+        />
+        Add to watchlist
+      </Button>
+    )
+  }
+
   const percentClasses = classnames({
     'coin-page__percent-change p2': true,
     'coin-page__percent-change_positive':
@@ -78,7 +82,7 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
 
   const highchartsOptions = {
     title: {
-      text: `${String(cryptoInfo.data?.name)} chart`,
+      text: `${cryptoInfo.data?.name || ''} chart`,
     },
     credits: {
       text: 'coinmarketcap.com',
@@ -157,36 +161,47 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
     },
   }
 
-  const coinStatistic = [
+  const coinStatistic: Array<{
+    name: string,
+    value: string,
+    gray?: boolean,
+  }> = [
     {
-      name: `${cryptoInfo.data?.name} ROI`,
-      value: `${cryptoInfo.data?.pricePeriods.all_time.quote.USD.percent_change.toLocaleString()}%`,
+      name: `${cryptoInfo.data?.name || ''} ROI`,
+      value: `${
+        cryptoInfo.data?.pricePeriods.all_time.quote.USD.percent_change.toLocaleString() ||
+        ''
+      }%`,
       gray: true,
     },
     {
       name: 'Market rank',
-      value: `#${cryptoInfo.data?.cmc_rank}`,
+      value: `#${cryptoInfo.data?.cmc_rank || ''}`,
     },
     {
       name: 'Market cap',
-      value: `$${cryptoInfo.data?.quote.USD.market_cap.toLocaleString()} USD`,
+      value: `$${
+        cryptoInfo.data?.quote.USD.market_cap.toLocaleString() || ''
+      } USD`,
       gray: true,
     },
     {
       name: '24h volume',
-      value: `$${cryptoInfo.data?.quote.USD.volume_24h.toLocaleString()} USD`,
+      value: `$${
+        cryptoInfo.data?.quote.USD.volume_24h.toLocaleString() || ''
+      } USD`,
     },
     {
       name: 'Circulating supply',
-      value: `${cryptoInfo.data?.circulating_supply.toLocaleString()} ${
-        cryptoInfo.data?.symbol
+      value: `${cryptoInfo.data?.circulating_supply.toLocaleString() || ''} ${
+        cryptoInfo.data?.symbol || ''
       }`,
       gray: true,
     },
     {
       name: 'Total supply',
-      value: `${cryptoInfo.data?.total_supply.toLocaleString()} ${
-        cryptoInfo.data?.symbol
+      value: `${cryptoInfo.data?.total_supply.toLocaleString() || ''} ${
+        cryptoInfo.data?.symbol || ''
       }`,
       gray: true,
     },
@@ -194,18 +209,28 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
       name: 'Max supply',
       value: `${
         cryptoInfo.data?.max_supply !== null
-          ? cryptoInfo.data?.max_supply.toLocaleString()
+          ? cryptoInfo.data?.max_supply.toLocaleString() || ''
           : 'No data'
-      } ${cryptoInfo.data?.max_supply !== null ? cryptoInfo.data?.symbol : ''}`,
+      } ${
+        cryptoInfo.data?.max_supply !== null
+          ? cryptoInfo.data?.symbol || ''
+          : ''
+      }`,
     },
     {
       name: 'All time high',
-      value: `$${cryptoInfo.data?.pricePeriods.all_time.quote.USD.high.toLocaleString()} USD`,
+      value: `$${
+        cryptoInfo.data?.pricePeriods.all_time.quote.USD.high.toLocaleString() ||
+        ''
+      } USD`,
       gray: true,
     },
     {
       name: 'All time low',
-      value: `$${cryptoInfo.data?.pricePeriods.all_time.quote.USD.low.toLocaleString()} USD`,
+      value: `$${
+        cryptoInfo.data?.pricePeriods.all_time.quote.USD.low.toLocaleString() ||
+        ''
+      } USD`,
     },
     {
       name: 'Yesterday’s Open / Close ',
@@ -217,7 +242,6 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
   return (
     <section className="coin-page">
       <Header />
-
       <div className="container">
         <div className="aic jcsb coin-page__functions">
           <Breadcrumbs
@@ -232,12 +256,7 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
             ]}
           />
           <div className="aic">
-            <IsInWatchlist
-              crypto={cryptoInfo.data}
-              auth={auth}
-              handleClick={watchlistButtonClick(cryptoInfo.data)}
-              watchlist={watchlist}
-            />
+            {isInWatchlist(cryptoInfo.data)}
             <Button
               size="md"
               icon={
@@ -268,9 +287,11 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
               alt="logo"
               className="coin-page__logo"
             />
-            <h1 className="coin-page__title h3">{`${cryptoInfo.data?.name} (${cryptoInfo.data?.symbol})`}</h1>
+            <h1 className="coin-page__title h3">{`${
+              cryptoInfo.data?.name || ''
+            } (${cryptoInfo.data?.symbol || ''})`}</h1>
             <span className="coin-page__price p2">
-              {`$${cryptoInfo.data?.quote.USD.price.toLocaleString()}`}
+              {`$${cryptoInfo.data?.quote.USD.price.toLocaleString() || ''}`}
             </span>
             <span className={percentClasses}>
               {cryptoInfo.data?.quote.USD.percent_change_24h.toFixed(2)}%
@@ -307,7 +328,9 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
             />
           </div>
           <div className="coin-statistic coin-page__delimetr">
-            <h2 className="coin-page__title h2 coin-page__title_mb_20">{`${cryptoInfo.data?.name} statistics`}</h2>
+            <h2 className="coin-page__title h2 coin-page__title_mb_20">{`${
+              cryptoInfo.data?.name || ''
+            } statistics`}</h2>
             <div className="coin-statistic__info">
               {coinStatistic.map(({ name, value, gray }) => (
                 <div
@@ -323,7 +346,7 @@ const Coin = ({ cryptoInfo, auth, watchlist, toggleWatchlist }: Props) => {
           </div>
           <div className="coin-page__about coin-page__delimetr">
             <h2 className="coin-page__title h2 coin-page__title_mb_20">
-              {`About ${cryptoInfo.data?.name}`}
+              {`About ${cryptoInfo.data?.name || ''}`}
             </h2>
             <p className="coin-page__text p3">{cryptoInfo.data?.description}</p>
           </div>
