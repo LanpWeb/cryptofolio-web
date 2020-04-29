@@ -9,8 +9,6 @@ export type Props = {
   watchlist: WatchlistState,
   cryptoList: CryptoListState,
   cryptoGlobalStats: CryptoGlobalStatsState,
-
   getCryptoList: (start: number, limit: number) => void,
   toggleWatchlist: (crypto: Crypto, action: 'ADD' | 'REMOVE') => void,
-  addTransaction: () => void,
 }

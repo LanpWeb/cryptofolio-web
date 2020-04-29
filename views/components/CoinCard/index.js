@@ -7,7 +7,7 @@ import { Eye } from '../icons/Eye'
 import type { Props } from './types'
 
 const CoinCard = ({
-  order = 1,
+  rank = 1,
   id = '1',
   slug,
   name = 'Basic Attention Token',
@@ -17,7 +17,7 @@ const CoinCard = ({
   circulatingSupply = '19 639 376 092,582',
   symbol = 'USD',
   percentChange = '3.5',
-  isInWatchlist = (
+  watchlistButton = (
     <span className="coin-card__btn">
       <Eye />
     </span>
@@ -25,7 +25,7 @@ const CoinCard = ({
 }: Props) => (
   <div className="coin-card aic jcsb">
     <div className="table-item table-item_lg aic">
-      <span className="p3 coin-card__text">{order}</span>
+      <span className="p3 coin-card__text">{rank}</span>
       <div className="coin-card__coin aic">
         <img
           src={`https://s2.coinmarketcap.com/static/img/coins/32x32/${id}.png`}
@@ -76,7 +76,7 @@ const CoinCard = ({
         className="coin-card__img"
       />
     </span>
-    {isInWatchlist}
+    {watchlistButton}
   </div>
 )
 

@@ -1,15 +1,17 @@
 // @flow
 
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import { toggleWatchlist } from 'ducks/watchlist/actions'
 import Header from 'components/Header'
 import MarketInfo from 'components/MarketInfo'
 import { Eye } from 'components/icons/Eye'
+import { Plus } from 'components/icons/Plus'
 import TableHeader from 'components/TableHeader'
 import CoinCard from 'components/CoinCard'
 import Button from 'components/Button'
+import TransactionModal from 'components/TransactionModal'
 import Footer from 'components/Footer'
 import type { Props } from './types'
 
@@ -18,7 +20,13 @@ const Watchlist = ({
   cryptoGlobalStats,
   toggleWatchlist,
 }: Props) => {
-  const watchlistButtonClick = useCallback(
+  const [isTransactionModalOpen, setTransactionModalOpen] = useState(false)
+
+  const toggleTransactionModal = useCallback(() => {
+    setTransactionModalOpen((state) => !state)
+  }, [setTransactionModalOpen])
+
+  const handleWatchlistButtonClick = useCallback(
     (crypto) => () => {
       const action = watchlist?.ids.includes(crypto.id) ? 'REMOVE' : 'ADD'
       toggleWatchlist(crypto, action)
@@ -29,6 +37,10 @@ const Watchlist = ({
   return (
     <section className="home">
       <Header />
+      <TransactionModal
+        open={isTransactionModalOpen}
+        closeModalHandler={toggleTransactionModal}
+      />
       <div className="container">
         {watchlist.data.length > 0 ? (
           <div className="home__inner aic">
@@ -40,22 +52,8 @@ const Watchlist = ({
               />
               <Button
                 size="md"
-                icon={
-                  <svg
-                    width="16"
-                    height="16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8 4v8M4 8h8"
-                      stroke="#fff"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                }
+                icon={<Plus />}
+                handleClick={toggleTransactionModal}
               >
                 Add transaction
               </Button>
@@ -64,7 +62,7 @@ const Watchlist = ({
               <TableHeader />
               {watchlist.data.map((crypto) => (
                 <CoinCard
-                  order={crypto.cmc_rank}
+                  rank={crypto.cmc_rank}
                   id={crypto.id}
                   slug={crypto.slug}
                   name={crypto.name}
@@ -74,10 +72,10 @@ const Watchlist = ({
                   circulatingSupply={crypto.circulating_supply.toLocaleString()}
                   symbol={crypto.symbol}
                   percentChange={crypto.quote.USD.percent_change_24h.toFixed(2)}
-                  isInWatchlist={
+                  watchlistButton={
                     <button
                       className="pure-btn coin-card__btn"
-                      onClick={watchlistButtonClick(crypto)}
+                      onClick={handleWatchlistButtonClick(crypto)}
                       disabled={
                         watchlist?.toggledId === crypto.id &&
                         watchlist?.progress
@@ -110,7 +108,7 @@ const Watchlist = ({
               <TableHeader />
               {watchlist.recommended.map((crypto) => (
                 <CoinCard
-                  order={crypto.cmc_rank}
+                  rank={crypto.cmc_rank}
                   id={crypto.id}
                   slug={crypto.slug}
                   name={crypto.name}
@@ -120,10 +118,10 @@ const Watchlist = ({
                   circulatingSupply={crypto.circulating_supply.toLocaleString()}
                   symbol={crypto.symbol}
                   percentChange={crypto.quote.USD.percent_change_24h.toFixed(2)}
-                  isInWatchlist={
+                  watchlistButton={
                     <button
                       className="pure-btn coin-card__btn"
-                      onClick={watchlistButtonClick(crypto)}
+                      onClick={handleWatchlistButtonClick(crypto)}
                       disabled={
                         watchlist?.toggledId === crypto.id &&
                         watchlist?.progress

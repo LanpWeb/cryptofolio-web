@@ -2,7 +2,7 @@
 import type { Node } from 'react'
 
 export type Props = {
-  order?: number | string,
+  rank?: number | string,
   id?: number | string,
   slug: string,
   name?: string,
@@ -12,5 +12,5 @@ export type Props = {
   circulatingSupply?: string,
   symbol?: string,
   percentChange: string,
-  isInWatchlist: Node,
+  watchlistButton: Node,
 }

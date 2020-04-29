@@ -89,10 +89,10 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
           </div>
           <div className="aic jcsb">
             <ButtonToogle
+              name="type"
               bg="white"
               items={[{ text: 'Holdings' }, { text: 'Transactions' }]}
-              checked={isTransactions}
-              handleChange={toogleHandler}
+              onChange={toogleHandler}
               disabled={noData}
             />
             <DropMenu
