@@ -1,6 +1,6 @@
 // @flow
 
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useCallback, useState } from 'react'
 import classnames from 'classnames'
 import { CloseEye } from 'components/icons/CloseEye'
 import { Eye } from 'components/icons/Eye'
@@ -26,9 +26,9 @@ const PasswordInput = forwardRef<Props, HTMLInputElement>(
   ) => {
     const [inputType, changeInputType] = useState('password')
 
-    const inputTypeHandleChange = () => {
-      changeInputType(inputType === 'password' ? 'text' : 'password')
-    }
+    const handleInputTypeChange = useCallback(() => {
+      changeInputType((state) => (state === 'password' ? 'text' : 'password'))
+    }, [])
 
     const wrapClass = classnames(
       {
@@ -58,6 +58,17 @@ const PasswordInput = forwardRef<Props, HTMLInputElement>(
       'p4 input__label': true,
       input__label_acent: acentLabel === true,
     })
+
+    const renderedAddon = !disabled && (
+      <button
+        className="pure-btn input__password-btn"
+        onClick={handleInputTypeChange}
+        disabled={disabled}
+      >
+        {inputType === 'password' ? <CloseEye /> : <Eye active />}
+      </button>
+    )
+
     return (
       <label className={wrapClass}>
         {label && <span className={labelClass}>{label}</span>}
@@ -71,18 +82,7 @@ const PasswordInput = forwardRef<Props, HTMLInputElement>(
             disabled={disabled}
             onChange={onChange}
           />
-          {!disabled && (
-            <button
-              className="pure-btn input__password-btn"
-              onClick={(e) => {
-                e.preventDefault()
-                inputTypeHandleChange()
-              }}
-              disabled={disabled}
-            >
-              {inputType === 'password' ? <CloseEye /> : <Eye active />}
-            </button>
-          )}
+          {renderedAddon}
         </div>
       </label>
     )

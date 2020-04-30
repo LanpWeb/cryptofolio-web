@@ -67,9 +67,8 @@ const SignIn = ({ progress, signIn }: Props) => {
 }
 
 export default connect(
-  ({ signIn: { progress, error } }) => ({
+  ({ signIn: { progress } }) => ({
     progress,
-    error,
   }),
   (dispatch) => ({
     signIn: (email, password) => dispatch(signIn({ email, password })),

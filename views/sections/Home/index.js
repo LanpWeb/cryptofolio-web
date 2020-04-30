@@ -112,10 +112,6 @@ const Home = ({
   return (
     <section className="home">
       <Header />
-      <TransactionModal
-        open={isTransactionModalOpen}
-        closeModalHandler={toggleTransactionModal}
-      />
       <div className="container">
         <div className="home__inner aic">
           <div className="aic jcsb home__info">
@@ -134,6 +130,10 @@ const Home = ({
         </div>
       </div>
       <Footer />
+      <TransactionModal
+        isOpen={isTransactionModalOpen}
+        closeModalHandler={toggleTransactionModal}
+      />
     </section>
   )
 }

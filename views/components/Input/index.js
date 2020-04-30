@@ -67,10 +67,9 @@ const Input = forwardRef<Props, HTMLInputElement>(
       return <SquareInfo intent={intent} />
     }
 
-    return (
-      <label className={wrapClass}>
-        {label && <span className={labelClass}>{label}</span>}
-        {intent ? (
+    const renderedInput = () => {
+      if (intent) {
+        return (
           <div className="input-wrap__inner">
             <input
               ref={ref}
@@ -83,17 +82,26 @@ const Input = forwardRef<Props, HTMLInputElement>(
             />
             {!disabled && <span className="input__icon">{renderedIcon()}</span>}
           </div>
-        ) : (
-          <input
-            ref={ref}
-            name={name}
-            type="text"
-            disabled={disabled}
-            className={inputClass}
-            placeholder={placeholder}
-            onChange={onChange}
-          />
-        )}
+        )
+      }
+
+      return (
+        <input
+          ref={ref}
+          name={name}
+          type="text"
+          disabled={disabled}
+          className={inputClass}
+          placeholder={placeholder}
+          onChange={onChange}
+        />
+      )
+    }
+
+    return (
+      <label className={wrapClass}>
+        {label && <span className={labelClass}>{label}</span>}
+        {renderedInput()}
       </label>
     )
   }

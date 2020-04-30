@@ -34,109 +34,111 @@ const Watchlist = ({
     [watchlist, toggleWatchlist]
   )
 
+  const renderedContent = () => {
+    if (watchlist.data.length > 0) {
+      return (
+        <div className="home__inner aic">
+          <div className="aic jcsb home__info">
+            <MarketInfo
+              marketCap={cryptoGlobalStats.data?.marketCap.toLocaleString()}
+              volume={cryptoGlobalStats.data?.vol24h.toLocaleString()}
+              dominance={cryptoGlobalStats.data?.btcDominance}
+            />
+            <Button
+              size="md"
+              icon={<Plus />}
+              handleClick={toggleTransactionModal}
+            >
+              Add transaction
+            </Button>
+          </div>
+          <div className="home__table">
+            <TableHeader />
+            {watchlist.data.map((crypto) => (
+              <CoinCard
+                rank={crypto.cmc_rank}
+                id={crypto.id}
+                slug={crypto.slug}
+                name={crypto.name}
+                marketCap={crypto.quote.USD.market_cap.toLocaleString()}
+                price={crypto.quote.USD.price.toLocaleString()}
+                volume={crypto.quote.USD.volume_24h.toLocaleString()}
+                circulatingSupply={crypto.circulating_supply.toLocaleString()}
+                symbol={crypto.symbol}
+                percentChange={crypto.quote.USD.percent_change_24h.toFixed(2)}
+                watchlistButton={
+                  <button
+                    className="pure-btn coin-card__btn"
+                    onClick={handleWatchlistButtonClick(crypto)}
+                    disabled={
+                      watchlist?.toggledId === crypto.id && watchlist?.progress
+                    }
+                  >
+                    <Eye active={watchlist?.ids.includes(crypto.id)} />
+                  </button>
+                }
+              />
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div className="home__inner aifs">
+        <div className="empty-data aic jcsb">
+          <div className="empty-data__content">
+            <h3 className="h3 empty-data__caption">No currencies here yet</h3>
+            <span className="p2 empty-data__text">
+              Use the eye icon to start tracking your currency.
+            </span>
+          </div>
+          <Link href="/">
+            <span className="btn btn_md">View all coins</span>
+          </Link>
+        </div>
+        <h2 className="h2 home__caption">Recommended coins:</h2>
+        <div className="home__table">
+          <TableHeader />
+          {watchlist.recommended.map((crypto) => (
+            <CoinCard
+              rank={crypto.cmc_rank}
+              id={crypto.id}
+              slug={crypto.slug}
+              name={crypto.name}
+              marketCap={crypto.quote.USD.market_cap.toLocaleString()}
+              price={crypto.quote.USD.price.toLocaleString()}
+              volume={crypto.quote.USD.volume_24h.toLocaleString()}
+              circulatingSupply={crypto.circulating_supply.toLocaleString()}
+              symbol={crypto.symbol}
+              percentChange={crypto.quote.USD.percent_change_24h.toFixed(2)}
+              watchlistButton={
+                <button
+                  className="pure-btn coin-card__btn"
+                  onClick={handleWatchlistButtonClick(crypto)}
+                  disabled={
+                    watchlist?.toggledId === crypto.id && watchlist?.progress
+                  }
+                >
+                  <Eye active={watchlist?.ids.includes(crypto.id)} />
+                </button>
+              }
+            />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <section className="home">
       <Header />
+      <div className="container">{renderedContent()}</div>
+      <Footer />
       <TransactionModal
-        open={isTransactionModalOpen}
+        isOpen={isTransactionModalOpen}
         closeModalHandler={toggleTransactionModal}
       />
-      <div className="container">
-        {watchlist.data.length > 0 ? (
-          <div className="home__inner aic">
-            <div className="aic jcsb home__info">
-              <MarketInfo
-                marketCap={cryptoGlobalStats.data?.marketCap.toLocaleString()}
-                volume={cryptoGlobalStats.data?.vol24h.toLocaleString()}
-                dominance={cryptoGlobalStats.data?.btcDominance}
-              />
-              <Button
-                size="md"
-                icon={<Plus />}
-                handleClick={toggleTransactionModal}
-              >
-                Add transaction
-              </Button>
-            </div>
-            <div className="home__table">
-              <TableHeader />
-              {watchlist.data.map((crypto) => (
-                <CoinCard
-                  rank={crypto.cmc_rank}
-                  id={crypto.id}
-                  slug={crypto.slug}
-                  name={crypto.name}
-                  marketCap={crypto.quote.USD.market_cap.toLocaleString()}
-                  price={crypto.quote.USD.price.toLocaleString()}
-                  volume={crypto.quote.USD.volume_24h.toLocaleString()}
-                  circulatingSupply={crypto.circulating_supply.toLocaleString()}
-                  symbol={crypto.symbol}
-                  percentChange={crypto.quote.USD.percent_change_24h.toFixed(2)}
-                  watchlistButton={
-                    <button
-                      className="pure-btn coin-card__btn"
-                      onClick={handleWatchlistButtonClick(crypto)}
-                      disabled={
-                        watchlist?.toggledId === crypto.id &&
-                        watchlist?.progress
-                      }
-                    >
-                      <Eye active={watchlist?.ids.includes(crypto.id)} />
-                    </button>
-                  }
-                />
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="home__inner aifs">
-            <div className="empty-data aic jcsb">
-              <div className="empty-data__content">
-                <h3 className="h3 empty-data__caption">
-                  No currencies here yet
-                </h3>
-                <span className="p2 empty-data__text">
-                  Use the eye icon to start tracking your currency.
-                </span>
-              </div>
-              <Link href="/">
-                <span className="btn btn_md">View all coins</span>
-              </Link>
-            </div>
-            <h2 className="h2 home__caption">Recommended coins:</h2>
-            <div className="home__table">
-              <TableHeader />
-              {watchlist.recommended.map((crypto) => (
-                <CoinCard
-                  rank={crypto.cmc_rank}
-                  id={crypto.id}
-                  slug={crypto.slug}
-                  name={crypto.name}
-                  marketCap={crypto.quote.USD.market_cap.toLocaleString()}
-                  price={crypto.quote.USD.price.toLocaleString()}
-                  volume={crypto.quote.USD.volume_24h.toLocaleString()}
-                  circulatingSupply={crypto.circulating_supply.toLocaleString()}
-                  symbol={crypto.symbol}
-                  percentChange={crypto.quote.USD.percent_change_24h.toFixed(2)}
-                  watchlistButton={
-                    <button
-                      className="pure-btn coin-card__btn"
-                      onClick={handleWatchlistButtonClick(crypto)}
-                      disabled={
-                        watchlist?.toggledId === crypto.id &&
-                        watchlist?.progress
-                      }
-                    >
-                      <Eye active={watchlist?.ids.includes(crypto.id)} />
-                    </button>
-                  }
-                />
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-      <Footer />
     </section>
   )
 }

@@ -19,37 +19,37 @@ const SearchBar = forwardRef<Props, HTMLInputElement>(
       getMapCrypto,
       shape,
       selectable = false,
-      onChange: handleChange,
+      onChange: onChangeCoinId,
     },
     ref
   ) => {
     const [value, setValue] = useState('')
     const [suggestions, setSuggestions] = useState([])
-    const [logoId, setLogoId] = useState(null)
+    const [coinId, setCoinId] = useState(null)
 
     const handleClearValue = useCallback(() => {
       setValue('')
-      setLogoId(null)
-      handleChange?.(null)
-    }, [setValue, setLogoId, handleChange])
+      setCoinId(null)
+      onChangeCoinId?.(null)
+    }, [setValue, setCoinId, onChangeCoinId])
 
-    const handleLogoIdChange = useCallback(
+    const handleCoinIdChange = useCallback(
       (id) => () => {
-        setLogoId(id)
-        handleChange?.(id)
+        setCoinId(id)
+        onChangeCoinId?.(id)
       },
-      [handleChange]
+      [onChangeCoinId]
     )
 
     const onChange = useCallback(
       (event, { newValue }) => {
         setValue(newValue)
         if (!newValue) {
-          setLogoId(null)
-          handleChange?.(null)
+          setCoinId(null)
+          onChangeCoinId?.(null)
         }
       },
-      [setValue, setLogoId, handleChange]
+      [setValue, setCoinId, onChangeCoinId]
     )
 
     const onClick = useCallback(() => {
@@ -100,7 +100,7 @@ const SearchBar = forwardRef<Props, HTMLInputElement>(
         return (
           <span
             className="aic p3 fw-medium search__link"
-            onClick={handleLogoIdChange(suggestion.id)}
+            onClick={handleCoinIdChange(suggestion.id)}
           >
             {renderedLogo}
             {`${suggestion.name} (${suggestion.symbol})`}
@@ -119,9 +119,9 @@ const SearchBar = forwardRef<Props, HTMLInputElement>(
     }
 
     const renderInputComponent = (inputProps) => {
-      const renderedLogo = logoId && inputProps.value && (
+      const renderedLogo = coinId && inputProps.value && (
         <img
-          src={`https://s2.coinmarketcap.com/static/img/coins/32x32/${logoId}.png`}
+          src={`https://s2.coinmarketcap.com/static/img/coins/32x32/${coinId}.png`}
           alt="logo"
           className="search__coin-logo"
         />
@@ -150,7 +150,7 @@ const SearchBar = forwardRef<Props, HTMLInputElement>(
       const searchBarClassName = classNames({
         search__input: true,
         search__input_bordered: shape === 'bordered',
-        ' search__input_logo-search': logoId && inputProps.value,
+        ' search__input_logo-search': coinId && inputProps.value,
       })
 
       return (

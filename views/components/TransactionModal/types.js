@@ -12,6 +12,6 @@ export type Props = {
   caption?: string,
   textBtn?: string,
   className?: string,
-  open?: boolean,
+  isOpen?: boolean,
   closeModalHandler?: () => void,
 }

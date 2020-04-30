@@ -1,7 +1,7 @@
 // @flow
 
 export type Props = {|
-  name: string,
+  name?: string,
   placeholder?: string,
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'auto',
   height?: 'xs' | 'sm' | 'md',
