@@ -9,12 +9,12 @@ import Input from 'components/Input'
 import PasswordInput from 'components/PasswordInput'
 import Logo from 'components/icons/Logo'
 import Button from 'components/Button'
-import type { Props } from './types'
+import type { FormData, Props } from './types'
 
 const SignUp = ({ progress, signUp }: Props) => {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm<FormData>()
   const onSubmit = useCallback(
-    ({ email, password }) => {
+    ({ email, password }: FormData) => {
       signUp(email, password)
     },
     [signUp]
