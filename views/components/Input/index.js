@@ -100,8 +100,10 @@ const Input = forwardRef<Props, HTMLInputElement>(
 
     return (
       <label className={wrapClass}>
-        {label && <span className={labelClass}>{label}</span>}
-        {renderedInput()}
+        <>
+          {label && <span className={labelClass}>{label}</span>}
+          {renderedInput()}
+        </>
       </label>
     )
   }

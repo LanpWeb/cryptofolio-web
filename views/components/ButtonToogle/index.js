@@ -42,17 +42,19 @@ const ButtonToogle = forwardRef<Props, HTMLInputElement>(
 
     return (
       <label className={buttonToogleClassName}>
-        <input
-          ref={ref}
-          name={name}
-          type="checkbox"
-          className="button-toogle__real"
-          checked={isChecked}
-          disabled={disabled}
-          onChange={toggle}
-        />
-        <div className="button-toogle__switch" />
-        <div className="button-toogle__custom aic">{renderedItems}</div>
+        <>
+          <input
+            ref={ref}
+            name={name}
+            type="checkbox"
+            className="button-toogle__real"
+            checked={isChecked}
+            disabled={disabled}
+            onChange={toggle}
+          />
+          <div className="button-toogle__switch" />
+          <div className="button-toogle__custom aic">{renderedItems}</div>
+        </>
       </label>
     )
   }

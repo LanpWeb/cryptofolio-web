@@ -36,65 +36,67 @@ const TransactionModal = ({
             <Close />
           </span>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <h4 className="h4 transaction-modal__caption">{caption}</h4>
-            <ButtonToogle ref={register} name="sale" />
-            <label className="input-wrap input-wrap_auto transaction-modal__field">
-              <span className="p4 input__label">Coin name</span>
-              <div className="input-wrap__inner">
-                <Controller
-                  as={<SearchBar shape="bordered" selectable />}
-                  name="coinId"
-                  control={control}
-                  defaultValue={null}
-                />
+            <>
+              <h4 className="h4 transaction-modal__caption">{caption}</h4>
+              <ButtonToogle ref={register} name="sale" />
+              <label className="input-wrap input-wrap_auto transaction-modal__field">
+                <span className="p4 input__label">Coin name</span>
+                <div className="input-wrap__inner">
+                  <Controller
+                    as={<SearchBar shape="bordered" selectable />}
+                    name="coinId"
+                    control={control}
+                    defaultValue={null}
+                  />
+                </div>
+              </label>
+              <Input
+                ref={register}
+                name="amount"
+                size="auto"
+                height="md"
+                placeholder="Enter amount"
+                label="Amount"
+                wrapClassName="transaction-modal__field"
+              />
+              <Input
+                ref={register}
+                name="price"
+                size="auto"
+                height="md"
+                placeholder="Enter price"
+                label="Price"
+                wrapClassName="transaction-modal__field"
+              />
+              <label className="input-wrap input-wrap_auto transaction-modal__field">
+                <span className="p4 input__label">Transaction date</span>
+                <div className="input-wrap__inner">
+                  <input
+                    ref={register}
+                    name="date"
+                    type="date"
+                    className="input input_height_md"
+                    placeholder="Enter transaction date"
+                  />
+                </div>
+              </label>
+              <div className="transaction-modal__btn-group jcfe">
+                <Button
+                  shape="text"
+                  className="transaction-modal__btn"
+                  handleClick={closeModalHandler}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  size="sm"
+                  className="transaction-modal__btn"
+                >
+                  {textBtn}
+                </Button>
               </div>
-            </label>
-            <Input
-              ref={register}
-              name="amount"
-              size="auto"
-              height="md"
-              placeholder="Enter amount"
-              label="Amount"
-              wrapClassName="transaction-modal__field"
-            />
-            <Input
-              ref={register}
-              name="price"
-              size="auto"
-              height="md"
-              placeholder="Enter price"
-              label="Price"
-              wrapClassName="transaction-modal__field"
-            />
-            <label className="input-wrap input-wrap_auto transaction-modal__field">
-              <span className="p4 input__label">Transaction date</span>
-              <div className="input-wrap__inner">
-                <input
-                  ref={register}
-                  name="date"
-                  type="date"
-                  className="input input_height_md"
-                  placeholder="Enter transaction date"
-                />
-              </div>
-            </label>
-            <div className="transaction-modal__btn-group jcfe">
-              <Button
-                shape="text"
-                className="transaction-modal__btn"
-                handleClick={closeModalHandler}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                size="sm"
-                className="transaction-modal__btn"
-              >
-                {textBtn}
-              </Button>
-            </div>
+            </>
           </form>
         </div>
       </div>

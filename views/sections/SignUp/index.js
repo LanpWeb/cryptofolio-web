@@ -28,27 +28,29 @@ const SignUp = ({ progress, signUp }: Props) => {
         </span>
       </Link>
       <form onSubmit={handleSubmit(onSubmit)} className="sign__form aic">
-        <span className="sign__caption">Sign Up</span>
-        <Input
-          ref={register}
-          name="email"
-          placeholder="Email"
-          wrapClassName="sign__email"
-        />
-        <PasswordInput
-          ref={register}
-          name="password"
-          placeholder="Password"
-          wrapClassName="sign__pass"
-        />
-        <Button
-          type="submit"
-          disabled={progress}
-          height="lg"
-          className="sign__submit"
-        >
-          Sign Up
-        </Button>
+        <>
+          <span className="sign__caption">Sign Up</span>
+          <Input
+            ref={register}
+            name="email"
+            placeholder="Email"
+            wrapClassName="sign__email"
+          />
+          <PasswordInput
+            ref={register}
+            name="password"
+            placeholder="Password"
+            wrapClassName="sign__pass"
+          />
+          <Button
+            type="submit"
+            disabled={progress}
+            height="lg"
+            className="sign__submit"
+          >
+            Sign Up
+          </Button>
+        </>
       </form>
       <span className="sign__acc-info">
         Already have an account?

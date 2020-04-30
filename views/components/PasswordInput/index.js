@@ -73,16 +73,18 @@ const PasswordInput = forwardRef<Props, HTMLInputElement>(
       <label className={wrapClass}>
         {label && <span className={labelClass}>{label}</span>}
         <div className="input-wrap__inner">
-          <input
-            ref={ref}
-            name={name}
-            type={inputType}
-            className={inputClass}
-            placeholder={placeholder}
-            disabled={disabled}
-            onChange={onChange}
-          />
-          {renderedAddon}
+          <>
+            <input
+              ref={ref}
+              name={name}
+              type={inputType}
+              className={inputClass}
+              placeholder={placeholder}
+              disabled={disabled}
+              onChange={onChange}
+            />
+            {renderedAddon}
+          </>
         </div>
       </label>
     )
