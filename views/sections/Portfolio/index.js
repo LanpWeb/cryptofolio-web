@@ -20,7 +20,11 @@ import Chart from 'components/Chart'
 
 import type { Props } from './types'
 
-const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
+const Portfolio = ({
+  portfolio,
+  transactions,
+  noData = !portfolio.data,
+}: Props) => {
   const [isTransactions, setTransactions] = useState(false)
 
   const [chartIntervalFilter, setChartIntervalFilter] = useState(false)
@@ -127,7 +131,13 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
                             handler: () => setChartIntervalFilter(el),
                           })),
                         ]
-                      : []
+                      : [
+                          {
+                            name: 'All coins',
+                            id: 1,
+                            handler: () => {},
+                          },
+                        ]
                   }
                 />
               </div>
