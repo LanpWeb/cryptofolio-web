@@ -11,8 +11,8 @@ export type Props = {
   data: Array<Crypto>,
   progress: boolean,
   selectable?: boolean,
-  error: null | string,
   loaded: boolean,
+  shape?: 'bordered',
   getMapCrypto: () => void,
-  shape: ?'bordered',
+  onChange?: (value: number | null) => void,
 }

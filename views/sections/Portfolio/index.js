@@ -91,8 +91,7 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
             <ButtonToogle
               bg="white"
               items={[{ text: 'Holdings' }, { text: 'Transactions' }]}
-              checked={isTransactions}
-              handleChange={toogleHandler}
+              onChange={toogleHandler}
               disabled={noData}
             />
             <DropMenu

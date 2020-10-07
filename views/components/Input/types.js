@@ -1,6 +1,7 @@
 // @flow
 
 export type Props = {|
+  name?: string,
   placeholder?: string,
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'auto',
   height?: 'xs' | 'sm' | 'md',
@@ -11,6 +12,5 @@ export type Props = {|
   acentLabel?: boolean,
   wrapClassName?: string,
   inputClassName?: string,
-  value?: string,
-  handleChange?: (value: string) => void,
+  onChange?: () => void,
 |}

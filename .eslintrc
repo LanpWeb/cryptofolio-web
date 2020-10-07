@@ -25,5 +25,9 @@
     "Generator": true,
     // For images uploading using sagas
     "FormData": true
+  },
+  "rules": {
+    "no-unused-expressions": 0,
+    "react/prop-types": 0
   }
 }

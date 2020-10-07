@@ -2,9 +2,10 @@
 
 import React from 'react'
 import Head from 'next/head'
+import type { Node } from 'react'
 
 type Props = {
-  children: Object,
+  children?: Node,
   title?: string,
 }
 

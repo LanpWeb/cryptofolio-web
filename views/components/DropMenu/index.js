@@ -25,26 +25,6 @@ const initialOptions = [
     id: 4,
     handler: () => {},
   },
-  {
-    name: 'Etherium',
-    id: 3,
-    handler: () => {},
-  },
-  {
-    name: 'Litecoin',
-    id: 4,
-    handler: () => {},
-  },
-  {
-    name: 'Etherium',
-    id: 3,
-    handler: () => {},
-  },
-  {
-    name: 'Litecoin',
-    id: 4,
-    handler: () => {},
-  },
 ]
 
 const DropMenu = ({

@@ -1,11 +1,11 @@
 // @flow
 
 export type Props = {|
+  name?: string,
   checked?: boolean,
   disabled?: boolean,
   bg?: 'white',
   items?: Array<{ text: string }>,
   className?: string,
-
-  handleChange?: (any) => void,
+  onChange?: (value: boolean) => void,
 |}
