@@ -33,7 +33,11 @@ const Toast = ({
         </div>
         <span className="toast__time p4">{time}</span>
       </div>
-      <button className="pure-btn toast__close" onClick={closeToast}>
+      <button
+        type="button"
+        className="pure-btn toast__close"
+        onClick={closeToast}
+      >
         <Close />
       </button>
     </div>

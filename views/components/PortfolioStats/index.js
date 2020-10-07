@@ -76,6 +76,7 @@ const PortfolioStats = ({
               )}
             </span>
             <button
+              type="button"
               className="pure-btn stats__btn centered"
               onClick={refreshHandler}
             >

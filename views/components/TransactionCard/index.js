@@ -58,12 +58,14 @@ const TransactionCard = ({
       </span>
       <div className="transaction-card__item transaction-card__item_sm transaction-card__btn-group aic jcfe">
         <button
+          type="button"
           className="pure-btn transaction-card__btn"
           onClick={editHandler}
         >
           <Edit />
         </button>
         <button
+          type="button"
           className="pure-btn transaction-card__btn"
           onClick={deleteHandler}
         >

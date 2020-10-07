@@ -14,8 +14,8 @@ import type { FormData, Props } from './types'
 const SignUp = ({ progress, signUp }: Props) => {
   const { register, handleSubmit } = useForm<FormData>()
   const onSubmit = useCallback(
-    ({ email, password }: FormData) => {
-      signUp(email, password)
+    ({ email, password, confirmPassword }: FormData) => {
+      signUp(email, password, confirmPassword)
     },
     [signUp]
   )
@@ -42,6 +42,12 @@ const SignUp = ({ progress, signUp }: Props) => {
             placeholder="Password"
             wrapClassName="sign__pass"
           />
+          <PasswordInput
+            ref={register}
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            wrapClassName="sign__confirm-pass"
+          />
           <Button
             type="submit"
             disabled={progress}
@@ -67,6 +73,7 @@ export default connect(
     progress,
   }),
   (dispatch) => ({
-    signUp: (email, password) => dispatch(signUp({ email, password })),
+    signUp: (email, password, confirmPassword) =>
+      dispatch(signUp({ email, password, confirmPassword })),
   })
 )(SignUp)
