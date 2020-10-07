@@ -61,6 +61,7 @@ const PasswordInput = forwardRef<Props, HTMLInputElement>(
 
     const renderedAddon = !disabled && (
       <button
+        type="button"
         className="pure-btn input__password-btn"
         onClick={handleInputTypeChange}
         disabled={disabled}

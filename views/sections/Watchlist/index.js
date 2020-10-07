@@ -68,6 +68,7 @@ const Watchlist = ({
                 percentChange={crypto.quote.USD.percent_change_24h.toFixed(2)}
                 watchlistButton={
                   <button
+                    type="button"
                     className="pure-btn coin-card__btn"
                     onClick={handleWatchlistButtonClick(crypto)}
                     disabled={
@@ -114,6 +115,7 @@ const Watchlist = ({
               percentChange={crypto.quote.USD.percent_change_24h.toFixed(2)}
               watchlistButton={
                 <button
+                  type="button"
                   className="pure-btn coin-card__btn"
                   onClick={handleWatchlistButtonClick(crypto)}
                   disabled={

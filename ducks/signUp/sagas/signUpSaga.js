@@ -49,7 +49,7 @@ export default function* signUpSaga({
       if (typeof window !== 'undefined') {
         window.localStorage.setItem('signin', Date.now())
 
-        redirect('/app')
+        redirect('/portfolio')
       }
     }
   } catch (err) {
