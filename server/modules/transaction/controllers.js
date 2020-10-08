@@ -1,3 +1,5 @@
+const { DateTime } = require('luxon')
+
 const CryptocurrencyService = require('../cryptocurrency/services')
 const TransactionService = require('./services')
 
@@ -70,7 +72,6 @@ exports.deleteTransaction = async (ctx) => {
 exports.getPortfolio = async (ctx) => {
   const { id } = ctx.state.user
 
-  let graphCurrentValue = 0
   const result = {
     currentValue: 0,
     change24h: {
@@ -80,17 +81,25 @@ exports.getPortfolio = async (ctx) => {
     totalCost: 0,
     totalProfit: 0,
     holdings: [],
-    graph: [],
+    chart: [],
   }
 
   try {
     const coins = await TransactionService.getAllTransactionsCoins(id)
+
+    const coinsSymbols = []
+
     await asyncForEach(coins, async (coin) => {
-      const quoteRes = await CryptocurrencyService.getQuote(coin.id)
+      // Getting user's holdings stats data for each coin
       const { totalAmount, totalCost } = await TransactionService.getTotalInfo(
         id,
         coin
       )
+
+      // Getting current coin data for each coin
+      const quoteRes = await CryptocurrencyService.getQuote(coin.id)
+
+      coinsSymbols.push(quoteRes.symbol)
 
       const myValue = quoteRes.quote.USD.price * totalAmount[0].value
       const change24hValue = myValue * quoteRes.quote.USD.percent_change_24h
@@ -113,23 +122,68 @@ exports.getPortfolio = async (ctx) => {
     })
 
     const dates = await TransactionService.getAllTransactionsDates(id)
-    await asyncForEach(dates, async (date) => {
-      const transactions = await TransactionService.getTransactionsByDate(
-        id,
-        date
-      )
 
-      await asyncForEach(transactions, async (transaction) => {
-        const quoteRes = await CryptocurrencyService.getHistoricQuote(
-          transaction.coin.id,
-          date
-        )
-        const myValue = quoteRes.quotes[0].quote.USD.price * transaction.amount
-        graphCurrentValue += myValue
-      })
+    const startDate = Math.min(...dates)
 
-      result.graph.push({ price: graphCurrentValue, date })
+    const coinsPriceData = await CryptocurrencyService.getHistoricData(
+      coinsSymbols.join(),
+      startDate
+    )
+
+    const { timestamps } = coinsPriceData[0]
+
+    const chartData = timestamps.map((el, index) => ({
+      date: el,
+      assetsAmount: Object.fromEntries(coins.map(({ symbol }) => [symbol, 0])),
+      assetsPrice: Object.fromEntries(
+        coins.map(({ symbol }) => [
+          symbol,
+          +coinsPriceData.find(({ currency }) => currency === symbol).prices[
+            index
+          ],
+        ])
+      ),
+    }))
+
+    const transactions = await TransactionService.getTransactions(id)
+
+    await asyncForEach(timestamps, async (ts, index) => {
+      const tsDate = DateTime.fromISO(ts)
+
+      transactions
+        .filter(({ date }) => {
+          const transactionDate = DateTime.fromSeconds(date)
+
+          return tsDate >= transactionDate
+        })
+        .forEach(({ amount, coin: { symbol } }) => {
+          // if (type === 'purchase') {
+          chartData[index].assetsAmount[symbol] += amount
+          // } else if (type === 'sale') {
+          //   chartData[index].assetsAmount[symbol] -= amount
+          // }
+        })
     })
+
+    result.chartData = chartData
+
+    // await asyncForEach(dates, async (date) => {
+    //   const transactions = await TransactionService.getTransactionsByDate(
+    //     id,
+    //     date
+    //   )
+
+    //   await asyncForEach(transactions, async (transaction) => {
+    //     const quoteRes = await CryptocurrencyService.getHistoricQuote(
+    //       transaction.coin.id,
+    //       date
+    //     )
+    //     const myValue = quoteRes.quotes[0].quote.USD.price * transaction.amount
+    //     graphCurrentValue += myValue
+    //   })
+
+    //   result.graph.push({ price: graphCurrentValue, date })
+    // })
 
     result.change24h.percent =
       (result.change24h.value * 100) / result.currentValue || 0

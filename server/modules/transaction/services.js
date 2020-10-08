@@ -39,11 +39,11 @@ exports.getTotalCoins = async (userId, coin, transactionId) => {
 }
 
 exports.create = async (userId, type, amount, price, coin, date) => {
-  if (!(date >= 1566086400 && date <= 1567123200)) {
-    throw new Error(
-      'Date should be in timestamp range [1566086400, 1567123200].'
-    )
-  }
+  // if (!(date >= 1566086400 && date <= 1567123200)) {
+  //   throw new Error(
+  //     'Date should be in timestamp range [1566086400, 1567123200].'
+  //   )
+  // }
 
   try {
     await Transaction.create({

@@ -35,7 +35,6 @@ const DropMenu = ({
 }: Props) => {
   const [isOpened, openDrop] = useState(false)
   const [selectedOption, setSelectedOption] = useState(options[0])
-
   const dropmenuClassName = classNames(
     {
       dropmenu: true,

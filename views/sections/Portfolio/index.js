@@ -16,13 +16,50 @@ import HoldingHeader from 'components/HoldingHeader'
 import TransactionHeader from 'components/TransactionHeader'
 import HoldingCard from 'components/HoldingCard'
 import TransactionCard from 'components/TransactionCard'
+import Chart from 'components/Chart'
+
 import type { Props } from './types'
 
-const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
+const Portfolio = ({
+  portfolio,
+  transactions,
+  noData = !portfolio.data,
+}: Props) => {
   const [isTransactions, setTransactions] = useState(false)
+
+  const [chartIntervalFilter, setChartIntervalFilter] = useState(false)
+
   const toogleHandler = () => {
     setTransactions(!isTransactions)
   }
+
+  const getChartData = (chartData, filter = false) => {
+    if (!!chartData && chartData.length > 0) {
+      if (filter === false) {
+        return chartData.map(({ date, assetsAmount, assetsPrice }) => ({
+          date,
+          value: Object.entries(assetsAmount).reduce(
+            (acc, [symbol, amount]) => {
+              return acc + assetsPrice[symbol] * +amount
+            },
+            0
+          ),
+        }))
+      }
+      if (!!filter && !!chartData[0].assetsPrice[filter]) {
+        return chartData.map(({ date, assetsAmount, assetsPrice }) => ({
+          date,
+          value: assetsPrice[filter] * assetsAmount[filter],
+        }))
+      }
+    }
+
+    return null
+  }
+
+  const chartData =
+    !!portfolio.data &&
+    getChartData(portfolio.data.chartData, chartIntervalFilter)
 
   return (
     <section className="portfolio">
@@ -76,13 +113,43 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
                   <Tabs className="portfolio__tabs" disabled={noData} />
                   <DateSelect disabled={noData} />
                 </div>
-                <DropMenu disabled={noData} />
+                <DropMenu
+                  disabled={noData}
+                  options={
+                    portfolio.data
+                      ? [
+                          {
+                            name: 'All coins',
+                            id: 'all',
+                            handler: () => setChartIntervalFilter(false),
+                          },
+                          ...Object.keys(
+                            portfolio.data.chartData[0].assetsAmount
+                          ).map((el) => ({
+                            name: el,
+                            id: el,
+                            handler: () => setChartIntervalFilter(el),
+                          })),
+                        ]
+                      : [
+                          {
+                            name: 'All coins',
+                            id: 1,
+                            handler: () => {},
+                          },
+                        ]
+                  }
+                />
               </div>
               <div className="portfolio__graf centered">
-                {noData && (
-                  <span className="c2 fw-medium portfolio__text">
-                    No data yet
-                  </span>
+                {!noData && !!chartData ? (
+                  <Chart data={chartData} />
+                ) : (
+                  <div className="chart centered">
+                    <span className="c2 fw-medium portfolio__text">
+                      No data yet
+                    </span>
+                  </div>
                 )}
               </div>
             </div>
@@ -177,6 +244,7 @@ const Portfolio = ({ portfolio, transactions, noData = false }: Props) => {
                 <TransactionCard
                   order={index + 1}
                   id={transaction.coin.id}
+                  type={transaction.type}
                   name={transaction.coin.name}
                   price={transaction.price.toLocaleString()}
                   amount={transaction.amount.toLocaleString()}

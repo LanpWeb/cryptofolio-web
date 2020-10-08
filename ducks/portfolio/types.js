@@ -1,8 +1,9 @@
 // @flow
 
-export type GraphItem = {
-  price: number,
-  date: number,
+export type ChartItem = {
+  date: string,
+  assetsAmount: Object,
+  assetsPrice: Object,
 }
 
 export type Holding = {
@@ -24,8 +25,8 @@ export type Portfolio = {
   },
   totalCost: number,
   totalProfit: number,
-  holdings: Array<Holding>,
-  graph: Array<GraphItem>,
+  holdings: Holding[],
+  chartData: ChartItem[],
 }
 
 export type State = {
