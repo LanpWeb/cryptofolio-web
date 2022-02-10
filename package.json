@@ -54,7 +54,7 @@
     "next": "^9.1.4",
     "next-redux-wrapper": "^4.0.1",
     "next-routes": "^1.4.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "nookies": "^2.0.8",
     "password-validator": "^5.0.3",
     "react": "^16.9.0",
